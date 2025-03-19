@@ -1,0 +1,1 @@
+{"version":3,"file":"getCryptoHolderFee.d.ts","sourceRoot":"/","sources":["utils/parametersValidations/getCryptoHolderFee.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,MAAM,8CAA8C,CAAC;AACvE,OAAO,EAAE,SAAS,EAAE,MAAM,0CAA0C,CAAC;AAErE,wBAAsB,kBAAkB,CAAC,IAAI,EAAE,OAAO,EAAE,QAAQ,EAAE,SAAS,mBAiC1E"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"paymentFeeService.d.ts","sourceRoot":"/","sources":["utils/walletService/paymentFeeService.ts"],"names":[],"mappings":"AAGA,MAAM,WAAW,YAAY;IAC3B,KAAK,EAAE,MAAM,CAAC;IACd,QAAQ,EAAE,MAAM,CAAC;IACjB,GAAG,EAAE,MAAM,CAAC;IACZ,OAAO,EAAE,MAAM,CAAC;CACjB;AACD;;;;;;GAMG;AAEH,wBAAsB,iBAAiB,CAAC,IAAI,EAAE,YAAY,GAAG,OAAO,CAAC,GAAG,CAAC,CA8BxE"}

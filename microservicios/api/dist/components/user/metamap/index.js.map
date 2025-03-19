@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"/","sources":["components/user/metamap/index.ts"],"names":[],"mappings":";;;AAAA,2DAAiC","sourcesContent":["export * from './metamap.schema';\n"]}

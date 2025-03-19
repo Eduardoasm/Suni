@@ -1,0 +1,1 @@
+{"version":3,"file":"getFiatHolderFee.d.ts","sourceRoot":"/","sources":["utils/parametersValidations/getFiatHolderFee.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,MAAM,8CAA8C,CAAC;AACvE,OAAO,EAAE,SAAS,EAAE,MAAM,0CAA0C,CAAC;AAErE,wBAAsB,gBAAgB,CAAC,IAAI,EAAE,OAAO,EAAE,QAAQ,EAAE,SAAS,mBAiCxE"}

@@ -1,0 +1,4834 @@
+type Query {
+  listing(
+    # Filter by fields
+    filter: FilterFindOneListingInput
+    skip: Int
+    sort: SortFindOneListingInput
+  ): Listing
+  listings(
+    # Filter by fields
+    filter: FilterFindManyListingInput
+    skip: Int
+    limit: Int = 100
+    sort: SortFindManyListingInput
+  ): [Listing!]!
+  totalListing(
+    # Filter by fields
+    filter: FilterCountListingInput
+  ): Int
+
+  # get listings filters
+  getListingFilters(data: getListingFilter): Pagination
+
+  # get best prices listings
+  getBestPricesListings(data: GetBestPriceListing): GetPricesListingType
+
+  # get listings filters by user
+  getListingFiltersUser(data: getListingFilterUser): Pagination
+
+  # get kpi market price
+  getKpiMarketPrice(data: GetKpiMarketPrice): GetKpiMarketPriceType
+  asset(
+    # Filter by fields
+    filter: FilterFindOneAssetInput
+    skip: Int
+    sort: SortFindOneAssetInput
+  ): Asset
+  assets(
+    # Filter by fields
+    filter: FilterFindManyAssetInput
+    skip: Int
+    limit: Int = 100
+    sort: SortFindManyAssetInput
+  ): [Asset!]!
+  totalAsset(
+    # Filter by fields
+    filter: FilterCountAssetInput
+  ): Int
+
+  # get active assets ordered by custom index
+  getAssets: [Asset]
+  currency(
+    # Filter by fields
+    filter: FilterFindOneCurrencyInput
+    skip: Int
+    sort: SortFindOneCurrencyInput
+  ): Currency
+  currencies(
+    # Filter by fields
+    filter: FilterFindManyCurrencyInput
+    skip: Int
+    limit: Int = 100
+    sort: SortFindManyCurrencyInput
+  ): [Currency!]!
+  totalCurrency(
+    # Filter by fields
+    filter: FilterCountCurrencyInput
+  ): Int
+
+  # get wallets from user
+  getWalletsUser: userWallets
+
+  # get asset wallets from user
+  getAssetWalletsUser(data: GetAssetWallets): userWallets
+  paymentMethod(
+    # Filter by fields
+    filter: FilterFindOnePaymentMethodInput
+    skip: Int
+    sort: SortFindOnePaymentMethodInput
+  ): PaymentMethod
+  paymentMethods(
+    # Filter by fields
+    filter: FilterFindManyPaymentMethodInput
+    skip: Int
+    limit: Int = 100
+    sort: SortFindManyPaymentMethodInput
+  ): [PaymentMethod!]!
+  totalPaymentMethods(
+    # Filter by fields
+    filter: FilterCountPaymentMethodInput
+  ): Int
+
+  # get payment Method for currency
+  getPaymentMethodCurrency(data: GetPaymentMethodUser): [PaymentMethod]
+  paymentMethodValue(
+    # Filter by fields
+    filter: FilterFindOnePaymentMethodValueInput
+    skip: Int
+    sort: SortFindOnePaymentMethodValueInput
+  ): PaymentMethodValue
+  paymentMethodsValue(
+    # Filter by fields
+    filter: FilterFindManyPaymentMethodValueInput
+    skip: Int
+    limit: Int = 100
+    sort: SortFindManyPaymentMethodValueInput
+  ): [PaymentMethodValue!]!
+  totalPaymentMethodsValue(
+    # Filter by fields
+    filter: FilterCountPaymentMethodValueInput
+  ): Int
+  transaction(
+    # Filter by fields
+    filter: FilterFindOneTransactionInput
+    skip: Int
+    sort: SortFindOneTransactionInput
+  ): Transaction
+  transactions(
+    # Filter by fields
+    filter: FilterFindManyTransactionInput
+    skip: Int
+    limit: Int = 100
+    sort: SortFindManyTransactionInput
+  ): [Transaction!]!
+  transactionPagination(
+    # Page number for displaying
+    page: Int
+
+    #
+    perPage: Int = 20
+
+    # Filter by fields
+    filter: FilterFindManyTransactionInput
+    sort: SortFindManyTransactionInput
+  ): TransactionPagination
+  totalTransactions(
+    # Filter by fields
+    filter: FilterCountTransactionInput
+  ): Int
+
+  # get in progress transactions for user
+  getInProgressTransactions: InProgressTransactionType
+
+  # get in transactions user
+  getTransactionsUser(data: GetTransactionUser): PaginationTransaction
+
+  # get total fee amount for a specific transaction amount
+  getFee(data: GetFeeInput): GetFeeType
+  transactionHistory(
+    # Filter by fields
+    filter: FilterFindOneTransactionHistoryInput
+    skip: Int
+    sort: SortFindOneTransactionHistoryInput
+  ): TransactionHistory
+  transactionHistories(
+    # Filter by fields
+    filter: FilterFindManyTransactionHistoryInput
+    skip: Int
+    limit: Int = 100
+    sort: SortFindManyTransactionHistoryInput
+  ): [TransactionHistory!]!
+  transactionHistoryPagination(
+    # Page number for displaying
+    page: Int
+
+    #
+    perPage: Int = 20
+
+    # Filter by fields
+    filter: FilterFindManyTransactionHistoryInput
+    sort: SortFindManyTransactionHistoryInput
+  ): TransactionHistoryPagination
+  totalTransactionHistory(
+    # Filter by fields
+    filter: FilterCountTransactionHistoryInput
+  ): Int
+  appeal(
+    # Filter by fields
+    filter: FilterFindOneAppealInput
+    skip: Int
+    sort: SortFindOneAppealInput
+  ): Appeal
+  appeals(
+    # Filter by fields
+    filter: FilterFindManyAppealInput
+    skip: Int
+    limit: Int = 100
+    sort: SortFindManyAppealInput
+  ): [Appeal!]!
+  totalAppeal(
+    # Filter by fields
+    filter: FilterCountAppealInput
+  ): Int
+  paymentMethodInput(
+    # Filter by fields
+    filter: FilterFindOnePaymentMethodInputInput
+    skip: Int
+    sort: SortFindOnePaymentMethodInputInput
+  ): PaymentMethodInput
+  paymentMethodsInput(
+    # Filter by fields
+    filter: FilterFindManyPaymentMethodInputInput
+    skip: Int
+    limit: Int = 100
+    sort: SortFindManyPaymentMethodInputInput
+  ): [PaymentMethodInput!]!
+  totalPaymentMethodsInput(
+    # Filter by fields
+    filter: FilterCountPaymentMethodInputInput
+  ): Int
+  paymentMethodCategory(
+    # Filter by fields
+    filter: FilterFindOnePaymentMethodCategoryInput
+    skip: Int
+    sort: SortFindOnePaymentMethodCategoryInput
+  ): PaymentMethodCategory
+  paymentMethodsCategory(
+    # Filter by fields
+    filter: FilterFindManyPaymentMethodCategoryInput
+    skip: Int
+    limit: Int = 100
+    sort: SortFindManyPaymentMethodCategoryInput
+  ): [PaymentMethodCategory!]!
+  totalPaymentMethodsCategory(
+    # Filter by fields
+    filter: FilterCountPaymentMethodCategoryInput
+  ): Int
+
+  # get payment method types
+  getPaymentMethodCategory(data: GetPaymentMethod): [PaymentMethodCategory]
+
+  # Authentication with Stream Chat Service
+  streamChatAuth: StreamChatPayload
+  setting(
+    # Filter by fields
+    filter: FilterFindOneSettingsInput
+    skip: Int
+    sort: SortFindOneSettingsInput
+  ): Settings
+  settings(
+    # Filter by fields
+    filter: FilterFindManySettingsInput
+    skip: Int
+    limit: Int = 100
+    sort: SortFindManySettingsInput
+  ): [Settings!]!
+  country(
+    # Filter by fields
+    filter: FilterFindOneCountryInput
+    skip: Int
+    sort: SortFindOneCountryInput
+  ): Country
+  countries(
+    # Filter by fields
+    filter: FilterFindManyCountryInput
+    skip: Int
+    limit: Int = 100
+    sort: SortFindManyCountryInput
+  ): [Country!]!
+  totalCountries(
+    # Filter by fields
+    filter: FilterCountCountryInput
+  ): Int
+  bestPrice(
+    # Filter by fields
+    filter: FilterFindOneBestPriceInput
+    skip: Int
+    sort: SortFindOneBestPriceInput
+  ): BestPrice
+  bestPrices(
+    # Filter by fields
+    filter: FilterFindManyBestPriceInput
+    skip: Int
+    limit: Int = 100
+    sort: SortFindManyBestPriceInput
+  ): [BestPrice!]!
+  totalBestPrice(
+    # Filter by fields
+    filter: FilterCountBestPriceInput
+  ): Int
+
+  # get best purchase and sale listing price
+  getBestPrice(data: GetBestPrice): BestPrice
+}
+
+type Mutation {
+  # ...
+  signS3(data: SignS3Input): S3Payload
+
+  # Create one document with mongoose defaults, setters, hooks and validation
+  createListing(record: CreateOneListingInput!): CreateOneListingPayload
+
+  # Update one document: 1) Retrieve one document via findOne. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  updateListing(
+    record: UpdateOneListingInput!
+
+    # Filter by fields
+    filter: FilterUpdateOneListingInput
+    sort: SortUpdateOneListingInput
+    skip: Int
+  ): UpdateOneListingPayload
+
+  # create listing for purchase
+  createListingPurchase(data: createListingSale): Listing
+
+  # create listing for sale
+  createListingSale(data: createListingSale): Listing
+
+  # update listing
+  updateListingUserCustom(data: UpdateListingUser): Listing
+
+  # cancel listing
+  cancelListing(data: CancelListing): Listing
+
+  # add referenceNumber in all listings
+  addReferenceNumber: Boolean
+
+  # Create one document with mongoose defaults, setters, hooks and validation
+  createAsset(record: CreateOneAssetInput!): CreateOneAssetPayload
+
+  # Update one document: 1) Retrieve one document via findOne. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  updateAsset(
+    record: UpdateOneAssetInput!
+
+    # Filter by fields
+    filter: FilterUpdateOneAssetInput
+    sort: SortUpdateOneAssetInput
+    skip: Int
+  ): UpdateOneAssetPayload
+
+  # Create one document with mongoose defaults, setters, hooks and validation
+  createCurrency(record: CreateOneCurrencyInput!): CreateOneCurrencyPayload
+
+  # Update one document: 1) Retrieve one document via findOne. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  updateCurrency(
+    record: UpdateOneCurrencyInput!
+
+    # Filter by fields
+    filter: FilterUpdateOneCurrencyInput
+    sort: SortUpdateOneCurrencyInput
+    skip: Int
+  ): UpdateOneCurrencyPayload
+
+  # create payment Method
+  createPaymentMethod(data: CreatePaymentMethodUser): PaymentMethod
+
+  # Update one document: 1) Retrieve one document via findOne. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  updatePaymentMethod(
+    record: UpdateOnePaymentMethodInput!
+
+    # Filter by fields
+    filter: FilterUpdateOnePaymentMethodInput
+    sort: SortUpdateOnePaymentMethodInput
+    skip: Int
+  ): UpdateOnePaymentMethodPayload
+
+  # cancel payment Method
+  cancelPaymentMethod(data: CancelPaymentMethod): CancelPaymentMethodType
+
+  # cancel payment Method
+  updatePaymentMethodUser(data: UpdatePaymentMethod): PaymentMethod
+
+  # Create one document with mongoose defaults, setters, hooks and validation
+  createPaymentMethodValue(record: CreateOnePaymentMethodValueInput!): CreateOnePaymentMethodValuePayload
+
+  # Update one document: 1) Retrieve one document via findOne. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  updatePaymentMethodValue(
+    record: UpdateOnePaymentMethodValueInput!
+
+    # Filter by fields
+    filter: FilterUpdateOnePaymentMethodValueInput
+    sort: SortUpdateOnePaymentMethodValueInput
+    skip: Int
+  ): UpdateOnePaymentMethodValuePayload
+
+  # Update many documents without returning them: Use Query.update mongoose method. Do not apply mongoose defaults, setters, hooks and validation.
+  updateManyPaymentMethodValue(
+    record: UpdateManyPaymentMethodValueInput!
+
+    # Filter by fields
+    filter: FilterUpdateManyPaymentMethodValueInput
+    sort: SortUpdateManyPaymentMethodValueInput
+    skip: Int
+    limit: Int = 100
+  ): UpdateManyPaymentMethodValuePayload
+
+  # update values for paymentMethodValues
+  updateValuesUser(data: UpdateManyValuesUser): UpdateManyValues
+
+  # Update one document: 1) Retrieve one document via findOne. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  updateTransaction(
+    record: UpdateOneTransactionInput!
+
+    # Filter by fields
+    filter: FilterUpdateOneTransactionInput
+    sort: SortUpdateOneTransactionInput
+    skip: Int
+  ): UpdateOneTransactionPayload
+
+  # create a transaction
+  createTransaction(data: CreateTransactionInput): Transaction
+
+  # cancel a transaction
+  cancelTransaction(data: CancelTransactionInput): Transaction
+
+  # notify payment done to maker
+  notifyPayment(data: NotifyPaymentInput): Transaction
+
+  # release transaction crypto amount to buyer
+  releaseCrypto(data: ReleaseCryptoInput): Transaction
+
+  # Create one document with mongoose defaults, setters, hooks and validation
+  createTransactionHistory(record: CreateOneTransactionHistoryInput!): CreateOneTransactionHistoryPayload
+
+  # Update one document: 1) Retrieve one document via findOne. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  updateTransactionHistory(
+    record: UpdateOneTransactionHistoryInput!
+
+    # Filter by fields
+    filter: FilterUpdateOneTransactionHistoryInput
+    sort: SortUpdateOneTransactionHistoryInput
+    skip: Int
+  ): UpdateOneTransactionHistoryPayload
+
+  # create appeal
+  createAppeal(data: CreateAppeal): Appeal
+
+  # Update one document: 1) Retrieve one document via findOne. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  updateAppeal(
+    record: UpdateOneAppealInput!
+
+    # Filter by fields
+    filter: FilterUpdateOneAppealInput
+    sort: SortUpdateOneAppealInput
+    skip: Int
+  ): UpdateOneAppealPayload
+
+  # Cancel Appeal from user
+  cancelAppealUser(data: CancelAppeal): Appeal
+
+  # release transaction crypto amount by admin to buyer
+  manageCryptoAdmin(data: ManageCryptoAdminInput): Transaction
+
+  # Create one document with mongoose defaults, setters, hooks and validation
+  createPaymentMethodInput(record: CreateOnePaymentMethodInputInput!): CreateOnePaymentMethodInputPayload
+
+  # Update one document: 1) Retrieve one document via findOne. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  updatePaymentMethodInput(
+    record: UpdateOnePaymentMethodInputInput!
+
+    # Filter by fields
+    filter: FilterUpdateOnePaymentMethodInputInput
+    sort: SortUpdateOnePaymentMethodInputInput
+    skip: Int
+  ): UpdateOnePaymentMethodInputPayload
+
+  # Create one document with mongoose defaults, setters, hooks and validation
+  createPaymentMethodCategory(record: CreateOnePaymentMethodCategoryInput!): CreateOnePaymentMethodCategoryPayload
+
+  # Update one document: 1) Retrieve one document via findOne. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  updatePaymentMethodCategory(
+    record: UpdateOnePaymentMethodCategoryInput!
+
+    # Filter by fields
+    filter: FilterUpdateOnePaymentMethodCategoryInput
+    sort: SortUpdateOnePaymentMethodCategoryInput
+    skip: Int
+  ): UpdateOnePaymentMethodCategoryPayload
+
+  # Update one document: 1) Retrieve one document via findOne. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  updateSettings(
+    record: UpdateOneSettingsInput!
+
+    # Filter by fields
+    filter: FilterUpdateOneSettingsInput
+    sort: SortUpdateOneSettingsInput
+    skip: Int
+  ): UpdateOneSettingsPayload
+
+  # Create one document with mongoose defaults, setters, hooks and validation
+  createSettings(record: CreateOneSettingsInput!): CreateOneSettingsPayload
+
+  # Create one document with mongoose defaults, setters, hooks and validation
+  createCountry(record: CreateOneCountryInput!): CreateOneCountryPayload
+
+  # Update one document: 1) Retrieve one document via findOne. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  updateCountry(
+    record: UpdateOneCountryInput!
+
+    # Filter by fields
+    filter: FilterUpdateOneCountryInput
+    sort: SortUpdateOneCountryInput
+    skip: Int
+  ): UpdateOneCountryPayload
+
+  # Create one document with mongoose defaults, setters, hooks and validation
+  createBestPrice(record: CreateOneBestPriceInput!): CreateOneBestPricePayload
+
+  # Update one document: 1) Retrieve one document via findOne. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  updateBestPrice(
+    record: UpdateOneBestPriceInput!
+
+    # Filter by fields
+    filter: FilterUpdateOneBestPriceInput
+    sort: SortUpdateOneBestPriceInput
+    skip: Int
+  ): UpdateOneBestPricePayload
+}
+
+# The `Boolean` scalar type represents `true` or `false`.
+scalar Boolean
+
+# The `Boolean` scalar type represents `true` or `false`.
+scalar Boolean
+
+scalar Date
+
+# The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).
+scalar Float
+
+# The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
+scalar Int
+
+# The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
+scalar Int
+
+# The `ID` scalar type represents a unique MongoDB identifier in collection. MongoDB by default use 12-byte ObjectId value (https://docs.mongodb.com/manual/reference/bson-types/#objectid). But MongoDB also may accepts string or integer as correct values for _id field.
+scalar MongoID
+
+# The string representation of JavaScript regexp. You may provide it with flags "/^abc.*/i" or without flags like "^abc.*". More info about RegExp characters and flags: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
+scalar RegExpAsString @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-262.pdf")
+
+# The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+scalar String
+
+enum EnumAppealReason {
+  confirmedNotReceived
+  notConfirmed
+  confirmedNotReleased
+}
+
+enum EnumAppealStatus {
+  active
+  canceled
+  resolved
+}
+
+enum EnumListingPriceReferenceType {
+  suni
+  market
+}
+
+enum EnumListingPriceType {
+  fixed
+  dynamic
+}
+
+enum EnumListingStatus {
+  active
+  taker_assigned
+  canceled
+  default
+}
+
+enum EnumListingType {
+  purchase
+  sale
+}
+
+enum EnumPaymentMethodInputType {
+  string
+  number
+  boolean
+  date
+  phone
+  email
+  select
+}
+
+enum EnumSettingsBtcCryptoHolderServiceFeeOverBreakPointType {
+  fixed
+  percentage
+}
+
+enum EnumSettingsBtcCryptoHolderServiceFeeUnderBreakPointType {
+  fixed
+  percentage
+}
+
+enum EnumSettingsBtcCryptoHolderTransFeeOverBreakPointType {
+  fixed
+  percentage
+}
+
+enum EnumSettingsBtcCryptoHolderTransFeeUnderBreakPointType {
+  fixed
+  percentage
+}
+
+enum EnumSettingsBtcFiatHolderServiceFeeOverBreakPointType {
+  fixed
+  percentage
+}
+
+enum EnumSettingsBtcFiatHolderServiceFeeUnderBreakPointType {
+  fixed
+  percentage
+}
+
+enum EnumTransactionStatus {
+  pending
+  payment_executed
+  payment_received
+  successful
+  default
+  cancelled
+}
+
+enum ListingOrder {
+  order
+  completionRate
+  price
+}
+
+enum PriceReference {
+  suni
+  market
+}
+
+enum SortFindManyAppealInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindManyAssetInput {
+  _ID_ASC
+  _ID_DESC
+  NAME_ASC
+  NAME_DESC
+  SYMBOL_ASC
+  SYMBOL_DESC
+  NETWORK_ASC
+  NETWORK_DESC
+}
+
+enum SortFindManyBestPriceInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindManyCountryInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindManyCurrencyInput {
+  _ID_ASC
+  _ID_DESC
+  NAME_ASC
+  NAME_DESC
+  SYMBOL_ASC
+  SYMBOL_DESC
+  NETWORK_ASC
+  NETWORK_DESC
+}
+
+enum SortFindManyListingInput {
+  _ID_ASC
+  _ID_DESC
+  REFERENCENUMBER_ASC
+  REFERENCENUMBER_DESC
+}
+
+enum SortFindManyPaymentMethodCategoryInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindManyPaymentMethodInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindManyPaymentMethodInputInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindManyPaymentMethodValueInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindManySettingsInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindManyTransactionHistoryInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindManyTransactionInput {
+  _ID_ASC
+  _ID_DESC
+  REFERENCENUMBER_ASC
+  REFERENCENUMBER_DESC
+}
+
+enum SortFindOneAppealInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindOneAssetInput {
+  _ID_ASC
+  _ID_DESC
+  NAME_ASC
+  NAME_DESC
+  SYMBOL_ASC
+  SYMBOL_DESC
+  NETWORK_ASC
+  NETWORK_DESC
+}
+
+enum SortFindOneBestPriceInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindOneCountryInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindOneCurrencyInput {
+  _ID_ASC
+  _ID_DESC
+  NAME_ASC
+  NAME_DESC
+  SYMBOL_ASC
+  SYMBOL_DESC
+  NETWORK_ASC
+  NETWORK_DESC
+}
+
+enum SortFindOneListingInput {
+  _ID_ASC
+  _ID_DESC
+  REFERENCENUMBER_ASC
+  REFERENCENUMBER_DESC
+}
+
+enum SortFindOnePaymentMethodCategoryInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindOnePaymentMethodInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindOnePaymentMethodInputInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindOnePaymentMethodValueInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindOneSettingsInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindOneTransactionHistoryInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindOneTransactionInput {
+  _ID_ASC
+  _ID_DESC
+  REFERENCENUMBER_ASC
+  REFERENCENUMBER_DESC
+}
+
+enum SortUpdateManyPaymentMethodValueInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortUpdateOneAppealInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortUpdateOneAssetInput {
+  _ID_ASC
+  _ID_DESC
+  NAME_ASC
+  NAME_DESC
+  SYMBOL_ASC
+  SYMBOL_DESC
+  NETWORK_ASC
+  NETWORK_DESC
+}
+
+enum SortUpdateOneBestPriceInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortUpdateOneCountryInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortUpdateOneCurrencyInput {
+  _ID_ASC
+  _ID_DESC
+  NAME_ASC
+  NAME_DESC
+  SYMBOL_ASC
+  SYMBOL_DESC
+  NETWORK_ASC
+  NETWORK_DESC
+}
+
+enum SortUpdateOneListingInput {
+  _ID_ASC
+  _ID_DESC
+  REFERENCENUMBER_ASC
+  REFERENCENUMBER_DESC
+}
+
+enum SortUpdateOnePaymentMethodCategoryInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortUpdateOnePaymentMethodInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortUpdateOnePaymentMethodInputInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortUpdateOnePaymentMethodValueInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortUpdateOneSettingsInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortUpdateOneTransactionHistoryInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortUpdateOneTransactionInput {
+  _ID_ASC
+  _ID_DESC
+  REFERENCENUMBER_ASC
+  REFERENCENUMBER_DESC
+}
+
+enum TransactionTypeEnum {
+  purchase
+  sale
+}
+
+enum UserRoleEnum {
+  maker
+  taker
+}
+
+interface ErrorInterface {
+  # Generic error message
+  message: String
+}
+
+type Appeal {
+  transaction: Transaction
+  description: String!
+  paymentReceipt: [Multimedia]
+  reason: EnumAppealReason!
+  finalResultDescription: String
+  status: EnumAppealStatus
+  active: Boolean
+  appealOwner: User!
+  _id: MongoID!
+  createdAt: Date
+  updatedAt: Date
+}
+
+type Asset {
+  name: String!
+  symbol: String!
+  network: String
+  decimals: Float
+  index: Float
+  conversionRateToUsd: Float
+  _id: MongoID!
+  createdAt: Date
+  updatedAt: Date
+}
+
+type BestPrice {
+  currency: Currency
+  asset: Asset
+  saleBestPrice: Float
+  purchaseBestPrice: Float
+  _id: MongoID!
+  createdAt: Date
+  updatedAt: Date
+}
+
+type CancelPaymentMethodType {
+  success: Boolean
+  paymentMethod: PaymentMethod
+}
+
+type Country {
+  name: String
+  code: String
+  flag: String
+  active: Boolean
+  disabled: Boolean
+  _id: MongoID!
+  createdAt: Date
+  updatedAt: Date
+}
+
+type CreateOneAssetPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Created document
+  record: Asset
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type CreateOneBestPricePayload {
+  # Document ID
+  recordId: MongoID
+
+  # Created document
+  record: BestPrice
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type CreateOneCountryPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Created document
+  record: Country
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type CreateOneCurrencyPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Created document
+  record: Currency
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type CreateOneListingPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Created document
+  record: Listing
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type CreateOnePaymentMethodCategoryPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Created document
+  record: PaymentMethodCategory
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type CreateOnePaymentMethodInputPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Created document
+  record: PaymentMethodInput
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type CreateOnePaymentMethodValuePayload {
+  # Document ID
+  recordId: MongoID
+
+  # Created document
+  record: PaymentMethodValue
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type CreateOneSettingsPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Created document
+  record: Settings
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type CreateOneTransactionHistoryPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Created document
+  record: TransactionHistory
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type Currency {
+  name: String!
+  symbol: String!
+  network: String
+  decimals: Float
+  conversionRateToUsd: Float
+  _id: MongoID!
+  createdAt: Date
+  updatedAt: Date
+}
+
+type GetFeeType {
+  fee: Float!
+  valid: Boolean
+  minTransAmount: Float!
+}
+
+type GetKpiMarketPriceType {
+  rate: Float
+}
+
+type GetPricesListingType {
+  median: Float!
+  bestPrice: Float!
+}
+
+type InProgressTransactionType {
+  makerTransactions: [Transaction]
+  takerTransactions: [Transaction]
+  totalMakerTransactions: Float!
+  totalTakerTransactions: Float!
+  total: Float!
+}
+
+type Listing {
+  currency: Currency
+  asset: Asset
+  amount: Float!
+  price: Float
+  priceType: EnumListingPriceType
+  comments: String
+  autoReply: String
+  paymentMethods: [PaymentMethod]!
+  maxAmount: Float!
+  minAmount: Float!
+  originalMaxAssetAmount: Float
+  maxAmountAsset: Float
+  minAmountAsset: Float
+  type: EnumListingType!
+  maker: User!
+  status: EnumListingStatus!
+  takerConditions: [TakerConditions]
+  fee: Float
+  selectedWallet: Wallet
+  timeMinutes: Float!
+  pricePercentage: Float
+  loanAdId: String
+  transactionsMaker: Float
+  transactionsMakerCompleted: Float
+  active: Boolean
+  bestPricePercentage: Float
+  bestPrice: BestPrice
+  referenceNumber: Float
+  priceReferenceType: EnumListingPriceReferenceType
+  _id: MongoID!
+  createdAt: Date
+  updatedAt: Date
+}
+
+type Multimedia {
+  src: String
+  alt: String
+  type: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+type Options {
+  value: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+type PageInfo {
+  currentPage: Int
+  perPage: Int
+  itemCount: Int
+  pageCount: Int
+  hasPreviousPage: Boolean
+  hasNextPage: Boolean
+}
+
+type Pagination {
+  count: Int!
+  items: [Listing]
+  pageInfo: PageInfo!
+}
+
+type PaginationInfo {
+  currentPage: Int!
+  perPage: Int!
+  pageCount: Int
+  itemCount: Int
+  hasNextPage: Boolean
+  hasPreviousPage: Boolean
+}
+
+type PaginationTransaction {
+  count: Int!
+  items: [Transaction]
+  pageInfo: PageInfo!
+}
+
+type PaymentMethod {
+  values: [PaymentMethodValue]!
+  type: PaymentMethodCategory
+  requiredInfo: [String]
+  user: User!
+  active: Boolean
+  _id: MongoID!
+  createdAt: Date
+  updatedAt: Date
+}
+
+type PaymentMethodCategory {
+  name: String!
+  paymentMethodInputs: [PaymentMethodInput]!
+  active: Boolean
+  selected: Boolean
+  currency: Currency
+  _id: MongoID!
+  createdAt: Date
+  updatedAt: Date
+}
+
+type PaymentMethodInput {
+  name: String
+  placeholder: String
+  type: EnumPaymentMethodInputType
+  options: [Options]
+  requested: Boolean
+  _id: MongoID!
+  createdAt: Date
+  updatedAt: Date
+}
+
+type PaymentMethodValue {
+  value: String!
+  paymentMethodInput: PaymentMethodInput
+  active: Boolean
+  _id: MongoID!
+  createdAt: Date
+  updatedAt: Date
+}
+
+type properties {
+  wallet: String
+  name: String
+  balance: Float
+  error: String
+  blocked_balance: Float
+  available_balance: Float
+}
+
+type S3Payload {
+  signedRequest: String!
+  url: String!
+}
+
+type Settings {
+  makerFee: Float!
+  takerFee: Float!
+  transactionFee: Float
+  transactions: SettingsTransactions
+  btc: SettingsBtc
+  active: Boolean
+  _id: MongoID!
+}
+
+type SettingsBtc {
+  minTransAmount: Float
+  transBreakPoint: Float
+  cryptoHolderTransFeeUnderBreakPoint: SettingsBtcCryptoHolderTransFeeUnderBreakPoint
+  cryptoHolderServiceFeeUnderBreakPoint: SettingsBtcCryptoHolderServiceFeeUnderBreakPoint
+  fiatHolderServiceFeeUnderBreakPoint: SettingsBtcFiatHolderServiceFeeUnderBreakPoint
+  cryptoHolderTransFeeOverBreakPoint: SettingsBtcCryptoHolderTransFeeOverBreakPoint
+  cryptoHolderServiceFeeOverBreakPoint: SettingsBtcCryptoHolderServiceFeeOverBreakPoint
+  fiatHolderServiceFeeOverBreakPoint: SettingsBtcFiatHolderServiceFeeOverBreakPoint
+}
+
+type SettingsBtcCryptoHolderServiceFeeOverBreakPoint {
+  type: EnumSettingsBtcCryptoHolderServiceFeeOverBreakPointType
+  value: Float
+}
+
+type SettingsBtcCryptoHolderServiceFeeUnderBreakPoint {
+  type: EnumSettingsBtcCryptoHolderServiceFeeUnderBreakPointType
+  value: Float
+}
+
+type SettingsBtcCryptoHolderTransFeeOverBreakPoint {
+  type: EnumSettingsBtcCryptoHolderTransFeeOverBreakPointType
+  value: Float
+}
+
+type SettingsBtcCryptoHolderTransFeeUnderBreakPoint {
+  type: EnumSettingsBtcCryptoHolderTransFeeUnderBreakPointType
+  value: Float
+}
+
+type SettingsBtcFiatHolderServiceFeeOverBreakPoint {
+  type: EnumSettingsBtcFiatHolderServiceFeeOverBreakPointType
+  value: Float
+}
+
+type SettingsBtcFiatHolderServiceFeeUnderBreakPoint {
+  type: EnumSettingsBtcFiatHolderServiceFeeUnderBreakPointType
+  value: Float
+}
+
+type SettingsTransactions {
+  maxAmountAllowed: Float
+  minAmountAllowed: Float
+}
+
+type StreamChatPayload {
+  token: String!
+}
+
+type TakerConditions {
+  conditionName: String
+  conditionValue: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+type Transaction {
+  listing: Listing
+  taker: User!
+  maker: User!
+  amount: Float
+  status: EnumTransactionStatus
+  appealed: Boolean
+  appealedBy: User
+  paymentMethod: PaymentMethod
+  referenceNumber: Float
+  selectedWallet: String
+  loanAdId: String
+  active: Boolean
+  amountUsd: Float!
+  makerFee: Float
+  takerFee: Float
+  fiatAmount: Float
+  _id: MongoID!
+  createdAt: Date
+  updatedAt: Date
+}
+
+type TransactionHistory {
+  transaction: MongoID
+  assetAmount: Float
+  currencyAmount: Float
+  price: Float
+  _id: MongoID!
+  createdAt: Date
+  updatedAt: Date
+}
+
+# List of items with pagination.
+type TransactionHistoryPagination {
+  # Total object count.
+  count: Int
+
+  # Array of objects.
+  items: [TransactionHistory!]
+
+  # Information to aid in pagination.
+  pageInfo: PaginationInfo!
+}
+
+# List of items with pagination.
+type TransactionPagination {
+  # Total object count.
+  count: Int
+
+  # Array of objects.
+  items: [Transaction!]
+
+  # Information to aid in pagination.
+  pageInfo: PaginationInfo!
+}
+
+type UpdateManyPaymentMethodValuePayload {
+  # Affected documents number
+  numAffected: Int
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type UpdateManyValues {
+  success: Boolean!
+}
+
+type UpdateOneAppealPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Updated document
+  record: Appeal
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type UpdateOneAssetPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Updated document
+  record: Asset
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type UpdateOneBestPricePayload {
+  # Document ID
+  recordId: MongoID
+
+  # Updated document
+  record: BestPrice
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type UpdateOneCountryPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Updated document
+  record: Country
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type UpdateOneCurrencyPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Updated document
+  record: Currency
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type UpdateOneListingPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Updated document
+  record: Listing
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type UpdateOnePaymentMethodCategoryPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Updated document
+  record: PaymentMethodCategory
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type UpdateOnePaymentMethodInputPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Updated document
+  record: PaymentMethodInput
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type UpdateOnePaymentMethodPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Updated document
+  record: PaymentMethod
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type UpdateOnePaymentMethodValuePayload {
+  # Document ID
+  recordId: MongoID
+
+  # Updated document
+  record: PaymentMethodValue
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type UpdateOneSettingsPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Updated document
+  record: Settings
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type UpdateOneTransactionHistoryPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Updated document
+  record: TransactionHistory
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type UpdateOneTransactionPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Updated document
+  record: Transaction
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type User {
+  id: String
+  email: String
+  name: String
+  lastname: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+type userWallets {
+  wallets: [properties]
+}
+
+type Wallet {
+  name: String!
+  address: String!
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+input CancelAppeal {
+  transactionId: MongoID!
+}
+
+input CancelListing {
+  listing: MongoID!
+}
+
+input CancelPaymentMethod {
+  paymentMethodId: MongoID!
+}
+
+input CancelTransactionInput {
+  transactionId: MongoID!
+}
+
+input CreateAppeal {
+  transaction: MongoID!
+  description: String!
+  paymentReceipt: [MultimediaInput]
+  reason: String!
+}
+
+input createListingSale {
+  currency: MongoID!
+  amount: Float!
+  asset: MongoID!
+  price: Float
+  walletUser: String!
+  comments: String
+  autoReply: String
+  paymentMethods: [MongoID]
+  maxAmount: Float!
+  minAmount: Float!
+  takerConditions: [takerCond]
+  priceType: String
+  timeMinutes: Int!
+  pricePercentage: Float
+  amountInAsset: Boolean!
+  bestPricePercentage: Float
+  priceReferenceType: PriceReference
+}
+
+#
+input CreateOneAssetInput {
+  name: String!
+  symbol: String!
+  network: String
+  decimals: Float
+  index: Float
+  conversionRateToUsd: Float
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input CreateOneBestPriceInput {
+  currency: MongoID
+  asset: MongoID
+  saleBestPrice: Float
+  purchaseBestPrice: Float
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input CreateOneCountryInput {
+  name: String
+  code: String
+  flag: String
+  active: Boolean
+  disabled: Boolean
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input CreateOneCurrencyInput {
+  name: String!
+  symbol: String!
+  network: String
+  decimals: Float
+  conversionRateToUsd: Float
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input CreateOneListingInput {
+  currency: MongoID!
+  asset: MongoID!
+  amount: Float!
+  price: Float
+  priceType: EnumListingPriceType
+  comments: String
+  autoReply: String
+  paymentMethods: [MongoID]
+  maxAmount: Float!
+  minAmount: Float!
+  originalMaxAssetAmount: Float
+  maxAmountAsset: Float
+  minAmountAsset: Float
+  type: EnumListingType!
+  maker: UserInput!
+  status: EnumListingStatus!
+  takerConditions: [TakerConditionsInput]
+  fee: Float
+  selectedWallet: WalletInput
+  timeMinutes: Float!
+  pricePercentage: Float
+  loanAdId: String
+  transactionsMaker: Float
+  transactionsMakerCompleted: Float
+  active: Boolean
+  bestPricePercentage: Float
+  bestPrice: MongoID
+  referenceNumber: Float
+  priceReferenceType: EnumListingPriceReferenceType
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input CreateOnePaymentMethodCategoryInput {
+  name: String!
+  paymentMethodInputs: [MongoID]
+  active: Boolean
+  selected: Boolean
+  currency: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input CreateOnePaymentMethodInputInput {
+  name: String
+  placeholder: String
+  type: EnumPaymentMethodInputType
+  options: [OptionsInput]
+  requested: Boolean
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input CreateOnePaymentMethodValueInput {
+  value: String!
+  paymentMethodInput: MongoID
+  active: Boolean
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input CreateOneSettingsInput {
+  makerFee: Float!
+  takerFee: Float!
+  transactionFee: Float
+  transactions: SettingsTransactionsInput
+  btc: SettingsBtcInput
+  active: Boolean
+}
+
+#
+input CreateOneTransactionHistoryInput {
+  transaction: MongoID
+  assetAmount: Float
+  currencyAmount: Float
+  price: Float
+  createdAt: Date
+  updatedAt: Date
+}
+
+input CreatePaymentMethodUser {
+  type: MongoID!
+  values: [PaymenthMethodValue]!
+  requiredInfo: [String]
+}
+
+input CreateTransactionInput {
+  listingId: MongoID!
+  paymentMethod: MongoID
+  amount: Float
+  selectedWallet: String!
+}
+
+input FilterCountAppeal_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterCountAppealInput {
+  transaction: MongoID
+  description: String
+  paymentReceipt: [FilterCountMultimediaInput]
+  reason: EnumAppealReason
+  finalResultDescription: String
+  status: EnumAppealStatus
+  active: Boolean
+  appealOwner: FilterCountUserInput
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterCountAppealOperatorsInput
+  OR: [FilterCountAppealInput!]
+  AND: [FilterCountAppealInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterCountAppealOperatorsInput {
+  _id: FilterCountAppeal_idOperatorsInput
+}
+
+input FilterCountAsset_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterCountAssetInput {
+  name: String
+  symbol: String
+  network: String
+  decimals: Float
+  index: Float
+  conversionRateToUsd: Float
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterCountAssetOperatorsInput
+  OR: [FilterCountAssetInput!]
+  AND: [FilterCountAssetInput!]
+}
+
+input FilterCountAssetNameOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+input FilterCountAssetNetworkOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterCountAssetOperatorsInput {
+  name: FilterCountAssetNameOperatorsInput
+  symbol: FilterCountAssetSymbolOperatorsInput
+  network: FilterCountAssetNetworkOperatorsInput
+  _id: FilterCountAsset_idOperatorsInput
+}
+
+input FilterCountAssetSymbolOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+input FilterCountBestPrice_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterCountBestPriceInput {
+  currency: MongoID
+  asset: MongoID
+  saleBestPrice: Float
+  purchaseBestPrice: Float
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterCountBestPriceOperatorsInput
+  OR: [FilterCountBestPriceInput!]
+  AND: [FilterCountBestPriceInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterCountBestPriceOperatorsInput {
+  _id: FilterCountBestPrice_idOperatorsInput
+}
+
+input FilterCountCountry_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterCountCountryInput {
+  name: String
+  code: String
+  flag: String
+  active: Boolean
+  disabled: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterCountCountryOperatorsInput
+  OR: [FilterCountCountryInput!]
+  AND: [FilterCountCountryInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterCountCountryOperatorsInput {
+  _id: FilterCountCountry_idOperatorsInput
+}
+
+input FilterCountCurrency_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterCountCurrencyInput {
+  name: String
+  symbol: String
+  network: String
+  decimals: Float
+  conversionRateToUsd: Float
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterCountCurrencyOperatorsInput
+  OR: [FilterCountCurrencyInput!]
+  AND: [FilterCountCurrencyInput!]
+}
+
+input FilterCountCurrencyNameOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+input FilterCountCurrencyNetworkOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterCountCurrencyOperatorsInput {
+  name: FilterCountCurrencyNameOperatorsInput
+  symbol: FilterCountCurrencySymbolOperatorsInput
+  network: FilterCountCurrencyNetworkOperatorsInput
+  _id: FilterCountCurrency_idOperatorsInput
+}
+
+input FilterCountCurrencySymbolOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+input FilterCountListing_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterCountListingInput {
+  currency: MongoID
+  asset: MongoID
+  amount: Float
+  price: Float
+  priceType: EnumListingPriceType
+  comments: String
+  autoReply: String
+  paymentMethods: [MongoID]
+  maxAmount: Float
+  minAmount: Float
+  originalMaxAssetAmount: Float
+  maxAmountAsset: Float
+  minAmountAsset: Float
+  type: EnumListingType
+  maker: FilterCountUserInput
+  status: EnumListingStatus
+  takerConditions: [FilterCountTakerConditionsInput]
+  fee: Float
+  selectedWallet: FilterCountWalletInput
+  timeMinutes: Float
+  pricePercentage: Float
+  loanAdId: String
+  transactionsMaker: Float
+  transactionsMakerCompleted: Float
+  active: Boolean
+  bestPricePercentage: Float
+  bestPrice: MongoID
+  referenceNumber: Float
+  priceReferenceType: EnumListingPriceReferenceType
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterCountListingOperatorsInput
+  OR: [FilterCountListingInput!]
+  AND: [FilterCountListingInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterCountListingOperatorsInput {
+  referenceNumber: FilterCountListingReferenceNumberOperatorsInput
+  _id: FilterCountListing_idOperatorsInput
+}
+
+input FilterCountListingReferenceNumberOperatorsInput {
+  gt: Float
+  gte: Float
+  lt: Float
+  lte: Float
+  ne: Float
+  in: [Float]
+  nin: [Float]
+  exists: Boolean
+}
+
+#
+input FilterCountMultimediaInput {
+  src: String
+  alt: String
+  type: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input FilterCountOptionsInput {
+  value: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+input FilterCountPaymentMethod_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+input FilterCountPaymentMethodCategory_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterCountPaymentMethodCategoryInput {
+  name: String
+  paymentMethodInputs: [MongoID]
+  active: Boolean
+  selected: Boolean
+  currency: MongoID
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterCountPaymentMethodCategoryOperatorsInput
+  OR: [FilterCountPaymentMethodCategoryInput!]
+  AND: [FilterCountPaymentMethodCategoryInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterCountPaymentMethodCategoryOperatorsInput {
+  _id: FilterCountPaymentMethodCategory_idOperatorsInput
+}
+
+#
+input FilterCountPaymentMethodInput {
+  values: [MongoID]
+  type: MongoID
+  requiredInfo: [String]
+  user: FilterCountUserInput
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterCountPaymentMethodOperatorsInput
+  OR: [FilterCountPaymentMethodInput!]
+  AND: [FilterCountPaymentMethodInput!]
+}
+
+input FilterCountPaymentMethodInput_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterCountPaymentMethodInputInput {
+  name: String
+  placeholder: String
+  type: EnumPaymentMethodInputType
+  options: [FilterCountOptionsInput]
+  requested: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterCountPaymentMethodInputOperatorsInput
+  OR: [FilterCountPaymentMethodInputInput!]
+  AND: [FilterCountPaymentMethodInputInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterCountPaymentMethodInputOperatorsInput {
+  _id: FilterCountPaymentMethodInput_idOperatorsInput
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterCountPaymentMethodOperatorsInput {
+  _id: FilterCountPaymentMethod_idOperatorsInput
+}
+
+input FilterCountPaymentMethodValue_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterCountPaymentMethodValueInput {
+  value: String
+  paymentMethodInput: MongoID
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterCountPaymentMethodValueOperatorsInput
+  OR: [FilterCountPaymentMethodValueInput!]
+  AND: [FilterCountPaymentMethodValueInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterCountPaymentMethodValueOperatorsInput {
+  _id: FilterCountPaymentMethodValue_idOperatorsInput
+}
+
+#
+input FilterCountTakerConditionsInput {
+  conditionName: String
+  conditionValue: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+input FilterCountTransaction_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+input FilterCountTransactionHistory_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterCountTransactionHistoryInput {
+  transaction: MongoID
+  assetAmount: Float
+  currencyAmount: Float
+  price: Float
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterCountTransactionHistoryOperatorsInput
+  OR: [FilterCountTransactionHistoryInput!]
+  AND: [FilterCountTransactionHistoryInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterCountTransactionHistoryOperatorsInput {
+  _id: FilterCountTransactionHistory_idOperatorsInput
+}
+
+#
+input FilterCountTransactionInput {
+  listing: MongoID
+  taker: FilterCountUserInput
+  maker: FilterCountUserInput
+  amount: Float
+  status: EnumTransactionStatus
+  appealed: Boolean
+  appealedBy: FilterCountUserInput
+  paymentMethod: MongoID
+  referenceNumber: Float
+  selectedWallet: String
+  loanAdId: String
+  active: Boolean
+  amountUsd: Float
+  makerFee: Float
+  takerFee: Float
+  fiatAmount: Float
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterCountTransactionOperatorsInput
+  OR: [FilterCountTransactionInput!]
+  AND: [FilterCountTransactionInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterCountTransactionOperatorsInput {
+  referenceNumber: FilterCountTransactionReferenceNumberOperatorsInput
+  _id: FilterCountTransaction_idOperatorsInput
+}
+
+input FilterCountTransactionReferenceNumberOperatorsInput {
+  gt: Float
+  gte: Float
+  lt: Float
+  lte: Float
+  ne: Float
+  in: [Float]
+  nin: [Float]
+  exists: Boolean
+}
+
+#
+input FilterCountUserInput {
+  id: String
+  email: String
+  name: String
+  lastname: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input FilterCountWalletInput {
+  name: String
+  address: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+input FilterFindManyAppeal_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindManyAppealInput {
+  transaction: MongoID
+  description: String
+  paymentReceipt: [FilterFindManyMultimediaInput]
+  reason: EnumAppealReason
+  finalResultDescription: String
+  status: EnumAppealStatus
+  active: Boolean
+  appealOwner: FilterFindManyUserInput
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindManyAppealOperatorsInput
+  OR: [FilterFindManyAppealInput!]
+  AND: [FilterFindManyAppealInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindManyAppealOperatorsInput {
+  _id: FilterFindManyAppeal_idOperatorsInput
+}
+
+input FilterFindManyAsset_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindManyAssetInput {
+  name: String
+  symbol: String
+  network: String
+  decimals: Float
+  index: Float
+  conversionRateToUsd: Float
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindManyAssetOperatorsInput
+  OR: [FilterFindManyAssetInput!]
+  AND: [FilterFindManyAssetInput!]
+}
+
+input FilterFindManyAssetNameOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+input FilterFindManyAssetNetworkOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindManyAssetOperatorsInput {
+  name: FilterFindManyAssetNameOperatorsInput
+  symbol: FilterFindManyAssetSymbolOperatorsInput
+  network: FilterFindManyAssetNetworkOperatorsInput
+  _id: FilterFindManyAsset_idOperatorsInput
+}
+
+input FilterFindManyAssetSymbolOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+input FilterFindManyBestPrice_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindManyBestPriceInput {
+  currency: MongoID
+  asset: MongoID
+  saleBestPrice: Float
+  purchaseBestPrice: Float
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindManyBestPriceOperatorsInput
+  OR: [FilterFindManyBestPriceInput!]
+  AND: [FilterFindManyBestPriceInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindManyBestPriceOperatorsInput {
+  _id: FilterFindManyBestPrice_idOperatorsInput
+}
+
+input FilterFindManyCountry_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindManyCountryInput {
+  name: String
+  code: String
+  flag: String
+  active: Boolean
+  disabled: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindManyCountryOperatorsInput
+  OR: [FilterFindManyCountryInput!]
+  AND: [FilterFindManyCountryInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindManyCountryOperatorsInput {
+  _id: FilterFindManyCountry_idOperatorsInput
+}
+
+input FilterFindManyCurrency_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindManyCurrencyInput {
+  name: String
+  symbol: String
+  network: String
+  decimals: Float
+  conversionRateToUsd: Float
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindManyCurrencyOperatorsInput
+  OR: [FilterFindManyCurrencyInput!]
+  AND: [FilterFindManyCurrencyInput!]
+}
+
+input FilterFindManyCurrencyNameOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+input FilterFindManyCurrencyNetworkOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindManyCurrencyOperatorsInput {
+  name: FilterFindManyCurrencyNameOperatorsInput
+  symbol: FilterFindManyCurrencySymbolOperatorsInput
+  network: FilterFindManyCurrencyNetworkOperatorsInput
+  _id: FilterFindManyCurrency_idOperatorsInput
+}
+
+input FilterFindManyCurrencySymbolOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+input FilterFindManyListing_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindManyListingInput {
+  currency: MongoID
+  asset: MongoID
+  amount: Float
+  price: Float
+  priceType: EnumListingPriceType
+  comments: String
+  autoReply: String
+  paymentMethods: [MongoID]
+  maxAmount: Float
+  minAmount: Float
+  originalMaxAssetAmount: Float
+  maxAmountAsset: Float
+  minAmountAsset: Float
+  type: EnumListingType
+  maker: FilterFindManyUserInput
+  status: EnumListingStatus
+  takerConditions: [FilterFindManyTakerConditionsInput]
+  fee: Float
+  selectedWallet: FilterFindManyWalletInput
+  timeMinutes: Float
+  pricePercentage: Float
+  loanAdId: String
+  transactionsMaker: Float
+  transactionsMakerCompleted: Float
+  active: Boolean
+  bestPricePercentage: Float
+  bestPrice: MongoID
+  referenceNumber: Float
+  priceReferenceType: EnumListingPriceReferenceType
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindManyListingOperatorsInput
+  OR: [FilterFindManyListingInput!]
+  AND: [FilterFindManyListingInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindManyListingOperatorsInput {
+  referenceNumber: FilterFindManyListingReferenceNumberOperatorsInput
+  _id: FilterFindManyListing_idOperatorsInput
+}
+
+input FilterFindManyListingReferenceNumberOperatorsInput {
+  gt: Float
+  gte: Float
+  lt: Float
+  lte: Float
+  ne: Float
+  in: [Float]
+  nin: [Float]
+  exists: Boolean
+}
+
+#
+input FilterFindManyMultimediaInput {
+  src: String
+  alt: String
+  type: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input FilterFindManyOptionsInput {
+  value: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+input FilterFindManyPaymentMethod_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+input FilterFindManyPaymentMethodCategory_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindManyPaymentMethodCategoryInput {
+  name: String
+  paymentMethodInputs: [MongoID]
+  active: Boolean
+  selected: Boolean
+  currency: MongoID
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindManyPaymentMethodCategoryOperatorsInput
+  OR: [FilterFindManyPaymentMethodCategoryInput!]
+  AND: [FilterFindManyPaymentMethodCategoryInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindManyPaymentMethodCategoryOperatorsInput {
+  _id: FilterFindManyPaymentMethodCategory_idOperatorsInput
+}
+
+#
+input FilterFindManyPaymentMethodInput {
+  values: [MongoID]
+  type: MongoID
+  requiredInfo: [String]
+  user: FilterFindManyUserInput
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindManyPaymentMethodOperatorsInput
+  OR: [FilterFindManyPaymentMethodInput!]
+  AND: [FilterFindManyPaymentMethodInput!]
+}
+
+input FilterFindManyPaymentMethodInput_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindManyPaymentMethodInputInput {
+  name: String
+  placeholder: String
+  type: EnumPaymentMethodInputType
+  options: [FilterFindManyOptionsInput]
+  requested: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindManyPaymentMethodInputOperatorsInput
+  OR: [FilterFindManyPaymentMethodInputInput!]
+  AND: [FilterFindManyPaymentMethodInputInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindManyPaymentMethodInputOperatorsInput {
+  _id: FilterFindManyPaymentMethodInput_idOperatorsInput
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindManyPaymentMethodOperatorsInput {
+  _id: FilterFindManyPaymentMethod_idOperatorsInput
+}
+
+input FilterFindManyPaymentMethodValue_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindManyPaymentMethodValueInput {
+  value: String
+  paymentMethodInput: MongoID
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindManyPaymentMethodValueOperatorsInput
+  OR: [FilterFindManyPaymentMethodValueInput!]
+  AND: [FilterFindManyPaymentMethodValueInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindManyPaymentMethodValueOperatorsInput {
+  _id: FilterFindManyPaymentMethodValue_idOperatorsInput
+}
+
+input FilterFindManySettings_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindManySettingsBtcCryptoHolderServiceFeeOverBreakPointInput {
+  type: EnumSettingsBtcCryptoHolderServiceFeeOverBreakPointType
+  value: Float
+}
+
+#
+input FilterFindManySettingsBtcCryptoHolderServiceFeeUnderBreakPointInput {
+  type: EnumSettingsBtcCryptoHolderServiceFeeUnderBreakPointType
+  value: Float
+}
+
+#
+input FilterFindManySettingsBtcCryptoHolderTransFeeOverBreakPointInput {
+  type: EnumSettingsBtcCryptoHolderTransFeeOverBreakPointType
+  value: Float
+}
+
+#
+input FilterFindManySettingsBtcCryptoHolderTransFeeUnderBreakPointInput {
+  type: EnumSettingsBtcCryptoHolderTransFeeUnderBreakPointType
+  value: Float
+}
+
+#
+input FilterFindManySettingsBtcFiatHolderServiceFeeOverBreakPointInput {
+  type: EnumSettingsBtcFiatHolderServiceFeeOverBreakPointType
+  value: Float
+}
+
+#
+input FilterFindManySettingsBtcFiatHolderServiceFeeUnderBreakPointInput {
+  type: EnumSettingsBtcFiatHolderServiceFeeUnderBreakPointType
+  value: Float
+}
+
+#
+input FilterFindManySettingsBtcInput {
+  minTransAmount: Float
+  transBreakPoint: Float
+  cryptoHolderTransFeeUnderBreakPoint: FilterFindManySettingsBtcCryptoHolderTransFeeUnderBreakPointInput
+  cryptoHolderServiceFeeUnderBreakPoint: FilterFindManySettingsBtcCryptoHolderServiceFeeUnderBreakPointInput
+  fiatHolderServiceFeeUnderBreakPoint: FilterFindManySettingsBtcFiatHolderServiceFeeUnderBreakPointInput
+  cryptoHolderTransFeeOverBreakPoint: FilterFindManySettingsBtcCryptoHolderTransFeeOverBreakPointInput
+  cryptoHolderServiceFeeOverBreakPoint: FilterFindManySettingsBtcCryptoHolderServiceFeeOverBreakPointInput
+  fiatHolderServiceFeeOverBreakPoint: FilterFindManySettingsBtcFiatHolderServiceFeeOverBreakPointInput
+}
+
+#
+input FilterFindManySettingsInput {
+  makerFee: Float
+  takerFee: Float
+  transactionFee: Float
+  transactions: FilterFindManySettingsTransactionsInput
+  btc: FilterFindManySettingsBtcInput
+  active: Boolean
+  _id: MongoID
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindManySettingsOperatorsInput
+  OR: [FilterFindManySettingsInput!]
+  AND: [FilterFindManySettingsInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindManySettingsOperatorsInput {
+  _id: FilterFindManySettings_idOperatorsInput
+}
+
+#
+input FilterFindManySettingsTransactionsInput {
+  maxAmountAllowed: Float
+  minAmountAllowed: Float
+}
+
+#
+input FilterFindManyTakerConditionsInput {
+  conditionName: String
+  conditionValue: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+input FilterFindManyTransaction_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+input FilterFindManyTransactionHistory_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindManyTransactionHistoryInput {
+  transaction: MongoID
+  assetAmount: Float
+  currencyAmount: Float
+  price: Float
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindManyTransactionHistoryOperatorsInput
+  OR: [FilterFindManyTransactionHistoryInput!]
+  AND: [FilterFindManyTransactionHistoryInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindManyTransactionHistoryOperatorsInput {
+  _id: FilterFindManyTransactionHistory_idOperatorsInput
+}
+
+#
+input FilterFindManyTransactionInput {
+  listing: MongoID
+  taker: FilterFindManyUserInput
+  maker: FilterFindManyUserInput
+  amount: Float
+  status: EnumTransactionStatus
+  appealed: Boolean
+  appealedBy: FilterFindManyUserInput
+  paymentMethod: MongoID
+  referenceNumber: Float
+  selectedWallet: String
+  loanAdId: String
+  active: Boolean
+  amountUsd: Float
+  makerFee: Float
+  takerFee: Float
+  fiatAmount: Float
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindManyTransactionOperatorsInput
+  OR: [FilterFindManyTransactionInput!]
+  AND: [FilterFindManyTransactionInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindManyTransactionOperatorsInput {
+  referenceNumber: FilterFindManyTransactionReferenceNumberOperatorsInput
+  _id: FilterFindManyTransaction_idOperatorsInput
+}
+
+input FilterFindManyTransactionReferenceNumberOperatorsInput {
+  gt: Float
+  gte: Float
+  lt: Float
+  lte: Float
+  ne: Float
+  in: [Float]
+  nin: [Float]
+  exists: Boolean
+}
+
+#
+input FilterFindManyUserInput {
+  id: String
+  email: String
+  name: String
+  lastname: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input FilterFindManyWalletInput {
+  name: String
+  address: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+input FilterFindOneAppeal_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindOneAppealInput {
+  transaction: MongoID
+  description: String
+  paymentReceipt: [FilterFindOneMultimediaInput]
+  reason: EnumAppealReason
+  finalResultDescription: String
+  status: EnumAppealStatus
+  active: Boolean
+  appealOwner: FilterFindOneUserInput
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindOneAppealOperatorsInput
+  OR: [FilterFindOneAppealInput!]
+  AND: [FilterFindOneAppealInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindOneAppealOperatorsInput {
+  _id: FilterFindOneAppeal_idOperatorsInput
+}
+
+input FilterFindOneAsset_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindOneAssetInput {
+  name: String
+  symbol: String
+  network: String
+  decimals: Float
+  index: Float
+  conversionRateToUsd: Float
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindOneAssetOperatorsInput
+  OR: [FilterFindOneAssetInput!]
+  AND: [FilterFindOneAssetInput!]
+}
+
+input FilterFindOneAssetNameOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+input FilterFindOneAssetNetworkOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindOneAssetOperatorsInput {
+  name: FilterFindOneAssetNameOperatorsInput
+  symbol: FilterFindOneAssetSymbolOperatorsInput
+  network: FilterFindOneAssetNetworkOperatorsInput
+  _id: FilterFindOneAsset_idOperatorsInput
+}
+
+input FilterFindOneAssetSymbolOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+input FilterFindOneBestPrice_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindOneBestPriceInput {
+  currency: MongoID
+  asset: MongoID
+  saleBestPrice: Float
+  purchaseBestPrice: Float
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindOneBestPriceOperatorsInput
+  OR: [FilterFindOneBestPriceInput!]
+  AND: [FilterFindOneBestPriceInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindOneBestPriceOperatorsInput {
+  _id: FilterFindOneBestPrice_idOperatorsInput
+}
+
+input FilterFindOneCountry_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindOneCountryInput {
+  name: String
+  code: String
+  flag: String
+  active: Boolean
+  disabled: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindOneCountryOperatorsInput
+  OR: [FilterFindOneCountryInput!]
+  AND: [FilterFindOneCountryInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindOneCountryOperatorsInput {
+  _id: FilterFindOneCountry_idOperatorsInput
+}
+
+input FilterFindOneCurrency_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindOneCurrencyInput {
+  name: String
+  symbol: String
+  network: String
+  decimals: Float
+  conversionRateToUsd: Float
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindOneCurrencyOperatorsInput
+  OR: [FilterFindOneCurrencyInput!]
+  AND: [FilterFindOneCurrencyInput!]
+}
+
+input FilterFindOneCurrencyNameOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+input FilterFindOneCurrencyNetworkOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindOneCurrencyOperatorsInput {
+  name: FilterFindOneCurrencyNameOperatorsInput
+  symbol: FilterFindOneCurrencySymbolOperatorsInput
+  network: FilterFindOneCurrencyNetworkOperatorsInput
+  _id: FilterFindOneCurrency_idOperatorsInput
+}
+
+input FilterFindOneCurrencySymbolOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+input FilterFindOneListing_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindOneListingInput {
+  currency: MongoID
+  asset: MongoID
+  amount: Float
+  price: Float
+  priceType: EnumListingPriceType
+  comments: String
+  autoReply: String
+  paymentMethods: [MongoID]
+  maxAmount: Float
+  minAmount: Float
+  originalMaxAssetAmount: Float
+  maxAmountAsset: Float
+  minAmountAsset: Float
+  type: EnumListingType
+  maker: FilterFindOneUserInput
+  status: EnumListingStatus
+  takerConditions: [FilterFindOneTakerConditionsInput]
+  fee: Float
+  selectedWallet: FilterFindOneWalletInput
+  timeMinutes: Float
+  pricePercentage: Float
+  loanAdId: String
+  transactionsMaker: Float
+  transactionsMakerCompleted: Float
+  active: Boolean
+  bestPricePercentage: Float
+  bestPrice: MongoID
+  referenceNumber: Float
+  priceReferenceType: EnumListingPriceReferenceType
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindOneListingOperatorsInput
+  OR: [FilterFindOneListingInput!]
+  AND: [FilterFindOneListingInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindOneListingOperatorsInput {
+  referenceNumber: FilterFindOneListingReferenceNumberOperatorsInput
+  _id: FilterFindOneListing_idOperatorsInput
+}
+
+input FilterFindOneListingReferenceNumberOperatorsInput {
+  gt: Float
+  gte: Float
+  lt: Float
+  lte: Float
+  ne: Float
+  in: [Float]
+  nin: [Float]
+  exists: Boolean
+}
+
+#
+input FilterFindOneMultimediaInput {
+  src: String
+  alt: String
+  type: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input FilterFindOneOptionsInput {
+  value: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+input FilterFindOnePaymentMethod_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+input FilterFindOnePaymentMethodCategory_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindOnePaymentMethodCategoryInput {
+  name: String
+  paymentMethodInputs: [MongoID]
+  active: Boolean
+  selected: Boolean
+  currency: MongoID
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindOnePaymentMethodCategoryOperatorsInput
+  OR: [FilterFindOnePaymentMethodCategoryInput!]
+  AND: [FilterFindOnePaymentMethodCategoryInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindOnePaymentMethodCategoryOperatorsInput {
+  _id: FilterFindOnePaymentMethodCategory_idOperatorsInput
+}
+
+#
+input FilterFindOnePaymentMethodInput {
+  values: [MongoID]
+  type: MongoID
+  requiredInfo: [String]
+  user: FilterFindOneUserInput
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindOnePaymentMethodOperatorsInput
+  OR: [FilterFindOnePaymentMethodInput!]
+  AND: [FilterFindOnePaymentMethodInput!]
+}
+
+input FilterFindOnePaymentMethodInput_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindOnePaymentMethodInputInput {
+  name: String
+  placeholder: String
+  type: EnumPaymentMethodInputType
+  options: [FilterFindOneOptionsInput]
+  requested: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindOnePaymentMethodInputOperatorsInput
+  OR: [FilterFindOnePaymentMethodInputInput!]
+  AND: [FilterFindOnePaymentMethodInputInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindOnePaymentMethodInputOperatorsInput {
+  _id: FilterFindOnePaymentMethodInput_idOperatorsInput
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindOnePaymentMethodOperatorsInput {
+  _id: FilterFindOnePaymentMethod_idOperatorsInput
+}
+
+input FilterFindOnePaymentMethodValue_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindOnePaymentMethodValueInput {
+  value: String
+  paymentMethodInput: MongoID
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindOnePaymentMethodValueOperatorsInput
+  OR: [FilterFindOnePaymentMethodValueInput!]
+  AND: [FilterFindOnePaymentMethodValueInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindOnePaymentMethodValueOperatorsInput {
+  _id: FilterFindOnePaymentMethodValue_idOperatorsInput
+}
+
+input FilterFindOneSettings_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindOneSettingsBtcCryptoHolderServiceFeeOverBreakPointInput {
+  type: EnumSettingsBtcCryptoHolderServiceFeeOverBreakPointType
+  value: Float
+}
+
+#
+input FilterFindOneSettingsBtcCryptoHolderServiceFeeUnderBreakPointInput {
+  type: EnumSettingsBtcCryptoHolderServiceFeeUnderBreakPointType
+  value: Float
+}
+
+#
+input FilterFindOneSettingsBtcCryptoHolderTransFeeOverBreakPointInput {
+  type: EnumSettingsBtcCryptoHolderTransFeeOverBreakPointType
+  value: Float
+}
+
+#
+input FilterFindOneSettingsBtcCryptoHolderTransFeeUnderBreakPointInput {
+  type: EnumSettingsBtcCryptoHolderTransFeeUnderBreakPointType
+  value: Float
+}
+
+#
+input FilterFindOneSettingsBtcFiatHolderServiceFeeOverBreakPointInput {
+  type: EnumSettingsBtcFiatHolderServiceFeeOverBreakPointType
+  value: Float
+}
+
+#
+input FilterFindOneSettingsBtcFiatHolderServiceFeeUnderBreakPointInput {
+  type: EnumSettingsBtcFiatHolderServiceFeeUnderBreakPointType
+  value: Float
+}
+
+#
+input FilterFindOneSettingsBtcInput {
+  minTransAmount: Float
+  transBreakPoint: Float
+  cryptoHolderTransFeeUnderBreakPoint: FilterFindOneSettingsBtcCryptoHolderTransFeeUnderBreakPointInput
+  cryptoHolderServiceFeeUnderBreakPoint: FilterFindOneSettingsBtcCryptoHolderServiceFeeUnderBreakPointInput
+  fiatHolderServiceFeeUnderBreakPoint: FilterFindOneSettingsBtcFiatHolderServiceFeeUnderBreakPointInput
+  cryptoHolderTransFeeOverBreakPoint: FilterFindOneSettingsBtcCryptoHolderTransFeeOverBreakPointInput
+  cryptoHolderServiceFeeOverBreakPoint: FilterFindOneSettingsBtcCryptoHolderServiceFeeOverBreakPointInput
+  fiatHolderServiceFeeOverBreakPoint: FilterFindOneSettingsBtcFiatHolderServiceFeeOverBreakPointInput
+}
+
+#
+input FilterFindOneSettingsInput {
+  makerFee: Float
+  takerFee: Float
+  transactionFee: Float
+  transactions: FilterFindOneSettingsTransactionsInput
+  btc: FilterFindOneSettingsBtcInput
+  active: Boolean
+  _id: MongoID
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindOneSettingsOperatorsInput
+  OR: [FilterFindOneSettingsInput!]
+  AND: [FilterFindOneSettingsInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindOneSettingsOperatorsInput {
+  _id: FilterFindOneSettings_idOperatorsInput
+}
+
+#
+input FilterFindOneSettingsTransactionsInput {
+  maxAmountAllowed: Float
+  minAmountAllowed: Float
+}
+
+#
+input FilterFindOneTakerConditionsInput {
+  conditionName: String
+  conditionValue: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+input FilterFindOneTransaction_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+input FilterFindOneTransactionHistory_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindOneTransactionHistoryInput {
+  transaction: MongoID
+  assetAmount: Float
+  currencyAmount: Float
+  price: Float
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindOneTransactionHistoryOperatorsInput
+  OR: [FilterFindOneTransactionHistoryInput!]
+  AND: [FilterFindOneTransactionHistoryInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindOneTransactionHistoryOperatorsInput {
+  _id: FilterFindOneTransactionHistory_idOperatorsInput
+}
+
+#
+input FilterFindOneTransactionInput {
+  listing: MongoID
+  taker: FilterFindOneUserInput
+  maker: FilterFindOneUserInput
+  amount: Float
+  status: EnumTransactionStatus
+  appealed: Boolean
+  appealedBy: FilterFindOneUserInput
+  paymentMethod: MongoID
+  referenceNumber: Float
+  selectedWallet: String
+  loanAdId: String
+  active: Boolean
+  amountUsd: Float
+  makerFee: Float
+  takerFee: Float
+  fiatAmount: Float
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindOneTransactionOperatorsInput
+  OR: [FilterFindOneTransactionInput!]
+  AND: [FilterFindOneTransactionInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindOneTransactionOperatorsInput {
+  referenceNumber: FilterFindOneTransactionReferenceNumberOperatorsInput
+  _id: FilterFindOneTransaction_idOperatorsInput
+}
+
+input FilterFindOneTransactionReferenceNumberOperatorsInput {
+  gt: Float
+  gte: Float
+  lt: Float
+  lte: Float
+  ne: Float
+  in: [Float]
+  nin: [Float]
+  exists: Boolean
+}
+
+#
+input FilterFindOneUserInput {
+  id: String
+  email: String
+  name: String
+  lastname: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input FilterFindOneWalletInput {
+  name: String
+  address: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+input FilterUpdateManyPaymentMethodValue_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterUpdateManyPaymentMethodValueInput {
+  value: String
+  paymentMethodInput: MongoID
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterUpdateManyPaymentMethodValueOperatorsInput
+  OR: [FilterUpdateManyPaymentMethodValueInput!]
+  AND: [FilterUpdateManyPaymentMethodValueInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterUpdateManyPaymentMethodValueOperatorsInput {
+  _id: FilterUpdateManyPaymentMethodValue_idOperatorsInput
+}
+
+input FilterUpdateOneAppeal_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterUpdateOneAppealInput {
+  transaction: MongoID
+  description: String
+  paymentReceipt: [FilterUpdateOneMultimediaInput]
+  reason: EnumAppealReason
+  finalResultDescription: String
+  status: EnumAppealStatus
+  active: Boolean
+  appealOwner: FilterUpdateOneUserInput
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterUpdateOneAppealOperatorsInput
+  OR: [FilterUpdateOneAppealInput!]
+  AND: [FilterUpdateOneAppealInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterUpdateOneAppealOperatorsInput {
+  _id: FilterUpdateOneAppeal_idOperatorsInput
+}
+
+input FilterUpdateOneAsset_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterUpdateOneAssetInput {
+  name: String
+  symbol: String
+  network: String
+  decimals: Float
+  index: Float
+  conversionRateToUsd: Float
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterUpdateOneAssetOperatorsInput
+  OR: [FilterUpdateOneAssetInput!]
+  AND: [FilterUpdateOneAssetInput!]
+}
+
+input FilterUpdateOneAssetNameOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+input FilterUpdateOneAssetNetworkOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterUpdateOneAssetOperatorsInput {
+  name: FilterUpdateOneAssetNameOperatorsInput
+  symbol: FilterUpdateOneAssetSymbolOperatorsInput
+  network: FilterUpdateOneAssetNetworkOperatorsInput
+  _id: FilterUpdateOneAsset_idOperatorsInput
+}
+
+input FilterUpdateOneAssetSymbolOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+input FilterUpdateOneBestPrice_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterUpdateOneBestPriceInput {
+  currency: MongoID
+  asset: MongoID
+  saleBestPrice: Float
+  purchaseBestPrice: Float
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterUpdateOneBestPriceOperatorsInput
+  OR: [FilterUpdateOneBestPriceInput!]
+  AND: [FilterUpdateOneBestPriceInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterUpdateOneBestPriceOperatorsInput {
+  _id: FilterUpdateOneBestPrice_idOperatorsInput
+}
+
+input FilterUpdateOneCountry_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterUpdateOneCountryInput {
+  name: String
+  code: String
+  flag: String
+  active: Boolean
+  disabled: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterUpdateOneCountryOperatorsInput
+  OR: [FilterUpdateOneCountryInput!]
+  AND: [FilterUpdateOneCountryInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterUpdateOneCountryOperatorsInput {
+  _id: FilterUpdateOneCountry_idOperatorsInput
+}
+
+input FilterUpdateOneCurrency_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterUpdateOneCurrencyInput {
+  name: String
+  symbol: String
+  network: String
+  decimals: Float
+  conversionRateToUsd: Float
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterUpdateOneCurrencyOperatorsInput
+  OR: [FilterUpdateOneCurrencyInput!]
+  AND: [FilterUpdateOneCurrencyInput!]
+}
+
+input FilterUpdateOneCurrencyNameOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+input FilterUpdateOneCurrencyNetworkOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterUpdateOneCurrencyOperatorsInput {
+  name: FilterUpdateOneCurrencyNameOperatorsInput
+  symbol: FilterUpdateOneCurrencySymbolOperatorsInput
+  network: FilterUpdateOneCurrencyNetworkOperatorsInput
+  _id: FilterUpdateOneCurrency_idOperatorsInput
+}
+
+input FilterUpdateOneCurrencySymbolOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+input FilterUpdateOneListing_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterUpdateOneListingInput {
+  currency: MongoID
+  asset: MongoID
+  amount: Float
+  price: Float
+  priceType: EnumListingPriceType
+  comments: String
+  autoReply: String
+  paymentMethods: [MongoID]
+  maxAmount: Float
+  minAmount: Float
+  originalMaxAssetAmount: Float
+  maxAmountAsset: Float
+  minAmountAsset: Float
+  type: EnumListingType
+  maker: FilterUpdateOneUserInput
+  status: EnumListingStatus
+  takerConditions: [FilterUpdateOneTakerConditionsInput]
+  fee: Float
+  selectedWallet: FilterUpdateOneWalletInput
+  timeMinutes: Float
+  pricePercentage: Float
+  loanAdId: String
+  transactionsMaker: Float
+  transactionsMakerCompleted: Float
+  active: Boolean
+  bestPricePercentage: Float
+  bestPrice: MongoID
+  referenceNumber: Float
+  priceReferenceType: EnumListingPriceReferenceType
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterUpdateOneListingOperatorsInput
+  OR: [FilterUpdateOneListingInput!]
+  AND: [FilterUpdateOneListingInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterUpdateOneListingOperatorsInput {
+  referenceNumber: FilterUpdateOneListingReferenceNumberOperatorsInput
+  _id: FilterUpdateOneListing_idOperatorsInput
+}
+
+input FilterUpdateOneListingReferenceNumberOperatorsInput {
+  gt: Float
+  gte: Float
+  lt: Float
+  lte: Float
+  ne: Float
+  in: [Float]
+  nin: [Float]
+  exists: Boolean
+}
+
+#
+input FilterUpdateOneMultimediaInput {
+  src: String
+  alt: String
+  type: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input FilterUpdateOneOptionsInput {
+  value: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+input FilterUpdateOnePaymentMethod_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+input FilterUpdateOnePaymentMethodCategory_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterUpdateOnePaymentMethodCategoryInput {
+  name: String
+  paymentMethodInputs: [MongoID]
+  active: Boolean
+  selected: Boolean
+  currency: MongoID
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterUpdateOnePaymentMethodCategoryOperatorsInput
+  OR: [FilterUpdateOnePaymentMethodCategoryInput!]
+  AND: [FilterUpdateOnePaymentMethodCategoryInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterUpdateOnePaymentMethodCategoryOperatorsInput {
+  _id: FilterUpdateOnePaymentMethodCategory_idOperatorsInput
+}
+
+#
+input FilterUpdateOnePaymentMethodInput {
+  values: [MongoID]
+  type: MongoID
+  requiredInfo: [String]
+  user: FilterUpdateOneUserInput
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterUpdateOnePaymentMethodOperatorsInput
+  OR: [FilterUpdateOnePaymentMethodInput!]
+  AND: [FilterUpdateOnePaymentMethodInput!]
+}
+
+input FilterUpdateOnePaymentMethodInput_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterUpdateOnePaymentMethodInputInput {
+  name: String
+  placeholder: String
+  type: EnumPaymentMethodInputType
+  options: [FilterUpdateOneOptionsInput]
+  requested: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterUpdateOnePaymentMethodInputOperatorsInput
+  OR: [FilterUpdateOnePaymentMethodInputInput!]
+  AND: [FilterUpdateOnePaymentMethodInputInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterUpdateOnePaymentMethodInputOperatorsInput {
+  _id: FilterUpdateOnePaymentMethodInput_idOperatorsInput
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterUpdateOnePaymentMethodOperatorsInput {
+  _id: FilterUpdateOnePaymentMethod_idOperatorsInput
+}
+
+input FilterUpdateOnePaymentMethodValue_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterUpdateOnePaymentMethodValueInput {
+  value: String
+  paymentMethodInput: MongoID
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterUpdateOnePaymentMethodValueOperatorsInput
+  OR: [FilterUpdateOnePaymentMethodValueInput!]
+  AND: [FilterUpdateOnePaymentMethodValueInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterUpdateOnePaymentMethodValueOperatorsInput {
+  _id: FilterUpdateOnePaymentMethodValue_idOperatorsInput
+}
+
+input FilterUpdateOneSettings_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterUpdateOneSettingsBtcCryptoHolderServiceFeeOverBreakPointInput {
+  type: EnumSettingsBtcCryptoHolderServiceFeeOverBreakPointType
+  value: Float
+}
+
+#
+input FilterUpdateOneSettingsBtcCryptoHolderServiceFeeUnderBreakPointInput {
+  type: EnumSettingsBtcCryptoHolderServiceFeeUnderBreakPointType
+  value: Float
+}
+
+#
+input FilterUpdateOneSettingsBtcCryptoHolderTransFeeOverBreakPointInput {
+  type: EnumSettingsBtcCryptoHolderTransFeeOverBreakPointType
+  value: Float
+}
+
+#
+input FilterUpdateOneSettingsBtcCryptoHolderTransFeeUnderBreakPointInput {
+  type: EnumSettingsBtcCryptoHolderTransFeeUnderBreakPointType
+  value: Float
+}
+
+#
+input FilterUpdateOneSettingsBtcFiatHolderServiceFeeOverBreakPointInput {
+  type: EnumSettingsBtcFiatHolderServiceFeeOverBreakPointType
+  value: Float
+}
+
+#
+input FilterUpdateOneSettingsBtcFiatHolderServiceFeeUnderBreakPointInput {
+  type: EnumSettingsBtcFiatHolderServiceFeeUnderBreakPointType
+  value: Float
+}
+
+#
+input FilterUpdateOneSettingsBtcInput {
+  minTransAmount: Float
+  transBreakPoint: Float
+  cryptoHolderTransFeeUnderBreakPoint: FilterUpdateOneSettingsBtcCryptoHolderTransFeeUnderBreakPointInput
+  cryptoHolderServiceFeeUnderBreakPoint: FilterUpdateOneSettingsBtcCryptoHolderServiceFeeUnderBreakPointInput
+  fiatHolderServiceFeeUnderBreakPoint: FilterUpdateOneSettingsBtcFiatHolderServiceFeeUnderBreakPointInput
+  cryptoHolderTransFeeOverBreakPoint: FilterUpdateOneSettingsBtcCryptoHolderTransFeeOverBreakPointInput
+  cryptoHolderServiceFeeOverBreakPoint: FilterUpdateOneSettingsBtcCryptoHolderServiceFeeOverBreakPointInput
+  fiatHolderServiceFeeOverBreakPoint: FilterUpdateOneSettingsBtcFiatHolderServiceFeeOverBreakPointInput
+}
+
+#
+input FilterUpdateOneSettingsInput {
+  makerFee: Float
+  takerFee: Float
+  transactionFee: Float
+  transactions: FilterUpdateOneSettingsTransactionsInput
+  btc: FilterUpdateOneSettingsBtcInput
+  active: Boolean
+  _id: MongoID
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterUpdateOneSettingsOperatorsInput
+  OR: [FilterUpdateOneSettingsInput!]
+  AND: [FilterUpdateOneSettingsInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterUpdateOneSettingsOperatorsInput {
+  _id: FilterUpdateOneSettings_idOperatorsInput
+}
+
+#
+input FilterUpdateOneSettingsTransactionsInput {
+  maxAmountAllowed: Float
+  minAmountAllowed: Float
+}
+
+#
+input FilterUpdateOneTakerConditionsInput {
+  conditionName: String
+  conditionValue: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+input FilterUpdateOneTransaction_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+input FilterUpdateOneTransactionHistory_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterUpdateOneTransactionHistoryInput {
+  transaction: MongoID
+  assetAmount: Float
+  currencyAmount: Float
+  price: Float
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterUpdateOneTransactionHistoryOperatorsInput
+  OR: [FilterUpdateOneTransactionHistoryInput!]
+  AND: [FilterUpdateOneTransactionHistoryInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterUpdateOneTransactionHistoryOperatorsInput {
+  _id: FilterUpdateOneTransactionHistory_idOperatorsInput
+}
+
+#
+input FilterUpdateOneTransactionInput {
+  listing: MongoID
+  taker: FilterUpdateOneUserInput
+  maker: FilterUpdateOneUserInput
+  amount: Float
+  status: EnumTransactionStatus
+  appealed: Boolean
+  appealedBy: FilterUpdateOneUserInput
+  paymentMethod: MongoID
+  referenceNumber: Float
+  selectedWallet: String
+  loanAdId: String
+  active: Boolean
+  amountUsd: Float
+  makerFee: Float
+  takerFee: Float
+  fiatAmount: Float
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterUpdateOneTransactionOperatorsInput
+  OR: [FilterUpdateOneTransactionInput!]
+  AND: [FilterUpdateOneTransactionInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterUpdateOneTransactionOperatorsInput {
+  referenceNumber: FilterUpdateOneTransactionReferenceNumberOperatorsInput
+  _id: FilterUpdateOneTransaction_idOperatorsInput
+}
+
+input FilterUpdateOneTransactionReferenceNumberOperatorsInput {
+  gt: Float
+  gte: Float
+  lt: Float
+  lte: Float
+  ne: Float
+  in: [Float]
+  nin: [Float]
+  exists: Boolean
+}
+
+#
+input FilterUpdateOneUserInput {
+  id: String
+  email: String
+  name: String
+  lastname: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input FilterUpdateOneWalletInput {
+  name: String
+  address: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+input GetAssetWallets {
+  asset: MongoID!
+}
+
+input GetBestPrice {
+  currencyId: MongoID!
+  assetId: MongoID!
+}
+
+input GetBestPriceListing {
+  currency: MongoID!
+  asset: MongoID!
+  type: String!
+  pricetype: String
+}
+
+input GetFeeInput {
+  transactionAmount: Float!
+  assetNetwork: String!
+  transactionType: TransactionTypeEnum!
+  userRole: UserRoleEnum!
+}
+
+input GetKpiMarketPrice {
+  asset: String
+  fiat: String
+}
+
+input getListingFilter {
+  type: String!
+  amount: Float
+  currency: MongoID
+  asset: MongoID
+  paymentMethods: MongoID
+  page: Int!
+  perPage: Int!
+  order: ListingOrder
+}
+
+input getListingFilterUser {
+  type: String
+  asset: MongoID
+  status: String
+  page: Int!
+  perPage: Int!
+}
+
+input GetPaymentMethod {
+  selected: Boolean
+  name: String
+  currency: MongoID
+}
+
+input GetPaymentMethodUser {
+  currency: MongoID
+}
+
+input GetTransactionUser {
+  role: String
+  asset: MongoID
+  page: Int
+  perPage: Int
+  status: String
+}
+
+input ManageCryptoAdminInput {
+  appealId: MongoID!
+  transactionId: MongoID!
+  decisionType: String!
+  finalResultDescription: String
+}
+
+input MultimediaInput {
+  src: String
+  alt: String
+  type: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+input NotifyPaymentInput {
+  transactionId: MongoID!
+  paymentMethod: MongoID
+}
+
+input OptionsInput {
+  value: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+input PaymenthMethodValue {
+  value: String!
+  paymentMethodInput: MongoID!
+}
+
+input PaymenthMethodValueUser {
+  value: String!
+  paymentMethodInput: MongoID!
+}
+
+input ReleaseCryptoInput {
+  transactionId: MongoID!
+}
+
+input SettingsBtcCryptoHolderServiceFeeOverBreakPointInput {
+  type: EnumSettingsBtcCryptoHolderServiceFeeOverBreakPointType
+  value: Float
+}
+
+input SettingsBtcCryptoHolderServiceFeeUnderBreakPointInput {
+  type: EnumSettingsBtcCryptoHolderServiceFeeUnderBreakPointType
+  value: Float
+}
+
+input SettingsBtcCryptoHolderTransFeeOverBreakPointInput {
+  type: EnumSettingsBtcCryptoHolderTransFeeOverBreakPointType
+  value: Float
+}
+
+input SettingsBtcCryptoHolderTransFeeUnderBreakPointInput {
+  type: EnumSettingsBtcCryptoHolderTransFeeUnderBreakPointType
+  value: Float
+}
+
+input SettingsBtcFiatHolderServiceFeeOverBreakPointInput {
+  type: EnumSettingsBtcFiatHolderServiceFeeOverBreakPointType
+  value: Float
+}
+
+input SettingsBtcFiatHolderServiceFeeUnderBreakPointInput {
+  type: EnumSettingsBtcFiatHolderServiceFeeUnderBreakPointType
+  value: Float
+}
+
+input SettingsBtcInput {
+  minTransAmount: Float
+  transBreakPoint: Float
+  cryptoHolderTransFeeUnderBreakPoint: SettingsBtcCryptoHolderTransFeeUnderBreakPointInput
+  cryptoHolderServiceFeeUnderBreakPoint: SettingsBtcCryptoHolderServiceFeeUnderBreakPointInput
+  fiatHolderServiceFeeUnderBreakPoint: SettingsBtcFiatHolderServiceFeeUnderBreakPointInput
+  cryptoHolderTransFeeOverBreakPoint: SettingsBtcCryptoHolderTransFeeOverBreakPointInput
+  cryptoHolderServiceFeeOverBreakPoint: SettingsBtcCryptoHolderServiceFeeOverBreakPointInput
+  fiatHolderServiceFeeOverBreakPoint: SettingsBtcFiatHolderServiceFeeOverBreakPointInput
+}
+
+input SettingsTransactionsInput {
+  maxAmountAllowed: Float
+  minAmountAllowed: Float
+}
+
+input SignS3Input {
+  filename: String!
+  filetype: String!
+}
+
+input takerCond {
+  conditionName: String
+  conditionValue: String
+}
+
+input TakerConditionsInput {
+  conditionName: String
+  conditionValue: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+input UpdateListingUser {
+  listing: MongoID!
+  currency: MongoID
+  asset: MongoID
+  amount: Float
+  price: Float
+  priceType: String
+  comments: String
+  autoReply: String
+  paymentMethods: [MongoID]
+  maxAmount: Float
+  minAmount: Float
+  selectedWallet: String
+  type: String
+  takerConditions: [String]
+  timeMinutes: Int
+  pricePercentage: Float
+  amountInAsset: Boolean
+  bestPricePercentage: Float
+  priceReferenceType: PriceReference
+}
+
+#
+input UpdateManyPaymentMethodValueInput {
+  value: String
+  paymentMethodInput: MongoID
+  active: Boolean
+  createdAt: Date
+  updatedAt: Date
+}
+
+input UpdateManyValuesUser {
+  items: [Values!]
+  idPaymentMethod: MongoID!
+}
+
+#
+input UpdateOneAppealInput {
+  transaction: MongoID
+  description: String
+  paymentReceipt: [UpdateOneMultimediaInput]
+  reason: EnumAppealReason
+  finalResultDescription: String
+  status: EnumAppealStatus
+  active: Boolean
+  appealOwner: UpdateOneUserInput
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input UpdateOneAssetInput {
+  name: String
+  symbol: String
+  network: String
+  decimals: Float
+  index: Float
+  conversionRateToUsd: Float
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input UpdateOneBestPriceInput {
+  currency: MongoID
+  asset: MongoID
+  saleBestPrice: Float
+  purchaseBestPrice: Float
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input UpdateOneCountryInput {
+  name: String
+  code: String
+  flag: String
+  active: Boolean
+  disabled: Boolean
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input UpdateOneCurrencyInput {
+  name: String
+  symbol: String
+  network: String
+  decimals: Float
+  conversionRateToUsd: Float
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input UpdateOneListingInput {
+  currency: MongoID
+  asset: MongoID
+  amount: Float
+  price: Float
+  priceType: EnumListingPriceType
+  comments: String
+  autoReply: String
+  paymentMethods: [MongoID]
+  maxAmount: Float
+  minAmount: Float
+  originalMaxAssetAmount: Float
+  maxAmountAsset: Float
+  minAmountAsset: Float
+  type: EnumListingType
+  maker: UpdateOneUserInput
+  status: EnumListingStatus
+  takerConditions: [UpdateOneTakerConditionsInput]
+  fee: Float
+  selectedWallet: UpdateOneWalletInput
+  timeMinutes: Float
+  pricePercentage: Float
+  loanAdId: String
+  transactionsMaker: Float
+  transactionsMakerCompleted: Float
+  active: Boolean
+  bestPricePercentage: Float
+  bestPrice: MongoID
+  referenceNumber: Float
+  priceReferenceType: EnumListingPriceReferenceType
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input UpdateOneMultimediaInput {
+  src: String
+  alt: String
+  type: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input UpdateOneOptionsInput {
+  value: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input UpdateOnePaymentMethodCategoryInput {
+  name: String
+  paymentMethodInputs: [MongoID]
+  active: Boolean
+  selected: Boolean
+  currency: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input UpdateOnePaymentMethodInput {
+  values: [MongoID]
+  type: MongoID
+  requiredInfo: [String]
+  user: UpdateOneUserInput
+  active: Boolean
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input UpdateOnePaymentMethodInputInput {
+  name: String
+  placeholder: String
+  type: EnumPaymentMethodInputType
+  options: [UpdateOneOptionsInput]
+  requested: Boolean
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input UpdateOnePaymentMethodValueInput {
+  value: String
+  paymentMethodInput: MongoID
+  active: Boolean
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input UpdateOneSettingsBtcCryptoHolderServiceFeeOverBreakPointInput {
+  type: EnumSettingsBtcCryptoHolderServiceFeeOverBreakPointType
+  value: Float
+}
+
+#
+input UpdateOneSettingsBtcCryptoHolderServiceFeeUnderBreakPointInput {
+  type: EnumSettingsBtcCryptoHolderServiceFeeUnderBreakPointType
+  value: Float
+}
+
+#
+input UpdateOneSettingsBtcCryptoHolderTransFeeOverBreakPointInput {
+  type: EnumSettingsBtcCryptoHolderTransFeeOverBreakPointType
+  value: Float
+}
+
+#
+input UpdateOneSettingsBtcCryptoHolderTransFeeUnderBreakPointInput {
+  type: EnumSettingsBtcCryptoHolderTransFeeUnderBreakPointType
+  value: Float
+}
+
+#
+input UpdateOneSettingsBtcFiatHolderServiceFeeOverBreakPointInput {
+  type: EnumSettingsBtcFiatHolderServiceFeeOverBreakPointType
+  value: Float
+}
+
+#
+input UpdateOneSettingsBtcFiatHolderServiceFeeUnderBreakPointInput {
+  type: EnumSettingsBtcFiatHolderServiceFeeUnderBreakPointType
+  value: Float
+}
+
+#
+input UpdateOneSettingsBtcInput {
+  minTransAmount: Float
+  transBreakPoint: Float
+  cryptoHolderTransFeeUnderBreakPoint: UpdateOneSettingsBtcCryptoHolderTransFeeUnderBreakPointInput
+  cryptoHolderServiceFeeUnderBreakPoint: UpdateOneSettingsBtcCryptoHolderServiceFeeUnderBreakPointInput
+  fiatHolderServiceFeeUnderBreakPoint: UpdateOneSettingsBtcFiatHolderServiceFeeUnderBreakPointInput
+  cryptoHolderTransFeeOverBreakPoint: UpdateOneSettingsBtcCryptoHolderTransFeeOverBreakPointInput
+  cryptoHolderServiceFeeOverBreakPoint: UpdateOneSettingsBtcCryptoHolderServiceFeeOverBreakPointInput
+  fiatHolderServiceFeeOverBreakPoint: UpdateOneSettingsBtcFiatHolderServiceFeeOverBreakPointInput
+}
+
+#
+input UpdateOneSettingsInput {
+  makerFee: Float
+  takerFee: Float
+  transactionFee: Float
+  transactions: UpdateOneSettingsTransactionsInput
+  btc: UpdateOneSettingsBtcInput
+  active: Boolean
+}
+
+#
+input UpdateOneSettingsTransactionsInput {
+  maxAmountAllowed: Float
+  minAmountAllowed: Float
+}
+
+#
+input UpdateOneTakerConditionsInput {
+  conditionName: String
+  conditionValue: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input UpdateOneTransactionHistoryInput {
+  transaction: MongoID
+  assetAmount: Float
+  currencyAmount: Float
+  price: Float
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input UpdateOneTransactionInput {
+  listing: MongoID
+  taker: UpdateOneUserInput
+  maker: UpdateOneUserInput
+  amount: Float
+  status: EnumTransactionStatus
+  appealed: Boolean
+  appealedBy: UpdateOneUserInput
+  paymentMethod: MongoID
+  referenceNumber: Float
+  selectedWallet: String
+  loanAdId: String
+  active: Boolean
+  amountUsd: Float
+  makerFee: Float
+  takerFee: Float
+  fiatAmount: Float
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input UpdateOneUserInput {
+  id: String
+  email: String
+  name: String
+  lastname: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input UpdateOneWalletInput {
+  name: String
+  address: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+input UpdatePaymentMethod {
+  paymentMethodId: MongoID!
+  type: MongoID
+  values: [PaymenthMethodValueUser!]
+  requiredInfo: [String]
+}
+
+input UserInput {
+  id: String
+  email: String
+  name: String
+  lastname: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+input Values {
+  _id: MongoID!
+  value: String!
+}
+
+input WalletInput {
+  name: String!
+  address: String!
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}

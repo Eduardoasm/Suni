@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"/","sources":["components/message/index.ts"],"names":[],"mappings":";;;AAAA,wDAA8B;AAC9B,+DAAqC;AACrC,0DAAgC","sourcesContent":["export * from './message.dto';\nexport * from './message.controller';\nexport * from './message.model';\n"]}

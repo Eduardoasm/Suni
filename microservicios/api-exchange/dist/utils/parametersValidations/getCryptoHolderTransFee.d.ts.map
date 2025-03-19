@@ -1,0 +1,1 @@
+{"version":3,"file":"getCryptoHolderTransFee.d.ts","sourceRoot":"/","sources":["utils/parametersValidations/getCryptoHolderTransFee.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,MAAM,8CAA8C,CAAC;AACvE,OAAO,EAAE,SAAS,EAAE,MAAM,0CAA0C,CAAC;AAErE,wBAAsB,uBAAuB,CAC3C,IAAI,EAAE,OAAO,EACb,QAAQ,EAAE,SAAS,mBA0BpB"}

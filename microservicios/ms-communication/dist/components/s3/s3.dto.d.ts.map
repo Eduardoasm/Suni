@@ -1,0 +1,1 @@
+{"version":3,"file":"s3.dto.d.ts","sourceRoot":"/","sources":["components/s3/s3.dto.ts"],"names":[],"mappings":"AAAA,eAAO,MAAM,WAAW,yEAKvB,CAAC;AAEF,MAAM,MAAM,YAAY,GAAG;IACzB,QAAQ,EAAE,MAAM,CAAC;IACjB,QAAQ,EAAE,MAAM,CAAC;CAClB,CAAC;AAEF,eAAO,MAAM,SAAS,8EAKrB,CAAC"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"userBalanceLock.d.ts","sourceRoot":"/","sources":["utils/walletService/userBalanceLock.ts"],"names":[],"mappings":"AAGA,MAAM,WAAW,YAAY;IAC3B,KAAK,EAAE,MAAM,CAAC;IACd,QAAQ,EAAE,MAAM,CAAC;IACjB,MAAM,EAAE,MAAM,CAAC;IACf,SAAS,EAAE,IAAI,CAAC;IAChB,UAAU,EAAE,MAAM,CAAC;CACpB;AACD;;;;;;;GAOG;AAEH,wBAAsB,WAAW,CAAC,IAAI,EAAE,YAAY,GAAG,OAAO,CAAC,GAAG,CAAC,CAgClE"}

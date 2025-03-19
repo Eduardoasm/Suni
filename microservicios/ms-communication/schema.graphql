@@ -1,0 +1,953 @@
+type Query {
+  notification(
+    # Filter by fields
+    filter: FilterFindOneNotificationInput
+    skip: Int
+    sort: SortFindOneNotificationInput
+  ): Notification
+  notifications(
+    # Filter by fields
+    filter: FilterFindManyNotificationInput
+    skip: Int
+    limit: Int = 1000000
+    sort: SortFindManyNotificationInput
+  ): [Notification!]!
+  notificationPagination(
+    # Page number for displaying
+    page: Int
+
+    #
+    perPage: Int = 20
+
+    # Filter by fields
+    filter: FilterFindManyNotificationInput
+    sort: SortFindManyNotificationInput
+  ): NotificationPagination
+
+  # get all notifications with filter by module optionally
+  getNotifications(data: GetNotifications): NotificationPagination
+
+  # custom get one notification with relation object model
+  customGetOne(data: CustomGetOne): CustomGetOneNotification
+  messageTemplate(
+    # Filter by fields
+    filter: FilterFindOneMessageTemplateInput
+    skip: Int
+    sort: SortFindOneMessageTemplateInput
+  ): MessageTemplate
+  messageTemplates(
+    # Filter by fields
+    filter: FilterFindManyMessageTemplateInput
+    skip: Int
+    limit: Int = 1000000
+    sort: SortFindManyMessageTemplateInput
+  ): [MessageTemplate!]!
+  messageTemplatePagination(
+    # Page number for displaying
+    page: Int
+
+    #
+    perPage: Int = 20
+
+    # Filter by fields
+    filter: FilterFindManyMessageTemplateInput
+    sort: SortFindManyMessageTemplateInput
+  ): MessageTemplatePagination
+  language(
+    # Filter by fields
+    filter: FilterFindOneLanguageInput
+    skip: Int
+    sort: SortFindOneLanguageInput
+  ): Language
+  languages(
+    # Filter by fields
+    filter: FilterFindManyLanguageInput
+    skip: Int
+    limit: Int = 1000000
+    sort: SortFindManyLanguageInput
+  ): [Language!]!
+  languagePagination(
+    # Page number for displaying
+    page: Int
+
+    #
+    perPage: Int = 20
+
+    # Filter by fields
+    filter: FilterFindManyLanguageInput
+    sort: SortFindManyLanguageInput
+  ): LanguagePagination
+  message(
+    # Filter by fields
+    filter: FilterFindOneMessageInput
+    skip: Int
+    sort: SortFindOneMessageInput
+  ): Message
+  messages(
+    # Filter by fields
+    filter: FilterFindManyMessageInput
+    skip: Int
+    limit: Int = 1000000
+    sort: SortFindManyMessageInput
+  ): [Message!]!
+  messagePagination(
+    # Page number for displaying
+    page: Int
+
+    #
+    perPage: Int = 20
+
+    # Filter by fields
+    filter: FilterFindManyMessageInput
+    sort: SortFindManyMessageInput
+  ): MessagePagination
+}
+
+type Mutation {
+  # Create one document with mongoose defaults, setters, hooks and validation
+  createNotification(record: CreateOneNotificationInput!): CreateOneNotificationPayload
+
+  # Update one document: 1) Retrieve one document via findOne. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  updateNotification(
+    record: UpdateOneNotificationInput!
+
+    # Filter by fields
+    filter: FilterUpdateOneNotificationInput
+    sort: SortUpdateOneNotificationInput
+    skip: Int
+  ): UpdateOneNotificationPayload
+
+  # soft delete for one notification
+  deleteNotification(data: DeleteNotification): Notification
+
+  # read notification
+  readOneNotification(data: ReadNotification): Notification
+
+  # read many notifications with user token
+  readManyNotifications: Boolean
+
+  # custom create notification
+  customCreateNotification(data: CreateNotification): Notification
+
+  # unread notification
+  unreadNotification(data: ReadNotification): Notification
+
+  # Create one document with mongoose defaults, setters, hooks and validation
+  createMessageTemplate(record: CreateOneMessageTemplateInput!): CreateOneMessageTemplatePayload
+
+  # Update one document: 1) Retrieve one document via findOne. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  updateMessageTemplate(
+    record: UpdateOneMessageTemplateInput!
+
+    # Filter by fields
+    filter: FilterUpdateOneMessageTemplateInput
+    sort: SortUpdateOneMessageTemplateInput
+    skip: Int
+  ): UpdateOneMessageTemplatePayload
+
+  # Create one document with mongoose defaults, setters, hooks and validation
+  createLanguage(record: CreateOneLanguageInput!): CreateOneLanguagePayload
+
+  # Update one document: 1) Retrieve one document via findOne. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  updateLanguage(
+    record: UpdateOneLanguageInput!
+
+    # Filter by fields
+    filter: FilterUpdateOneLanguageInput
+    sort: SortUpdateOneLanguageInput
+    skip: Int
+  ): UpdateOneLanguagePayload
+
+  # Create one document with mongoose defaults, setters, hooks and validation
+  createMessage(record: CreateOneMessageInput!): CreateOneMessagePayload
+
+  # Update one document: 1) Retrieve one document via findOne. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  updateMessage(
+    record: UpdateOneMessageInput!
+
+    # Filter by fields
+    filter: FilterUpdateOneMessageInput
+    sort: SortUpdateOneMessageInput
+    skip: Int
+  ): UpdateOneMessagePayload
+}
+
+# The `Boolean` scalar type represents `true` or `false`.
+scalar Boolean
+
+# The `Boolean` scalar type represents `true` or `false`.
+scalar Boolean
+
+scalar Date
+
+# The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
+scalar Int
+
+# The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
+scalar Int
+
+# The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+scalar JSON
+
+# The `ID` scalar type represents a unique MongoDB identifier in collection. MongoDB by default use 12-byte ObjectId value (https://docs.mongodb.com/manual/reference/bson-types/#objectid). But MongoDB also may accepts string or integer as correct values for _id field.
+scalar MongoID
+
+# The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+scalar String
+
+enum EnumNotificationModel {
+  loanRequest
+  loanOffer
+  contract
+  listing
+  transaction
+  wallet
+}
+
+enum EnumNotificationModule {
+  wallet
+  loans
+  exchange
+  kyc
+}
+
+enum Model {
+  contract
+  loanRequest
+  loanOffer
+  listing
+  transaction
+  wallet
+}
+
+enum Module {
+  wallet
+  loans
+  exchange
+  kyc
+}
+
+enum moduleNotifications {
+  wallet
+  loans
+  exchange
+}
+
+enum SortFindManyLanguageInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindManyMessageInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindManyMessageTemplateInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindManyNotificationInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindOneLanguageInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindOneMessageInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindOneMessageTemplateInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindOneNotificationInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortUpdateOneLanguageInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortUpdateOneMessageInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortUpdateOneMessageTemplateInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortUpdateOneNotificationInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+interface ErrorInterface {
+  # Generic error message
+  message: String
+}
+
+type CreateOneLanguagePayload {
+  # Document ID
+  recordId: MongoID
+
+  # Created document
+  record: Language
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type CreateOneMessagePayload {
+  # Document ID
+  recordId: MongoID
+
+  # Created document
+  record: Message
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type CreateOneMessageTemplatePayload {
+  # Document ID
+  recordId: MongoID
+
+  # Created document
+  record: MessageTemplate
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type CreateOneNotificationPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Created document
+  record: Notification
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type CustomGetOneNotification {
+  notification: Notification
+  relationObject: JSON
+}
+
+type Language {
+  code: String
+  name: String
+  isActive: Boolean
+  _id: MongoID!
+  createdAt: Date
+  updatedAt: Date
+}
+
+# List of items with pagination.
+type LanguagePagination {
+  # Total object count.
+  count: Int
+
+  # Array of objects.
+  items: [Language!]
+
+  # Information to aid in pagination.
+  pageInfo: PaginationInfo!
+}
+
+type Message {
+  language: Language
+  title: String
+  content: String
+  isActive: Boolean
+  _id: MongoID!
+  createdAt: Date
+  updatedAt: Date
+}
+
+# List of items with pagination.
+type MessagePagination {
+  # Total object count.
+  count: Int
+
+  # Array of objects.
+  items: [Message!]
+
+  # Information to aid in pagination.
+  pageInfo: PaginationInfo!
+}
+
+type MessageTemplate {
+  messages: [Message]!
+  isActive: Boolean
+  _id: MongoID!
+  createdAt: Date
+  updatedAt: Date
+}
+
+# List of items with pagination.
+type MessageTemplatePagination {
+  # Total object count.
+  count: Int
+
+  # Array of objects.
+  items: [MessageTemplate!]
+
+  # Information to aid in pagination.
+  pageInfo: PaginationInfo!
+}
+
+type Notification {
+  message: MessageTemplate
+  senderId: String
+  senderFirstName: String
+  senderLastName: String
+  recipientId: String
+  model: EnumNotificationModel
+  object: String
+  module: EnumNotificationModule
+  read: Boolean
+  isActive: Boolean
+  receivedMessages: [Message]
+  _id: MongoID!
+  createdAt: Date
+  updatedAt: Date
+}
+
+type NotificationPageInfo {
+  currentPage: Int
+  perPage: Int
+  itemCount: Int
+  pageCount: Int
+  hasPreviousPage: Boolean
+  hasNextPage: Boolean
+}
+
+type NotificationPagination {
+  count: Int!
+  items: [Notification]!
+  pageInfo: NotificationPageInfo!
+}
+
+type PaginationInfo {
+  currentPage: Int!
+  perPage: Int!
+  pageCount: Int
+  itemCount: Int
+  hasNextPage: Boolean
+  hasPreviousPage: Boolean
+}
+
+type UpdateOneLanguagePayload {
+  # Document ID
+  recordId: MongoID
+
+  # Updated document
+  record: Language
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type UpdateOneMessagePayload {
+  # Document ID
+  recordId: MongoID
+
+  # Updated document
+  record: Message
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type UpdateOneMessageTemplatePayload {
+  # Document ID
+  recordId: MongoID
+
+  # Updated document
+  record: MessageTemplate
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type UpdateOneNotificationPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Updated document
+  record: Notification
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+input CreateNotification {
+  messageTemplateId: MongoID
+  recipientId: String
+  model: Model
+  module: Module
+  object: String
+}
+
+#
+input CreateOneLanguageInput {
+  code: String
+  name: String
+  isActive: Boolean
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input CreateOneMessageInput {
+  language: MongoID
+  title: String
+  content: String
+  isActive: Boolean
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input CreateOneMessageTemplateInput {
+  messages: [MongoID]
+  isActive: Boolean
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input CreateOneNotificationInput {
+  message: MongoID
+  senderId: String
+  senderFirstName: String
+  senderLastName: String
+  recipientId: String
+  model: EnumNotificationModel
+  object: String
+  module: EnumNotificationModule
+  read: Boolean
+  isActive: Boolean
+  receivedMessages: [MessageInput]
+  createdAt: Date
+  updatedAt: Date
+}
+
+input CustomGetOne {
+  _id: MongoID!
+}
+
+input DeleteNotification {
+  notificationId: MongoID!
+}
+
+input FilterFindManyLanguage_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindManyLanguageInput {
+  code: String
+  name: String
+  isActive: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindManyLanguageOperatorsInput
+  OR: [FilterFindManyLanguageInput!]
+  AND: [FilterFindManyLanguageInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindManyLanguageOperatorsInput {
+  _id: FilterFindManyLanguage_idOperatorsInput
+}
+
+#
+input FilterFindManyMessageInput {
+  language: MongoID
+  title: String
+  content: String
+  isActive: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+input FilterFindManyMessageTemplate_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindManyMessageTemplateInput {
+  messages: [MongoID]
+  isActive: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindManyMessageTemplateOperatorsInput
+  OR: [FilterFindManyMessageTemplateInput!]
+  AND: [FilterFindManyMessageTemplateInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindManyMessageTemplateOperatorsInput {
+  _id: FilterFindManyMessageTemplate_idOperatorsInput
+}
+
+input FilterFindManyNotification_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindManyNotificationInput {
+  message: MongoID
+  senderId: String
+  senderFirstName: String
+  senderLastName: String
+  recipientId: String
+  model: EnumNotificationModel
+  object: String
+  module: EnumNotificationModule
+  read: Boolean
+  isActive: Boolean
+  receivedMessages: [FilterFindManyMessageInput]
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindManyNotificationOperatorsInput
+  OR: [FilterFindManyNotificationInput!]
+  AND: [FilterFindManyNotificationInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindManyNotificationOperatorsInput {
+  _id: FilterFindManyNotification_idOperatorsInput
+}
+
+input FilterFindOneLanguage_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindOneLanguageInput {
+  code: String
+  name: String
+  isActive: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindOneLanguageOperatorsInput
+  OR: [FilterFindOneLanguageInput!]
+  AND: [FilterFindOneLanguageInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindOneLanguageOperatorsInput {
+  _id: FilterFindOneLanguage_idOperatorsInput
+}
+
+#
+input FilterFindOneMessageInput {
+  language: MongoID
+  title: String
+  content: String
+  isActive: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+input FilterFindOneMessageTemplate_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindOneMessageTemplateInput {
+  messages: [MongoID]
+  isActive: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindOneMessageTemplateOperatorsInput
+  OR: [FilterFindOneMessageTemplateInput!]
+  AND: [FilterFindOneMessageTemplateInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindOneMessageTemplateOperatorsInput {
+  _id: FilterFindOneMessageTemplate_idOperatorsInput
+}
+
+input FilterFindOneNotification_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindOneNotificationInput {
+  message: MongoID
+  senderId: String
+  senderFirstName: String
+  senderLastName: String
+  recipientId: String
+  model: EnumNotificationModel
+  object: String
+  module: EnumNotificationModule
+  read: Boolean
+  isActive: Boolean
+  receivedMessages: [FilterFindOneMessageInput]
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindOneNotificationOperatorsInput
+  OR: [FilterFindOneNotificationInput!]
+  AND: [FilterFindOneNotificationInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindOneNotificationOperatorsInput {
+  _id: FilterFindOneNotification_idOperatorsInput
+}
+
+input FilterUpdateOneLanguage_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterUpdateOneLanguageInput {
+  code: String
+  name: String
+  isActive: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterUpdateOneLanguageOperatorsInput
+  OR: [FilterUpdateOneLanguageInput!]
+  AND: [FilterUpdateOneLanguageInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterUpdateOneLanguageOperatorsInput {
+  _id: FilterUpdateOneLanguage_idOperatorsInput
+}
+
+#
+input FilterUpdateOneMessageInput {
+  language: MongoID
+  title: String
+  content: String
+  isActive: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+input FilterUpdateOneMessageTemplate_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterUpdateOneMessageTemplateInput {
+  messages: [MongoID]
+  isActive: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterUpdateOneMessageTemplateOperatorsInput
+  OR: [FilterUpdateOneMessageTemplateInput!]
+  AND: [FilterUpdateOneMessageTemplateInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterUpdateOneMessageTemplateOperatorsInput {
+  _id: FilterUpdateOneMessageTemplate_idOperatorsInput
+}
+
+input FilterUpdateOneNotification_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterUpdateOneNotificationInput {
+  message: MongoID
+  senderId: String
+  senderFirstName: String
+  senderLastName: String
+  recipientId: String
+  model: EnumNotificationModel
+  object: String
+  module: EnumNotificationModule
+  read: Boolean
+  isActive: Boolean
+  receivedMessages: [FilterUpdateOneMessageInput]
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterUpdateOneNotificationOperatorsInput
+  OR: [FilterUpdateOneNotificationInput!]
+  AND: [FilterUpdateOneNotificationInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterUpdateOneNotificationOperatorsInput {
+  _id: FilterUpdateOneNotification_idOperatorsInput
+}
+
+input GetNotifications {
+  page: Int!
+  perPage: Int!
+  module: moduleNotifications
+}
+
+input MessageInput {
+  language: MongoID
+  title: String
+  content: String
+  isActive: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+input ReadNotification {
+  notificationId: MongoID!
+}
+
+#
+input UpdateOneLanguageInput {
+  code: String
+  name: String
+  isActive: Boolean
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input UpdateOneMessageInput {
+  language: MongoID
+  title: String
+  content: String
+  isActive: Boolean
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input UpdateOneMessageTemplateInput {
+  messages: [MongoID]
+  isActive: Boolean
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input UpdateOneNotificationInput {
+  message: MongoID
+  senderId: String
+  senderFirstName: String
+  senderLastName: String
+  recipientId: String
+  model: EnumNotificationModel
+  object: String
+  module: EnumNotificationModule
+  read: Boolean
+  isActive: Boolean
+  receivedMessages: [UpdateOneMessageInput]
+  createdAt: Date
+  updatedAt: Date
+}

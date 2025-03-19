@@ -1,0 +1,399 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> components/notification/notification.service.ts</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Notification.html">Notification</a></li></ul><h3>Global</h3><ul><li><a href="global.html#Notification">Notification</a></li><li><a href="global.html#getUserInfo">getUserInfo</a></li><li><a href="global.html#getUserInfoWithId">getUserInfoWithId</a></li><li><a href="global.html#paginateModel">paginateModel</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>components/notification/notification.service.ts</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import type {
+  FilterQuery,
+  ProjectionType,
+  QueryOptions,
+  UpdateQuery,
+  UpdateWithAggregationPipeline,
+} from 'mongoose';
+import axios from 'axios';
+import { INotification, Notification } from './notification.model';
+import { NoSentryError, paginateModel } from '../../utils';
+import {
+  TGetNotifications,
+  TReadNotification,
+  TDeleteNotification,
+  TReadManyNotifications,
+  TCreateNotification,
+  TCustomNotification,
+} from './notification.dto';
+import { getUserInfo } from '../../utils/walletService/userInfo';
+import * as messageTemplateService from '../messageTemplate/messageTemplate.service';
+import { IUserAuth } from '../../types/userWau';
+import { getUserInfoWithId } from '../../utils/walletService/userInfoWithId';
+import { IMessage } from '../message/message.model';
+
+/**
+ *
+ * @module Notification
+ * @description This is the main module of notification
+ *
+ * @author Eduardo Sequeira
+ */
+
+export async function findOne(
+  filter?: FilterQuery&lt;INotification>,
+  projection?: ProjectionType&lt;INotification> | null,
+  options?: QueryOptions&lt;INotification> | null
+) {
+  return Notification.findOne(filter, projection, options).exec();
+}
+
+export async function find(
+  filter?: FilterQuery&lt;INotification>,
+  projection?: ProjectionType&lt;INotification> | null,
+  options?: QueryOptions&lt;INotification> | null
+) {
+  return Notification.find(filter, projection, options).exec();
+}
+
+export async function updateOne(
+  filter: FilterQuery&lt;INotification>,
+  update: UpdateQuery&lt;INotification> | UpdateWithAggregationPipeline,
+  options?: QueryOptions&lt;INotification> | null
+) {
+  return Notification.updateOne(filter, update, options).exec();
+}
+
+export async function create(notification: INotification) {
+  return Notification.create(notification);
+}
+
+export async function pagination(
+  page: number,
+  perPage: number,
+  filter?: FilterQuery&lt;INotification>,
+  projection?: ProjectionType&lt;INotification> | null,
+  options?: QueryOptions&lt;INotification> | null
+) {
+  return paginateModel(
+    page,
+    perPage,
+    Notification,
+    filter,
+    projection,
+    options
+  );
+}
+
+export async function getNotifications(body: TGetNotifications, token: string) {
+  const { data: user } = await getUserInfo(token);
+
+  const filter: FilterQuery&lt;INotification> = {
+    recipientId: user?.id,
+    isActive: true,
+  };
+
+  if (body?.module) {
+    filter.module = body.module;
+  }
+
+  const options: QueryOptions&lt;INotification> = {
+    sort: {
+      createdAt: -1,
+    },
+  };
+
+  return paginateModel(
+    body.page,
+    body.perPage,
+    Notification,
+    filter,
+    {},
+    options
+  );
+}
+
+export async function softDeleteNotification(
+  body: TDeleteNotification,
+  token: string
+) {
+  const { data: user } = await getUserInfo(token);
+
+  const filter: FilterQuery&lt;INotification> = {
+    _id: body?.notificationId,
+    recipientId: user?.id,
+    isActive: true,
+  };
+
+  const update: UpdateQuery&lt;INotification> = {
+    $set: {
+      isActive: false,
+    },
+  };
+
+  const options: QueryOptions&lt;INotification> = {
+    new: true,
+  };
+
+  const notification = await Notification.findOneAndUpdate(
+    filter,
+    update,
+    options
+  );
+
+  return notification;
+}
+// se crea function para read notification, es parecida al soft delete pero
+// la idea es separar funcionabilidades
+export async function readNotification(body: TReadNotification, token: string) {
+  const { data: user } = await getUserInfo(token);
+
+  const filter: FilterQuery&lt;INotification> = {
+    _id: body?.notificationId,
+    recipientId: user?.id,
+    read: false,
+    isActive: true,
+  };
+
+  const update: UpdateQuery&lt;INotification> = {
+    $set: {
+      read: true,
+    },
+  };
+
+  const options: QueryOptions&lt;INotification> = {
+    new: true,
+  };
+
+  const notification = await Notification.findOneAndUpdate(
+    filter,
+    update,
+    options
+  );
+
+  return notification;
+}
+
+export async function readManyNotifications(
+  notifications: TReadManyNotifications,
+  token: string
+) {
+  const { data: user } = await getUserInfo(token);
+
+  const { notificationIds } = notifications;
+
+  return Promise.all(
+    notificationIds.map((notificationId) =>
+      Notification.findOneAndUpdate(
+        {
+          _id: notificationId,
+          isActive: true,
+          read: false,
+          recipientId: user?.id,
+        },
+        { read: true },
+        { new: true }
+      )
+    )
+  );
+}
+
+export async function customCreateNotification(
+  body: TCreateNotification,
+  token: string
+) {
+  // se añadio userId para realizar busqueda de usuario en lambda ya que
+  // en la lambda no es posible obtener el token de el usuario, y hacemos
+  // la busqueda de el usuario por su id y con el admin token
+  let user;
+
+  if (!body.senderId) {
+    const { data }: IUserAuth = await getUserInfo(token);
+
+    user = data;
+  } else {
+    const { data }: IUserAuth = await getUserInfoWithId(token, body.senderId);
+
+    user = data;
+  }
+
+  const messageTemplate = await messageTemplateService.findOne({
+    _id: body.messageTemplateId,
+  });
+
+  if (!messageTemplate) {
+    throw new NoSentryError('Message template not found');
+  }
+
+  if (body?.variables &amp;&amp; Object.keys(body?.variables)?.length > 0) {
+    // reemplazamos el mismo mensaje para guardarlo en la notification
+    messageTemplate.messages.map((message: IMessage) =>
+      // iteración por si tenemos mas de 1 variable de reemplazo
+      Object.keys(body.variables).forEach((variable) => {
+        message.content = message.content.replace(
+          variable,
+          body.variables[variable]
+        );
+      })
+    );
+  }
+
+  const notification = await Notification.create({
+    message: messageTemplate?._id,
+    senderId: user?.id,
+    senderFirstName:
+      user?.metamapStatus?.dni_firstName?.split(' ')[0] ?? user?.name,
+    senderLastName:
+      user?.metamapStatus?.dni_lastName?.split(' ')[0] ?? user?.lastname,
+    recipientId: body?.recipientId,
+    model: body?.model,
+    module: body?.module,
+    read: false,
+    object: body?.object,
+    messageReceived: messageTemplate?.messages,
+  });
+
+  return notification;
+}
+/**
+ * @param {object} body
+ * @param {objectId} body._id id of notification
+ * @returns notification
+ */
+export async function customFindOne(body: TCustomNotification, token: string) {
+  const { data: user } = await getUserInfo(token);
+
+  const notificationFound = await findOne({
+    _id: body._id,
+    recipientId: user?.id,
+  });
+
+  if (!notificationFound) {
+    throw new NoSentryError('Notification not found');
+  }
+
+  const requests = {
+    contract: `${process.env.LOANS_URL}/api/v1/contracts/${notificationFound.object}`,
+    loanRequest: `${process.env.LOANS_URL}/api/v1/loanRequest/${notificationFound.object}`,
+    loanOffer: `${process.env.LOANS_URL}/api/v1/loanOffer/${notificationFound.object}`,
+    listing: `${process.env.EXCHANGE_URL}/api/v1/listing/${notificationFound.object}`,
+    transaction: `${process.env.EXCHANGE_URL}/api/v1/transaction/${notificationFound.object}`,
+  };
+
+  const { data } = await axios.get(requests[notificationFound.model]);
+  // no se adjunto el relationObject a una nueva propiedad de notification por el schema de graphql
+  // para no realizar un nuevo type de notification de graphql
+  return {
+    notification: (notificationFound as any)._doc,
+    relationObject: data[notificationFound.model] ?? data,
+    // se realiza condicional ?? con la data por que no sabemos como retorna WAU los modelos con los getOne,
+    // y en caso de que no sea igual con el nombre de el modelo, retorne la data completa
+  };
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
+</body>
+</html>

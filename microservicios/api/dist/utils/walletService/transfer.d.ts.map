@@ -1,0 +1,1 @@
+{"version":3,"file":"transfer.d.ts","sourceRoot":"/","sources":["utils/walletService/transfer.ts"],"names":[],"mappings":"AAGA,MAAM,WAAW,SAAS;IACxB,MAAM,EAAE,MAAM,CAAC;IACf,YAAY,EAAE,MAAM,CAAC;IACrB,UAAU,EAAE,MAAM,CAAC;CACpB;AAED,wBAAsB,QAAQ,CAAC,IAAI,EAAE,SAAS,EAAE,KAAK,EAAE,MAAM,gBA2B5D"}

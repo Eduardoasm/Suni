@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"/","sources":["components/starredLoans/index.ts"],"names":[],"mappings":";;;AAAA,oEAA0C;AAC1C,6DAAmC;AACnC,+DAAqC;AACrC,iEAAuC","sourcesContent":["export * from './starredLoans.controller';\r\nexport * from './starredLoans.dto';\r\nexport * from './starredLoans.model';\r\nexport * from './starredLoans.service';"]}

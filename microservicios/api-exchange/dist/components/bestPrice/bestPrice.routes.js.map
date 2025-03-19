@@ -1,0 +1,1 @@
+{"version":3,"file":"bestPrice.routes.js","sourceRoot":"/","sources":["components/bestPrice/bestPrice.routes.ts"],"names":[],"mappings":";;AAAA,qCAAiC;AAEjC,MAAM,MAAM,GAAG,IAAA,gBAAM,GAAE,CAAC;AAExB,kBAAe,MAAM,CAAC","sourcesContent":["import { Router } from 'express';\n\nconst router = Router();\n\nexport default router;\n"]}

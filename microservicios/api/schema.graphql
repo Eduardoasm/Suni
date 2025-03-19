@@ -1,0 +1,4954 @@
+type Query {
+  # Return the user object based on the token
+  currentUser: CurrentUserRole
+
+  # Return user wallets info
+  getUserWallets(data: getUserWallet): UserWalletsType
+
+  # Validates if user is allowed to do kyc or not
+  validateForKYC: ValidateForKYCType
+  user(
+    # Filter by fields
+    filter: FilterFindOneUserInput
+    skip: Int
+    sort: SortFindOneUserInput
+  ): User
+  users(
+    # Filter by fields
+    filter: FilterFindManyUserInput
+    skip: Int
+    limit: Int = 100
+    sort: SortFindManyUserInput
+  ): [User!]!
+  userPagination(
+    # Page number for displaying
+    page: Int
+
+    #
+    perPage: Int = 20
+
+    # Filter by fields
+    filter: FilterFindManyUserInput
+    sort: SortFindManyUserInput
+  ): UserPagination
+  totalUsers(
+    # Filter by fields
+    filter: FilterCountUserInput
+  ): Int
+
+  # get user auth
+  getUser: GetUser
+  wallet(
+    # Filter by fields
+    filter: FilterFindOneWalletInput
+    skip: Int
+    sort: SortFindOneWalletInput
+  ): Wallet
+  wallets(
+    # Filter by fields
+    filter: FilterFindManyWalletInput
+    skip: Int
+    limit: Int = 1000000
+    sort: SortFindManyWalletInput
+  ): [Wallet!]!
+  walletPagination(
+    # Page number for displaying
+    page: Int
+
+    #
+    perPage: Int = 20
+
+    # Filter by fields
+    filter: FilterFindManyWalletInput
+    sort: SortFindManyWalletInput
+  ): WalletPagination
+  currency(
+    # Filter by fields
+    filter: FilterFindOneCurrencyInput
+    skip: Int
+    sort: SortFindOneCurrencyInput
+  ): Currency
+  currencies(
+    # Filter by fields
+    filter: FilterFindManyCurrencyInput
+    skip: Int
+    limit: Int = 1000000
+    sort: SortFindManyCurrencyInput
+  ): [Currency!]!
+  contract(
+    # Filter by fields
+    filter: FilterFindOneContractInput
+    skip: Int
+    sort: SortFindOneContractInput
+  ): Contract
+  contracts(
+    # Filter by fields
+    filter: FilterFindManyContractInput
+    skip: Int
+    limit: Int = 1000000
+    sort: SortFindManyContractInput
+  ): [Contract!]!
+  contractPagination(
+    # Page number for displaying
+    page: Int
+
+    #
+    perPage: Int = 20
+
+    # Filter by fields
+    filter: FilterFindManyContractInput
+    sort: SortFindManyContractInput
+  ): ContractPagination
+  totalLoans(
+    # Filter by fields
+    filter: FilterCountContractInput
+  ): Int
+
+  # get total fees from contracts
+  totalIncome: Income
+
+  # get min, med, max of interest rate
+  interestRate: Interest
+
+  # get contracts filter by status
+  getContractsFilterByStatus(data: GetContractsFilterByStatus): [Contract]
+
+  # get contracts divided by status
+  getContractsByStatus(data: GetContractsByStatusInput): GetContractsByStatusType
+
+  # get contracts filter by status by client
+  getContractsFilterByStatusByClient(data: GetContractsFilterByStatusByClient): [Contract]
+
+  # get all contracts where the user is either the lender or borrower
+  getTransactionsByLenderOrBorrower(data: TransactionsByLenderOrBorrowerInput): TransactionsByLenderOrBorrowerType
+
+  # get income filter by date
+  getIncomeByDate(data: GetIncomeByDate): IncomeByDate
+
+  # get total fees from contracts grouped by date
+  totalIncomes: IncomesType
+
+  # get loans filter by date
+  getLoansByDate(data: GetIncomeByDate): loansByDate
+
+  # get payment default contracts filter by month
+  getDefaultPaymentContractsByMonth: paymentContractsByMonth
+
+  # get default payment contracts filter by date
+  getDefaultPaymentContractsByDate(data: GetIncomeByDate): paymentContractsByDate
+
+  # get default and successful payment
+  getDefaultAndSuccessfulPayment: indicators
+
+  # get all stages from amortization contracts
+  amortization(data: amortization): amortizationType
+
+  # get earnings contract for user
+  contractEarning(data: GetContractEarning): GetContractEarnings
+
+  # get all contracts for the user logged
+  getMyContracts(data: GetMyContracts): ContractPagination
+
+  # get contracts filtered by status by user
+  getContractsFilterByStatusByUser(data: GetContractsFilterByStatusByUser): ContractPagination
+
+  # get pre-cancel info
+  getPreCancelInfo(data: GetPreCancelInfoInput): GetPreCancelInfo
+
+  # get user contracts stats
+  getUserStats(data: UserStats): GetUserStats
+
+  # get contract info including the lender and borrower data
+  getContractInfo(data: GetContractInfoInput): ContractInfoType
+  setting(
+    # Filter by fields
+    filter: FilterFindOneSettingsInput
+    skip: Int
+    sort: SortFindOneSettingsInput
+  ): Settings
+  settings(
+    # Filter by fields
+    filter: FilterFindManySettingsInput
+    skip: Int
+    limit: Int = 100
+    sort: SortFindManySettingsInput
+  ): [Settings!]!
+  transaction(
+    # Filter by fields
+    filter: FilterFindOneTransactionInput
+    skip: Int
+    sort: SortFindOneTransactionInput
+  ): Transaction
+  transactions(
+    # Filter by fields
+    filter: FilterFindManyTransactionInput
+    skip: Int
+    limit: Int = 1000000
+    sort: SortFindManyTransactionInput
+  ): [Transaction!]!
+
+  # get graphics for credit limit and credit received of borrower
+  borrowerCreditHistory: creditHistory
+
+  # get lender credit history
+  lenderCreditHistory(data: dateTransaction): lenderCreditHistory
+  history(
+    # Filter by fields
+    filter: FilterFindOneHistoryInput
+    skip: Int
+    sort: SortFindOneHistoryInput
+  ): History
+  histories(
+    # Filter by fields
+    filter: FilterFindManyHistoryInput
+    skip: Int
+    limit: Int = 1000000
+    sort: SortFindManyHistoryInput
+  ): [History!]!
+  historyPagination(
+    # Page number for displaying
+    page: Int
+
+    #
+    perPage: Int = 20
+
+    # Filter by fields
+    filter: FilterFindManyHistoryInput
+    sort: SortFindManyHistoryInput
+  ): HistoryPagination
+  notification(
+    # Filter by fields
+    filter: FilterFindOneNotificationInput
+    skip: Int
+    sort: SortFindOneNotificationInput
+  ): Notification
+  notifications(
+    # Filter by fields
+    filter: FilterFindManyNotificationInput
+    skip: Int
+    limit: Int = 1000000
+    sort: SortFindManyNotificationInput
+  ): [Notification!]!
+  notificationPagination(
+    # Page number for displaying
+    page: Int
+
+    #
+    perPage: Int = 20
+
+    # Filter by fields
+    filter: FilterFindManyNotificationInput
+    sort: SortFindManyNotificationInput
+  ): NotificationPagination
+
+  # Find notifications for user
+  findNotifications(data: GetNotifications): NotificationPagination
+  loanRequest(
+    # Filter by fields
+    filter: FilterFindOneLoanRequestInput
+    skip: Int
+    sort: SortFindOneLoanRequestInput
+  ): LoanRequest
+  loanRequests(
+    # Filter by fields
+    filter: FilterFindManyLoanRequestInput
+    skip: Int
+    limit: Int = 1000000
+    sort: SortFindManyLoanRequestInput
+  ): [LoanRequest!]!
+  loanRequestPagination(
+    # Page number for displaying
+    page: Int
+
+    #
+    perPage: Int = 20
+
+    # Filter by fields
+    filter: FilterFindManyLoanRequestInput
+    sort: SortFindManyLoanRequestInput
+  ): LoanRequestPagination
+
+  # get all loan requests
+  getMarketLoanRequests(data: GetMarketLoanRequests): LoanRequestPagination
+
+  # get all offers for requests
+  getAllOffersForRequest(data: getLoanRequest): getLoanOffersForRequest
+
+  # get one offer for request
+  getOneOfferForRequest(data: getOneLoanOfferRequest): getLoanOfferRequest
+
+  # get one offer for request
+  getMyLoanRequests(data: GetMyLoanRequests): LoanRequestPagination
+
+  # get all possible amounts a user can request
+  getUserRequestAmounts(data: GetUserRequestAmount): getUserRequestAmounts
+
+  # create loan request
+  getCostsOfLoanRequest(data: GetCostsOfRequestInput): GetCostsOfRequestType
+
+  # validate if user is allowed to make loan request
+  validateForLoanRequest(data: ValidateForLoanRequestInput): validateForLoanRequestType
+  creditScore(
+    # Filter by fields
+    filter: FilterFindOneCreditScoreInput
+    skip: Int
+    sort: SortFindOneCreditScoreInput
+  ): CreditScore
+  creditScores(
+    # Filter by fields
+    filter: FilterFindManyCreditScoreInput
+    skip: Int
+    limit: Int = 1000000
+    sort: SortFindManyCreditScoreInput
+  ): [CreditScore!]!
+  creditScorePagination(
+    # Page number for displaying
+    page: Int
+
+    #
+    perPage: Int = 20
+
+    # Filter by fields
+    filter: FilterFindManyCreditScoreInput
+    sort: SortFindManyCreditScoreInput
+  ): CreditScorePagination
+
+  # get credit score credolab or suni for user
+  getCreditScoreUser(data: GetCreditScore): CreditScore
+
+  # get all clients with their credit score credolab or suni for user
+  getClientsWithCreditScore: GetClientsWithCreditScoreType
+
+  # get one client with its respective credit score
+  getClientWithCreditScore(data: GetClientWithCreditScoreInput): GetClientWithCreditScoreType
+  loanOffer(
+    # Filter by fields
+    filter: FilterFindOneLoanOfferInput
+    skip: Int
+    sort: SortFindOneLoanOfferInput
+  ): LoanOffer
+  loanOffers(
+    # Filter by fields
+    filter: FilterFindManyLoanOfferInput
+    skip: Int
+    limit: Int = 1000000
+    sort: SortFindManyLoanOfferInput
+  ): [LoanOffer!]!
+  loanOfferPagination(
+    # Page number for displaying
+    page: Int
+
+    #
+    perPage: Int = 20
+
+    # Filter by fields
+    filter: FilterFindManyLoanOfferInput
+    sort: SortFindManyLoanOfferInput
+  ): LoanOfferPagination
+
+  # get all loans offereds
+  getAllLoansOffered: [LoanOffer]
+
+  # get all loan offers of user
+  getMyLoanOffers(data: GetMyLoanOffers): LoanOfferPagination
+  country(
+    # Filter by fields
+    filter: FilterFindOneCountryInput
+    skip: Int
+    sort: SortFindOneCountryInput
+  ): Country
+  countries(
+    # Filter by fields
+    filter: FilterFindManyCountryInput
+    skip: Int
+    limit: Int = 100
+    sort: SortFindManyCountryInput
+  ): [Country!]!
+  totalCountries(
+    # Filter by fields
+    filter: FilterCountCountryInput
+  ): Int
+}
+
+type Mutation {
+  # Change Password
+  changePassword(data: ChangePasswordInput): ResetPasswordInfo
+
+  # Reset Password
+  resetPassword(data: ResetPasswordInput): ResetPasswordInfo
+
+  # Sign Out an user from the app
+  signOut(data: SignOutInput): SignOutType
+
+  # Sign In an user to the app
+  signIn(data: SignInInput): SignInType
+
+  # Create new user admin
+  createAdmin(data: CreateAdmin): User
+
+  # Sign In an admin to the app
+  signInAdmin(data: SignInInput): SignInType
+
+  # Logical deletion of user
+  deleteUser: DeleteResultType
+
+  # Admin logical delete an user
+  adminDeleteUser(data: AdminDeleteUser): DeleteResultType
+
+  # ...
+  signS3(data: SignS3Input): S3Payload
+
+  # Create one document with mongoose defaults, setters, hooks and validation
+  createUser(record: CreateOneUserInput!): CreateOneUserPayload
+
+  # Update one document: 1) Retrieve one document via findOne. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  updateUser(
+    record: UpdateOneUserInput!
+
+    # Filter by fields
+    filter: FilterUpdateOneUserInput
+    sort: SortUpdateOneUserInput
+    skip: Int
+  ): UpdateOneUserPayload
+
+  # Update one document: 1) Retrieve one document via findOne. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  updateWallet(
+    record: UpdateOneWalletInput!
+
+    # Filter by fields
+    filter: FilterUpdateOneWalletInput
+    sort: SortUpdateOneWalletInput
+    skip: Int
+  ): UpdateOneWalletPayload
+
+  # Create wallet
+  createWallet(data: CreateWalletInput): Wallet
+
+  # Update one document: 1) Retrieve one document via findOne. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  updateCurrency(
+    record: UpdateOneCurrencyInput!
+
+    # Filter by fields
+    filter: FilterUpdateOneCurrencyInput
+    sort: SortUpdateOneCurrencyInput
+    skip: Int
+  ): UpdateOneCurrencyPayload
+
+  # create a currency
+  createCurrency(data: CreateCurrencyInput): Currency
+
+  # Update one document: 1) Retrieve one document via findOne. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  updateContract(
+    record: UpdateOneContractInput!
+
+    # Filter by fields
+    filter: FilterUpdateOneContractInput
+    sort: SortUpdateOneContractInput
+    skip: Int
+  ): UpdateOneContractPayload
+
+  # create contract
+  createContract(data: CreateContract): Contract
+
+  # pre-cancel contract
+  preCancel(data: PreCancel): Contract
+
+  # incorporate payment plan original values
+  addOriginalValues: AddOriginalValuesType
+
+  # Update one document: 1) Retrieve one document via findOne. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  updateSettings(
+    record: UpdateOneSettingsInput!
+
+    # Filter by fields
+    filter: FilterUpdateOneSettingsInput
+    sort: SortUpdateOneSettingsInput
+    skip: Int
+  ): UpdateOneSettingsPayload
+  createSettings(data: CreateSettings): Settings
+  updateSettingsCreditScoreParams(data: updateSettingsCreditScoreParams): Settings
+  updateInternalCreditScoreValue(data: updateInternalCreditScoreValue): Settings
+  updateSettingsService(data: updateSettings): Settings
+
+  # Update one document: 1) Retrieve one document via findOne. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  updateTransactions(
+    record: UpdateOneTransactionInput!
+
+    # Filter by fields
+    filter: FilterUpdateOneTransactionInput
+    sort: SortUpdateOneTransactionInput
+    skip: Int
+  ): UpdateOneTransactionPayload
+
+  # Create one document with mongoose defaults, setters, hooks and validation
+  createTransaction(record: CreateOneTransactionInput!): CreateOneTransactionPayload
+
+  # Create one document with mongoose defaults, setters, hooks and validation
+  createHistory(record: CreateOneHistoryInput!): CreateOneHistoryPayload
+
+  # Update one document: 1) Retrieve one document via findOne. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  updateHistory(
+    record: UpdateOneHistoryInput!
+
+    # Filter by fields
+    filter: FilterUpdateOneHistoryInput
+    sort: SortUpdateOneHistoryInput
+    skip: Int
+  ): UpdateOneHistoryPayload
+
+  # Update one document: 1) Retrieve one document via findOne. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  updateNotification(
+    record: UpdateOneNotificationInput!
+
+    # Filter by fields
+    filter: FilterUpdateOneNotificationInput
+    sort: SortUpdateOneNotificationInput
+    skip: Int
+  ): UpdateOneNotificationPayload
+
+  # Create one document with mongoose defaults, setters, hooks and validation
+  createNotification(record: CreateOneNotificationInput!): CreateOneNotificationPayload
+
+  # Create notification
+  customCreateNotification(data: CreateNotification): Notification
+
+  # cancel notification
+  cancelNotification(data: CancelNotification): Notification
+
+  # Update one document: 1) Retrieve one document via findOne. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  updateLoanRequest(
+    record: UpdateOneLoanRequestInput!
+
+    # Filter by fields
+    filter: FilterUpdateOneLoanRequestInput
+    sort: SortUpdateOneLoanRequestInput
+    skip: Int
+  ): UpdateOneLoanRequestPayload
+
+  # Update many documents without returning them: Use Query.update mongoose method. Do not apply mongoose defaults, setters, hooks and validation.
+  updateManyLoan(
+    record: UpdateManyLoanRequestInput!
+
+    # Filter by fields
+    filter: FilterUpdateManyLoanRequestInput
+    sort: SortUpdateManyLoanRequestInput
+    skip: Int
+    limit: Int = 100
+  ): UpdateManyLoanRequestPayload
+
+  # create loan request
+  createLoanRequest(data: CreateLoanRequest): LoanRequest
+
+  # create offer for a request
+  createLoanOffer(data: CreateLoanOfferInput): getLoanOfferRequest
+
+  # cancel loan request
+  cancelLoanRequest(data: CancelLoanRequest): LoanRequest
+
+  # Update one document: 1) Retrieve one document via findOne. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  updatecreditScore(
+    record: UpdateOneCreditScoreInput!
+
+    # Filter by fields
+    filter: FilterUpdateOneCreditScoreInput
+    sort: SortUpdateOneCreditScoreInput
+    skip: Int
+  ): UpdateOneCreditScorePayload
+
+  # upload the credit score in credolab
+  createCreditScoreUser(data: CreateCreditScore): CreditScore
+
+  # Update one document: 1) Retrieve one document via findOne. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  updateloanOffer(
+    record: UpdateOneLoanOfferInput!
+
+    # Filter by fields
+    filter: FilterUpdateOneLoanOfferInput
+    sort: SortUpdateOneLoanOfferInput
+    skip: Int
+  ): UpdateOneLoanOfferPayload
+
+  # cancel Loan offer
+  cancelLoanOffer(data: CancelLoanOffer): LoanOffer
+
+  # Create one document with mongoose defaults, setters, hooks and validation
+  createCountry(record: CreateOneCountryInput!): CreateOneCountryPayload
+
+  # Update one document: 1) Retrieve one document via findOne. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  updateCountry(
+    record: UpdateOneCountryInput!
+
+    # Filter by fields
+    filter: FilterUpdateOneCountryInput
+    sort: SortUpdateOneCountryInput
+    skip: Int
+  ): UpdateOneCountryPayload
+}
+
+# The `Boolean` scalar type represents `true` or `false`.
+scalar Boolean
+
+# The `Boolean` scalar type represents `true` or `false`.
+scalar Boolean
+
+scalar Date
+
+# The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).
+scalar Float
+
+# The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
+scalar Int
+
+# The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
+scalar Int
+
+# The `ID` scalar type represents a unique MongoDB identifier in collection. MongoDB by default use 12-byte ObjectId value (https://docs.mongodb.com/manual/reference/bson-types/#objectid). But MongoDB also may accepts string or integer as correct values for _id field.
+scalar MongoID
+
+# The string representation of JavaScript regexp. You may provide it with flags "/^abc.*/i" or without flags like "^abc.*". More info about RegExp characters and flags: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
+scalar RegExpAsString @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-262.pdf")
+
+# The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+scalar String
+
+enum EnumContractFeeSettingsBorrowerFeeType {
+  fixed
+  percentage
+}
+
+enum EnumContractFeeSettingsBorrowerRequestFeeType {
+  fixed
+  percentage
+}
+
+enum EnumContractFeeSettingsLenderFeeType {
+  fixed
+  percentage
+}
+
+enum EnumContractFeeSettingsMoraFeeType {
+  fixed
+  percentage
+}
+
+enum EnumContractStatus {
+  active
+  concluded
+}
+
+enum EnumCreditScoreValuesProvider {
+  credolab
+  suni
+}
+
+enum EnumHistoryCollectionName {
+  user
+  creditScore
+  loan
+  contract
+  paymentPlan
+}
+
+enum EnumLoanOfferStatus {
+  active
+  approved
+  rejected
+  canceled
+  expired
+}
+
+enum EnumLoanRequestStatus {
+  active
+  closed
+  canceled
+  expired
+}
+
+enum EnumNotificationCollectionName {
+  user
+  creditScore
+  loan
+  contract
+  paymentPlan
+}
+
+enum EnumOfferExpirationType {
+  minutes
+  hours
+}
+
+enum EnumPaymentPlanStatus {
+  successful
+  on_default
+  next_payment
+  active
+}
+
+enum EnumPermissionOptions {
+  create
+  read
+  update
+  delete
+}
+
+enum EnumTransactionEvent {
+  loanConcluded
+}
+
+enum EnumTransactionType {
+  investment
+  payment
+}
+
+enum EnumUserDniType {
+  V
+  E
+  J
+  G
+  P
+  N_A
+}
+
+enum EnumUserUserRole {
+  client
+  admin
+  superadmin
+  user
+}
+
+enum SortFindManyContractInput {
+  _ID_ASC
+  _ID_DESC
+  REFERENCENUMBER_ASC
+  REFERENCENUMBER_DESC
+}
+
+enum SortFindManyCountryInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindManyCreditScoreInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindManyCurrencyInput {
+  _ID_ASC
+  _ID_DESC
+  NAME_ASC
+  NAME_DESC
+  SYMBOL_ASC
+  SYMBOL_DESC
+}
+
+enum SortFindManyHistoryInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindManyLoanOfferInput {
+  _ID_ASC
+  _ID_DESC
+  REFERENCENUMBER_ASC
+  REFERENCENUMBER_DESC
+}
+
+enum SortFindManyLoanRequestInput {
+  _ID_ASC
+  _ID_DESC
+  REFERENCENUMBER_ASC
+  REFERENCENUMBER_DESC
+}
+
+enum SortFindManyNotificationInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindManySettingsInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindManyTransactionInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindManyUserInput {
+  _ID_ASC
+  _ID_DESC
+  EMAIL_ASC
+  EMAIL_DESC
+}
+
+enum SortFindManyWalletInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindOneContractInput {
+  _ID_ASC
+  _ID_DESC
+  REFERENCENUMBER_ASC
+  REFERENCENUMBER_DESC
+}
+
+enum SortFindOneCountryInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindOneCreditScoreInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindOneCurrencyInput {
+  _ID_ASC
+  _ID_DESC
+  NAME_ASC
+  NAME_DESC
+  SYMBOL_ASC
+  SYMBOL_DESC
+}
+
+enum SortFindOneHistoryInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindOneLoanOfferInput {
+  _ID_ASC
+  _ID_DESC
+  REFERENCENUMBER_ASC
+  REFERENCENUMBER_DESC
+}
+
+enum SortFindOneLoanRequestInput {
+  _ID_ASC
+  _ID_DESC
+  REFERENCENUMBER_ASC
+  REFERENCENUMBER_DESC
+}
+
+enum SortFindOneNotificationInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindOneSettingsInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindOneTransactionInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindOneUserInput {
+  _ID_ASC
+  _ID_DESC
+  EMAIL_ASC
+  EMAIL_DESC
+}
+
+enum SortFindOneWalletInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortUpdateManyLoanRequestInput {
+  _ID_ASC
+  _ID_DESC
+  REFERENCENUMBER_ASC
+  REFERENCENUMBER_DESC
+}
+
+enum SortUpdateOneContractInput {
+  _ID_ASC
+  _ID_DESC
+  REFERENCENUMBER_ASC
+  REFERENCENUMBER_DESC
+}
+
+enum SortUpdateOneCountryInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortUpdateOneCreditScoreInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortUpdateOneCurrencyInput {
+  _ID_ASC
+  _ID_DESC
+  NAME_ASC
+  NAME_DESC
+  SYMBOL_ASC
+  SYMBOL_DESC
+}
+
+enum SortUpdateOneHistoryInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortUpdateOneLoanOfferInput {
+  _ID_ASC
+  _ID_DESC
+  REFERENCENUMBER_ASC
+  REFERENCENUMBER_DESC
+}
+
+enum SortUpdateOneLoanRequestInput {
+  _ID_ASC
+  _ID_DESC
+  REFERENCENUMBER_ASC
+  REFERENCENUMBER_DESC
+}
+
+enum SortUpdateOneNotificationInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortUpdateOneSettingsInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortUpdateOneTransactionInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortUpdateOneUserInput {
+  _ID_ASC
+  _ID_DESC
+  EMAIL_ASC
+  EMAIL_DESC
+}
+
+enum SortUpdateOneWalletInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum Version {
+  v2
+}
+
+interface ErrorInterface {
+  # Generic error message
+  message: String
+}
+
+type AddOriginalValuesType {
+  added: Boolean
+}
+
+type amortizationType {
+  getAmortization: [procedure]
+}
+
+type ClientCSType {
+  id: String
+  name: String
+  lastname: String
+  email: String
+  password: String
+  biometric: String
+  phone: Int
+  status: Boolean
+  business_id: String
+  cashier_business_owner_id: String
+  confirm_email: Boolean
+  reset_status_pass: Boolean
+  verific_code: String
+  terms: Boolean
+  code_reference: String
+  created_at: String
+  closed_at: String
+  close_code: String
+  country: String
+  agreedToDataCollection: Boolean
+  dni_type: String
+  dni_value: String
+  metamapStatus: MetamapStatusType
+}
+
+type ClientInfoData {
+  name: String
+  lastName: String
+  country: String
+  dni: String
+  email: String
+}
+
+type ClientInfoType {
+  lender: ClientInfoData
+  borrower: ClientInfoData
+}
+
+type ClientsCSType {
+  client: ClientCSType
+  currentCreditScore: CurrentCreditScoreType
+  historicalCreditScore: CreditScore
+}
+
+type Contract {
+  loanRequest: LoanRequest
+  loanOffer: LoanOffer
+  lender: String
+  borrower: String
+  walletTransactionsCurrency: Currency
+  amountInUSDC: Float
+  amountReceivedInWalletTransactionsCurrency: Float
+  rate: Float
+  status: EnumContractStatus
+  paymentPlan: [PaymentPlan]
+  startDate: Date
+  lenderFeeInUSDC: Float
+  lenderFeeInWalletTransactionsCurrency: Float
+  borrowerFeeInUSDC: Float
+  borrowerFeeInWalletTransactionsCurrency: Float
+  referenceNumber: Float
+  onDefault: Boolean
+  paymentDue: Boolean
+  preCancel: Boolean
+  active: Boolean
+  commerce: String
+  borrowerSelectedWallet: String
+  lenderSelectedWallet: String
+  _id: MongoID!
+  createdAt: Date
+  updatedAt: Date
+}
+
+type ContractFeeSettings {
+  moraFee: ContractFeeSettingsMoraFee
+  lenderFee: ContractFeeSettingsLenderFee
+  borrowerFee: ContractFeeSettingsBorrowerFee
+  borrowerRequestFee: ContractFeeSettingsBorrowerRequestFee
+  _id: MongoID
+}
+
+type ContractFeeSettingsBorrowerFee {
+  value: Float
+  type: EnumContractFeeSettingsBorrowerFeeType
+}
+
+type ContractFeeSettingsBorrowerRequestFee {
+  value: Float
+  type: EnumContractFeeSettingsBorrowerRequestFeeType
+}
+
+type ContractFeeSettingsLenderFee {
+  value: Float
+  type: EnumContractFeeSettingsLenderFeeType
+}
+
+type ContractFeeSettingsMoraFee {
+  value: Float
+  type: EnumContractFeeSettingsMoraFeeType
+}
+
+type ContractInfoType {
+  contract: Contract
+  clientsInfo: ClientInfoType
+}
+
+type ContractPageInfo {
+  currentPage: Int
+  perPage: Int
+  itemCount: Int
+  pageCount: Int
+  hasPreviousPage: Boolean
+  hasNextPage: Boolean
+}
+
+type ContractPagination {
+  count: Int!
+  items: [Contract]!
+  pageInfo: ContractPageInfo!
+}
+
+type ContractSettings {
+  minMonthlyPayments: Float
+  maxMonthlyPayments: Float
+  maxAccumulatedDebtor: Float
+  maxAccumulatedDebtorWithCreditor: Float
+  allowedBlocks: Float
+  amountOfBlocksAllowed: Float
+  templateContent: String
+  _id: MongoID
+}
+
+type Country {
+  name: String
+  code: String
+  flag: String
+  active: Boolean
+  disabled: Boolean
+  _id: MongoID!
+  createdAt: Date
+  updatedAt: Date
+}
+
+type CreateOneCountryPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Created document
+  record: Country
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type CreateOneHistoryPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Created document
+  record: History
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type CreateOneNotificationPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Created document
+  record: Notification
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type CreateOneTransactionPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Created document
+  record: Transaction
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type CreateOneUserPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Created document
+  record: User
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type creditHistory {
+  creditsLimit: [previousCreditsLimit]
+  creditsReceived: [previousCreditsReceived]
+  borrowerLastTransaction: Transaction
+}
+
+type CreditScore {
+  user: String
+  values: [CreditScoreValues]
+  _id: MongoID!
+  createdAt: Date
+  updatedAt: Date
+}
+
+# List of items with pagination.
+type CreditScorePagination {
+  # Total object count.
+  count: Int
+
+  # Array of objects.
+  items: [CreditScore!]
+
+  # Information to aid in pagination.
+  pageInfo: PaginationInfo!
+}
+
+type CreditScoreParams {
+  name: String
+  value: Float
+  _id: MongoID
+}
+
+type CreditScoreRange {
+  color: String
+  initial: Float
+  final: Float
+  _id: MongoID
+}
+
+type CreditScoreValues {
+  referenceNumber: String
+  value: Float
+  provider: EnumCreditScoreValuesProvider
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+type CreditScoreValueType {
+  range: Int
+  referenceNumber: String
+  value: Float
+  provider: String
+  _id: String
+  createdAt: Date
+  updatedAt: Date
+}
+
+type Currency {
+  name: String!
+  symbol: String!
+  active: Boolean
+  _id: MongoID!
+}
+
+type CurrentCreditScoreType {
+  credoLab: CreditScoreValueType
+  suni: CreditScoreValueType
+}
+
+type CurrentUserRole {
+  user: User
+}
+
+type DeleteResultType {
+  success: Boolean
+}
+
+type GetClientsWithCreditScoreType {
+  clients: [ClientsCSType]
+}
+
+type GetClientWithCreditScoreType {
+  client: ClientCSType
+  currentCreditScore: CurrentCreditScoreType
+  historicalCreditScore: CreditScore
+}
+
+type GetContractEarnings {
+  earning: Float!
+}
+
+type GetContractsByStatusType {
+  active: [Contract]
+  concluded: [Contract]
+  onDefault: [Contract]
+  contracts: [Contract]
+}
+
+type GetCostsOfRequestType {
+  amountInSATS: Float
+  amountInUSDC: Float
+}
+
+type getLoanOfferRequest {
+  loanRequest: LoanRequest!
+  loanOffer: LoanOffer!
+}
+
+type getLoanOffersForRequest {
+  loanOffers: [LoanOffer]
+}
+
+type GetPreCancelInfo {
+  amountToPay: Float!
+  amountToPayInSats: Float!
+  userWallet: WalletType!
+}
+
+type GetUser {
+  id: String
+  email: String
+  name: String
+  lastName: String
+  phone: Int
+  code_reference: String
+  reset_status_pass: Boolean
+  created_at: Date
+  closed_at: String
+  country: String
+  metamapStatus: Metamap
+  agreedToDataCollection: Boolean
+}
+
+type getUserRequestAmounts {
+  amounts: [Float]
+  minAmount: Float
+  maxAmount: Float
+  availableCredit: Float
+}
+
+type GetUserStats {
+  minAmount: Float
+  maxAmount: Float
+  availableCredit: Float
+  creditsReceived: Int
+  creditsPaidOnTime: Int
+  creditsPaidLate: Int
+}
+
+type History {
+  user: User
+  description: String
+  collectionName: EnumHistoryCollectionName
+  document: MongoID!
+  active: Boolean
+  _id: MongoID!
+  createdAt: Date
+  updatedAt: Date
+}
+
+# List of items with pagination.
+type HistoryPagination {
+  # Total object count.
+  count: Int
+
+  # Array of objects.
+  items: [History!]
+
+  # Information to aid in pagination.
+  pageInfo: PaginationInfo!
+}
+
+type Income {
+  usd: Float!
+  satoshi: Float!
+  btc: Float!
+}
+
+type IncomeByDate {
+  contractsIncomeByDate: [IncomeByDateType]
+}
+
+type IncomeByDateType {
+  _id: Date!
+  fees: Float!
+}
+
+type IncomesInfoType {
+  date: String!
+  count: Int!
+  income: IncomeType
+}
+
+type IncomesType {
+  incomes: [IncomesInfoType]
+}
+
+type IncomeType {
+  usd: Float
+  btc: Float
+  sat: Float
+}
+
+type indicators {
+  satoshiBalance: Float!
+  totalLoans: Int!
+  onDefault: Float!
+  concluded: Float!
+}
+
+type Interest {
+  maxInterest: Float!
+  medInterest: Float!
+  minInterest: Float!
+}
+
+type lenderCreditHistory {
+  transactionsByDate: [Transaction]
+}
+
+type LoanOffer {
+  amount: Float
+  installments: Float
+  lender: String
+  lenderInfo: LoanOfferLenderInfo
+  borrower: String
+  status: EnumLoanOfferStatus
+  currency: Currency
+  expirationDate: Date
+  selectedWallet: String
+  interestRate: Float
+  referenceNumber: Float
+  blockId: String
+  blockedAmountInWalletCurrency: Float
+  lenderFeeInUSDC: Float
+  lenderFeeInWalletCurrency: Float
+  active: Boolean
+  referenceNumberOfLoanRequest: Float
+  _id: MongoID!
+  createdAt: Date
+  updatedAt: Date
+}
+
+type LoanOfferLenderInfo {
+  name: String
+  lastName: String
+  country: String
+  dni: String
+  email: String
+}
+
+type LoanOfferPageInfo {
+  currentPage: Int
+  perPage: Int
+  itemCount: Int
+  pageCount: Int
+  hasPreviousPage: Boolean
+  hasNextPage: Boolean
+}
+
+type LoanOfferPagination {
+  count: Int!
+  items: [LoanOffer]!
+  pageInfo: LoanOfferPageInfo!
+}
+
+type LoanRequest {
+  amountInUSDC: Float
+  installments: Float
+  timesClicked: Float
+  selectedWallet: String
+  borrowerInfo: LoanRequestBorrowerInfo
+  borrower: String
+  status: EnumLoanRequestStatus
+  selectedWalletCurrency: Currency
+  offers: [LoanOffer]!
+  referenceNumber: Float
+  blockId: String
+  country: String
+  creditScore: Float
+  active: Boolean
+  _id: MongoID!
+  createdAt: Date
+  updatedAt: Date
+}
+
+type LoanRequestBorrowerInfo {
+  name: String
+  lastName: String
+  country: String
+  dni: String
+  email: String
+}
+
+type LoanRequestPageInfo {
+  currentPage: Int
+  perPage: Int
+  itemCount: Int
+  pageCount: Int
+  hasPreviousPage: Boolean
+  hasNextPage: Boolean
+}
+
+type LoanRequestPagination {
+  count: Int!
+  items: [LoanRequest]!
+  pageInfo: LoanRequestPageInfo!
+}
+
+type loansByDate {
+  contractsLoansByDate: [loansByDateType]
+}
+
+type loansByDateType {
+  _id: Date!
+  loans: Float!
+}
+
+type Metamap {
+  id: String
+  status: String
+}
+
+type MetamapStatusType {
+  id: String
+  user_id: String
+  status: String
+  dni_firstName: String
+  dni_lastName: String
+  dni_type: String
+  dni_value: String
+  country: String
+}
+
+type Notification {
+  collectionName: EnumNotificationCollectionName
+  user: String
+  subject: String
+  message: String
+  active: Boolean
+  _id: MongoID!
+  createdAt: Date
+  updatedAt: Date
+}
+
+type NotificationPageInfo {
+  currentPage: Int
+  perPage: Int
+  itemCount: Int
+  pageCount: Int
+  hasPreviousPage: Boolean
+  hasNextPage: Boolean
+}
+
+type NotificationPagination {
+  count: Int!
+  items: [Notification]!
+  pageInfo: NotificationPageInfo!
+}
+
+type OfferExpiration {
+  rate: Float!
+  type: EnumOfferExpirationType
+  _id: MongoID
+}
+
+type PaginationInfo {
+  currentPage: Int!
+  perPage: Int!
+  pageCount: Int
+  itemCount: Int
+  hasNextPage: Boolean
+  hasPreviousPage: Boolean
+}
+
+type paymentContractsByDate {
+  defaultPaymentContractsByDate: [paymentContractsByDateType]
+}
+
+type paymentContractsByDateType {
+  _id: Date!
+  paymentContracts: Int!
+}
+
+type paymentContractsByMonth {
+  defaultPaymentContractsByMonth: [paymentContractsByMonthType]!
+}
+
+type paymentContractsByMonthType {
+  total: Int!
+  rangeTime: String!
+}
+
+type PaymentPlan {
+  paymentDate: Date
+  rate: Float
+  fees: Float
+  originalFees: Float
+  amount: Float
+  originalAmount: Float
+  status: EnumPaymentPlanStatus
+  paid: Boolean
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+type Permission {
+  name: String
+  key: String
+  options: [EnumPermissionOptions]
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+type previousCreditsLimit {
+  month: Date
+  borrowerCreditLimit: Float
+}
+
+type previousCreditsReceived {
+  month: Date
+  borrowed: Float
+}
+
+type procedure {
+  paymentDate: Date
+  rate: Float
+  fees: Float
+  amount: Float
+}
+
+type ResetPasswordInfo {
+  success: Boolean!
+  err: String
+}
+
+type S3Payload {
+  signedRequest: String!
+  url: String!
+}
+
+type Session {
+  user: MongoID
+  token: String
+  device: String
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+type Settings {
+  offerExpiration: OfferExpiration
+  creditScoreParams: [CreditScoreParams]
+  creditScoreRange: [CreditScoreRange]
+  maxInterestRate: Float
+  minInterestRate: Float
+  contract: ContractSettings
+  contractFees: ContractFeeSettings
+  active: Boolean
+  _id: MongoID!
+}
+
+type SignInType {
+  user: User
+  token: String
+}
+
+type SignOutType {
+  success: Boolean!
+  message: String
+}
+
+type Transaction {
+  contract: MongoID
+  from: String!
+  to: String!
+  amount: Float!
+  lenderFee: Float!
+  borrowerFee: Float!
+  interest: Float!
+  type: EnumTransactionType!
+  borrowerCreditLimit: Float
+  borrowerDueAmount: Float
+  borrowerNextPayment: PaymentPlan
+  borrowerActiveLoans: Float
+  borrowerAverageRate: Float
+  borrowedByBorrower: Float
+  lenderDueAmount: Float
+  lenderNextPayment: PaymentPlan
+  lenderActiveLoans: Float
+  lenderAverageRate: Float
+  lendedByLender: Float
+  event: EnumTransactionEvent
+  isActive: Boolean
+  commerce: String
+  commerceInterestEarnings: Float
+  commerceIssuedLoans: Float
+  _id: MongoID!
+  createdAt: Date
+  updatedAt: Date
+}
+
+type TransactionsByLenderOrBorrowerType {
+  contracts: [Contract]
+  loanRequests: [LoanRequest]
+}
+
+type UpdateManyLoanRequestPayload {
+  # Affected documents number
+  numAffected: Int
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type UpdateOneContractPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Updated document
+  record: Contract
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type UpdateOneCountryPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Updated document
+  record: Country
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type UpdateOneCreditScorePayload {
+  # Document ID
+  recordId: MongoID
+
+  # Updated document
+  record: CreditScore
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type UpdateOneCurrencyPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Updated document
+  record: Currency
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type UpdateOneHistoryPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Updated document
+  record: History
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type UpdateOneLoanOfferPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Updated document
+  record: LoanOffer
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type UpdateOneLoanRequestPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Updated document
+  record: LoanRequest
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type UpdateOneNotificationPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Updated document
+  record: Notification
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type UpdateOneSettingsPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Updated document
+  record: Settings
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type UpdateOneTransactionPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Updated document
+  record: Transaction
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type UpdateOneUserPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Updated document
+  record: User
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type UpdateOneWalletPayload {
+  # Document ID
+  recordId: MongoID
+
+  # Updated document
+  record: Wallet
+
+  # Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  error: ErrorInterface
+}
+
+type User {
+  slug: String
+  email: String!
+  password: String!
+  firstName: String!
+  lastName: String
+  username: String
+  permission: [Permission]
+  userRole: EnumUserUserRole
+  emailVerify: Boolean
+  resetTokenValidity: Date
+  resetToken: String
+  dni: String
+  dniType: EnumUserDniType
+  sessions: [Session]
+  active: Boolean
+  _id: MongoID!
+  createdAt: Date
+  updatedAt: Date
+}
+
+# List of items with pagination.
+type UserPagination {
+  # Total object count.
+  count: Int
+
+  # Array of objects.
+  items: [User!]
+
+  # Information to aid in pagination.
+  pageInfo: PaginationInfo!
+}
+
+type UserWalletsType {
+  userWallets: [WalletType]
+}
+
+type ValidateForKYCType {
+  isAllowed: Boolean
+  message: String
+}
+
+type validateForLoanRequestType {
+  isAllowed: Boolean
+  message: String
+}
+
+type Wallet {
+  name: String
+  address: String
+  currency: Currency
+  owner: String
+  _id: MongoID!
+  createdAt: Date
+  updatedAt: Date
+}
+
+# List of items with pagination.
+type WalletPagination {
+  # Total object count.
+  count: Int
+
+  # Array of objects.
+  items: [Wallet!]
+
+  # Information to aid in pagination.
+  pageInfo: PaginationInfo!
+}
+
+type WalletType {
+  name: String
+  wallet: String
+  balance: Float
+  balanceInUSDC: Float
+  blockedBalance: Float
+  blockedBalanceInUSDC: Float
+  availableBalance: Float
+  availableBalanceInUSDC: Float
+  currency: String
+}
+
+input AdminDeleteUser {
+  userId: MongoID!
+}
+
+input amortization {
+  amount: Float!
+  interest: Float!
+  months: Int!
+}
+
+input CancelLoanOffer {
+  _id: MongoID!
+}
+
+input CancelLoanRequest {
+  _id: MongoID!
+}
+
+input CancelNotification {
+  _id: MongoID!
+}
+
+input ChangePasswordInput {
+  token: String!
+  password: String!
+}
+
+input contractFeeSettings {
+  moraFee: valueSettings
+  lenderFee: valueSettings
+  borrowerFee: valueSettings
+  borrowerRequestFee: valueSettings
+}
+
+input contractSettings {
+  minMonthlyPayments: Float
+  maxMonthlyPayments: Float
+  minLoanAmount: Float
+  maxLoanAmount: Float
+  maxAccumulatedDebtor: Float
+  maxAccumulatedDebtorWithCreditor: Float
+  allowedBlocks: Float
+  amountOfBlocksAllowed: Float
+}
+
+input CreateAdmin {
+  email: String!
+  password: String!
+  firstName: String!
+  lastName: String
+  dni: String!
+  dniType: String!
+  permissions: [PermissionAdminInput!]
+  userRole: String
+}
+
+input CreateContract {
+  loanOffer: MongoID!
+}
+
+input CreateCreditScore {
+  values: creditScoreValues
+}
+
+input createCreditScoreParams {
+  name: String!
+  value: Float!
+}
+
+input createCreditScoreRange {
+  color: String!
+  initial: Float!
+  final: Float!
+}
+
+input CreateCurrencyInput {
+  name: String!
+  symbol: String!
+}
+
+input CreateLoanOfferInput {
+  loanRequest: MongoID!
+  selectedWallet: String!
+  interestRate: Float!
+  currency: String
+  expirationHours: Int
+  expirationMinutes: Int
+}
+
+input CreateLoanRequest {
+  currency: String!
+  selectedWallet: String!
+  amount: Float!
+  installments: Int!
+  credolabReferenceNumber: String!
+  version: Version
+}
+
+input CreateNotification {
+  collectionName: String
+  subject: String
+  message: String
+  active: Boolean
+}
+
+#
+input CreateOneCountryInput {
+  name: String
+  code: String
+  flag: String
+  active: Boolean
+  disabled: Boolean
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input CreateOneHistoryInput {
+  user: MongoID
+  description: String
+  collectionName: EnumHistoryCollectionName
+  document: MongoID!
+  active: Boolean
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input CreateOneNotificationInput {
+  collectionName: EnumNotificationCollectionName
+  user: String
+  subject: String
+  message: String
+  active: Boolean
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input CreateOneTransactionInput {
+  contract: MongoID
+  from: String!
+  to: String!
+  amount: Float!
+  lenderFee: Float!
+  borrowerFee: Float!
+  interest: Float!
+  type: EnumTransactionType!
+  borrowerCreditLimit: Float
+  borrowerDueAmount: Float
+  borrowerNextPayment: PaymentPlanInput
+  borrowerActiveLoans: Float
+  borrowerAverageRate: Float
+  borrowedByBorrower: Float
+  lenderDueAmount: Float
+  lenderNextPayment: PaymentPlanInput
+  lenderActiveLoans: Float
+  lenderAverageRate: Float
+  lendedByLender: Float
+  event: EnumTransactionEvent
+  isActive: Boolean
+  commerce: String
+  commerceInterestEarnings: Float
+  commerceIssuedLoans: Float
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input CreateOneUserInput {
+  slug: String
+  email: String!
+  password: String!
+  firstName: String!
+  lastName: String
+  username: String
+  permission: [PermissionInput]
+  userRole: EnumUserUserRole
+  emailVerify: Boolean
+  resetTokenValidity: Date
+  resetToken: String
+  dni: String
+  dniType: EnumUserDniType
+  sessions: [SessionInput]
+  active: Boolean
+  createdAt: Date
+  updatedAt: Date
+}
+
+input CreateSettings {
+  offerExpiration: offerExpiration!
+  creditScoreParams: [createCreditScoreParams]
+  creditScoreRange: [createCreditScoreRange]
+  contract: contractSettings
+  contractFees: contractFeeSettings
+  maxInterestRate: Float
+  minInterestRate: Float
+}
+
+input CreateWalletInput {
+  name: String!
+  address: String!
+  currency: MongoID!
+  owner: String
+}
+
+input creditScoreValues {
+  referenceNumber: String
+  value: Float
+  provider: String
+}
+
+input dateTransaction {
+  date: String
+}
+
+input FilterCountContract_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterCountContractInput {
+  loanRequest: MongoID
+  loanOffer: MongoID
+  lender: String
+  borrower: String
+  walletTransactionsCurrency: MongoID
+  amountInUSDC: Float
+  amountReceivedInWalletTransactionsCurrency: Float
+  rate: Float
+  status: EnumContractStatus
+  paymentPlan: [FilterCountPaymentPlanInput]
+  startDate: Date
+  lenderFeeInUSDC: Float
+  lenderFeeInWalletTransactionsCurrency: Float
+  borrowerFeeInUSDC: Float
+  borrowerFeeInWalletTransactionsCurrency: Float
+  referenceNumber: Float
+  onDefault: Boolean
+  paymentDue: Boolean
+  preCancel: Boolean
+  active: Boolean
+  commerce: String
+  borrowerSelectedWallet: String
+  lenderSelectedWallet: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterCountContractOperatorsInput
+  OR: [FilterCountContractInput!]
+  AND: [FilterCountContractInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterCountContractOperatorsInput {
+  referenceNumber: FilterCountContractReferenceNumberOperatorsInput
+  _id: FilterCountContract_idOperatorsInput
+}
+
+input FilterCountContractReferenceNumberOperatorsInput {
+  gt: Float
+  gte: Float
+  lt: Float
+  lte: Float
+  ne: Float
+  in: [Float]
+  nin: [Float]
+  exists: Boolean
+}
+
+input FilterCountCountry_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterCountCountryInput {
+  name: String
+  code: String
+  flag: String
+  active: Boolean
+  disabled: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterCountCountryOperatorsInput
+  OR: [FilterCountCountryInput!]
+  AND: [FilterCountCountryInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterCountCountryOperatorsInput {
+  _id: FilterCountCountry_idOperatorsInput
+}
+
+#
+input FilterCountPaymentPlanInput {
+  paymentDate: Date
+  rate: Float
+  fees: Float
+  originalFees: Float
+  amount: Float
+  originalAmount: Float
+  status: EnumPaymentPlanStatus
+  paid: Boolean
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input FilterCountPermissionInput {
+  name: String
+  key: String
+  options: [EnumPermissionOptions]
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input FilterCountSessionInput {
+  user: MongoID
+  token: String
+  device: String
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+input FilterCountUser_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+input FilterCountUserEmailOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+#
+input FilterCountUserInput {
+  slug: String
+  email: String
+  password: String
+  firstName: String
+  lastName: String
+  username: String
+  permission: [FilterCountPermissionInput]
+  userRole: EnumUserUserRole
+  emailVerify: Boolean
+  resetTokenValidity: Date
+  resetToken: String
+  dni: String
+  dniType: EnumUserDniType
+  sessions: [FilterCountSessionInput]
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterCountUserOperatorsInput
+  OR: [FilterCountUserInput!]
+  AND: [FilterCountUserInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterCountUserOperatorsInput {
+  email: FilterCountUserEmailOperatorsInput
+  _id: FilterCountUser_idOperatorsInput
+}
+
+input FilterFindManyContract_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindManyContractFeeSettingsBorrowerFeeInput {
+  value: Float
+  type: EnumContractFeeSettingsBorrowerFeeType
+}
+
+#
+input FilterFindManyContractFeeSettingsBorrowerRequestFeeInput {
+  value: Float
+  type: EnumContractFeeSettingsBorrowerRequestFeeType
+}
+
+#
+input FilterFindManyContractFeeSettingsInput {
+  moraFee: FilterFindManyContractFeeSettingsMoraFeeInput
+  lenderFee: FilterFindManyContractFeeSettingsLenderFeeInput
+  borrowerFee: FilterFindManyContractFeeSettingsBorrowerFeeInput
+  borrowerRequestFee: FilterFindManyContractFeeSettingsBorrowerRequestFeeInput
+  _id: MongoID
+}
+
+#
+input FilterFindManyContractFeeSettingsLenderFeeInput {
+  value: Float
+  type: EnumContractFeeSettingsLenderFeeType
+}
+
+#
+input FilterFindManyContractFeeSettingsMoraFeeInput {
+  value: Float
+  type: EnumContractFeeSettingsMoraFeeType
+}
+
+#
+input FilterFindManyContractInput {
+  loanRequest: MongoID
+  loanOffer: MongoID
+  lender: String
+  borrower: String
+  walletTransactionsCurrency: MongoID
+  amountInUSDC: Float
+  amountReceivedInWalletTransactionsCurrency: Float
+  rate: Float
+  status: EnumContractStatus
+  paymentPlan: [FilterFindManyPaymentPlanInput]
+  startDate: Date
+  lenderFeeInUSDC: Float
+  lenderFeeInWalletTransactionsCurrency: Float
+  borrowerFeeInUSDC: Float
+  borrowerFeeInWalletTransactionsCurrency: Float
+  referenceNumber: Float
+  onDefault: Boolean
+  paymentDue: Boolean
+  preCancel: Boolean
+  active: Boolean
+  commerce: String
+  borrowerSelectedWallet: String
+  lenderSelectedWallet: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindManyContractOperatorsInput
+  OR: [FilterFindManyContractInput!]
+  AND: [FilterFindManyContractInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindManyContractOperatorsInput {
+  referenceNumber: FilterFindManyContractReferenceNumberOperatorsInput
+  _id: FilterFindManyContract_idOperatorsInput
+}
+
+input FilterFindManyContractReferenceNumberOperatorsInput {
+  gt: Float
+  gte: Float
+  lt: Float
+  lte: Float
+  ne: Float
+  in: [Float]
+  nin: [Float]
+  exists: Boolean
+}
+
+#
+input FilterFindManyContractSettingsInput {
+  minMonthlyPayments: Float
+  maxMonthlyPayments: Float
+  maxAccumulatedDebtor: Float
+  maxAccumulatedDebtorWithCreditor: Float
+  allowedBlocks: Float
+  amountOfBlocksAllowed: Float
+  templateContent: String
+  _id: MongoID
+}
+
+input FilterFindManyCountry_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindManyCountryInput {
+  name: String
+  code: String
+  flag: String
+  active: Boolean
+  disabled: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindManyCountryOperatorsInput
+  OR: [FilterFindManyCountryInput!]
+  AND: [FilterFindManyCountryInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindManyCountryOperatorsInput {
+  _id: FilterFindManyCountry_idOperatorsInput
+}
+
+input FilterFindManyCreditScore_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindManyCreditScoreInput {
+  user: String
+  values: [FilterFindManyCreditScoreValuesInput]
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindManyCreditScoreOperatorsInput
+  OR: [FilterFindManyCreditScoreInput!]
+  AND: [FilterFindManyCreditScoreInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindManyCreditScoreOperatorsInput {
+  _id: FilterFindManyCreditScore_idOperatorsInput
+}
+
+#
+input FilterFindManyCreditScoreParamsInput {
+  name: String
+  value: Float
+  _id: MongoID
+}
+
+#
+input FilterFindManyCreditScoreRangeInput {
+  color: String
+  initial: Float
+  final: Float
+  _id: MongoID
+}
+
+#
+input FilterFindManyCreditScoreValuesInput {
+  referenceNumber: String
+  value: Float
+  provider: EnumCreditScoreValuesProvider
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+input FilterFindManyCurrency_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindManyCurrencyInput {
+  name: String
+  symbol: String
+  active: Boolean
+  _id: MongoID
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindManyCurrencyOperatorsInput
+  OR: [FilterFindManyCurrencyInput!]
+  AND: [FilterFindManyCurrencyInput!]
+}
+
+input FilterFindManyCurrencyNameOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindManyCurrencyOperatorsInput {
+  name: FilterFindManyCurrencyNameOperatorsInput
+  symbol: FilterFindManyCurrencySymbolOperatorsInput
+  _id: FilterFindManyCurrency_idOperatorsInput
+}
+
+input FilterFindManyCurrencySymbolOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+input FilterFindManyHistory_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindManyHistoryInput {
+  user: MongoID
+  description: String
+  collectionName: EnumHistoryCollectionName
+  document: MongoID
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindManyHistoryOperatorsInput
+  OR: [FilterFindManyHistoryInput!]
+  AND: [FilterFindManyHistoryInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindManyHistoryOperatorsInput {
+  _id: FilterFindManyHistory_idOperatorsInput
+}
+
+input FilterFindManyLoanOffer_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindManyLoanOfferInput {
+  amount: Float
+  installments: Float
+  lender: String
+  lenderInfo: FilterFindManyLoanOfferLenderInfoInput
+  borrower: String
+  status: EnumLoanOfferStatus
+  currency: MongoID
+  expirationDate: Date
+  selectedWallet: String
+  interestRate: Float
+  referenceNumber: Float
+  blockId: String
+  blockedAmountInWalletCurrency: Float
+  lenderFeeInUSDC: Float
+  lenderFeeInWalletCurrency: Float
+  active: Boolean
+  referenceNumberOfLoanRequest: Float
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindManyLoanOfferOperatorsInput
+  OR: [FilterFindManyLoanOfferInput!]
+  AND: [FilterFindManyLoanOfferInput!]
+}
+
+#
+input FilterFindManyLoanOfferLenderInfoInput {
+  name: String
+  lastName: String
+  country: String
+  dni: String
+  email: String
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindManyLoanOfferOperatorsInput {
+  referenceNumber: FilterFindManyLoanOfferReferenceNumberOperatorsInput
+  _id: FilterFindManyLoanOffer_idOperatorsInput
+}
+
+input FilterFindManyLoanOfferReferenceNumberOperatorsInput {
+  gt: Float
+  gte: Float
+  lt: Float
+  lte: Float
+  ne: Float
+  in: [Float]
+  nin: [Float]
+  exists: Boolean
+}
+
+input FilterFindManyLoanRequest_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindManyLoanRequestBorrowerInfoInput {
+  name: String
+  lastName: String
+  country: String
+  dni: String
+  email: String
+}
+
+#
+input FilterFindManyLoanRequestInput {
+  amountInUSDC: Float
+  installments: Float
+  timesClicked: Float
+  selectedWallet: String
+  borrowerInfo: FilterFindManyLoanRequestBorrowerInfoInput
+  borrower: String
+  status: EnumLoanRequestStatus
+  selectedWalletCurrency: MongoID
+  offers: [MongoID]
+  referenceNumber: Float
+  blockId: String
+  country: String
+  creditScore: Float
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindManyLoanRequestOperatorsInput
+  OR: [FilterFindManyLoanRequestInput!]
+  AND: [FilterFindManyLoanRequestInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindManyLoanRequestOperatorsInput {
+  referenceNumber: FilterFindManyLoanRequestReferenceNumberOperatorsInput
+  _id: FilterFindManyLoanRequest_idOperatorsInput
+}
+
+input FilterFindManyLoanRequestReferenceNumberOperatorsInput {
+  gt: Float
+  gte: Float
+  lt: Float
+  lte: Float
+  ne: Float
+  in: [Float]
+  nin: [Float]
+  exists: Boolean
+}
+
+input FilterFindManyNotification_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindManyNotificationInput {
+  collectionName: EnumNotificationCollectionName
+  user: String
+  subject: String
+  message: String
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindManyNotificationOperatorsInput
+  OR: [FilterFindManyNotificationInput!]
+  AND: [FilterFindManyNotificationInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindManyNotificationOperatorsInput {
+  _id: FilterFindManyNotification_idOperatorsInput
+}
+
+#
+input FilterFindManyOfferExpirationInput {
+  rate: Float
+  type: EnumOfferExpirationType
+  _id: MongoID
+}
+
+#
+input FilterFindManyPaymentPlanInput {
+  paymentDate: Date
+  rate: Float
+  fees: Float
+  originalFees: Float
+  amount: Float
+  originalAmount: Float
+  status: EnumPaymentPlanStatus
+  paid: Boolean
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input FilterFindManyPermissionInput {
+  name: String
+  key: String
+  options: [EnumPermissionOptions]
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input FilterFindManySessionInput {
+  user: MongoID
+  token: String
+  device: String
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+input FilterFindManySettings_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindManySettingsInput {
+  offerExpiration: FilterFindManyOfferExpirationInput
+  creditScoreParams: [FilterFindManyCreditScoreParamsInput]
+  creditScoreRange: [FilterFindManyCreditScoreRangeInput]
+  maxInterestRate: Float
+  minInterestRate: Float
+  contract: FilterFindManyContractSettingsInput
+  contractFees: FilterFindManyContractFeeSettingsInput
+  active: Boolean
+  _id: MongoID
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindManySettingsOperatorsInput
+  OR: [FilterFindManySettingsInput!]
+  AND: [FilterFindManySettingsInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindManySettingsOperatorsInput {
+  _id: FilterFindManySettings_idOperatorsInput
+}
+
+input FilterFindManyTransaction_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindManyTransactionInput {
+  contract: MongoID
+  from: String
+  to: String
+  amount: Float
+  lenderFee: Float
+  borrowerFee: Float
+  interest: Float
+  type: EnumTransactionType
+  borrowerCreditLimit: Float
+  borrowerDueAmount: Float
+  borrowerNextPayment: FilterFindManyPaymentPlanInput
+  borrowerActiveLoans: Float
+  borrowerAverageRate: Float
+  borrowedByBorrower: Float
+  lenderDueAmount: Float
+  lenderNextPayment: FilterFindManyPaymentPlanInput
+  lenderActiveLoans: Float
+  lenderAverageRate: Float
+  lendedByLender: Float
+  event: EnumTransactionEvent
+  isActive: Boolean
+  commerce: String
+  commerceInterestEarnings: Float
+  commerceIssuedLoans: Float
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindManyTransactionOperatorsInput
+  OR: [FilterFindManyTransactionInput!]
+  AND: [FilterFindManyTransactionInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindManyTransactionOperatorsInput {
+  _id: FilterFindManyTransaction_idOperatorsInput
+}
+
+input FilterFindManyUser_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+input FilterFindManyUserEmailOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+#
+input FilterFindManyUserInput {
+  slug: String
+  email: String
+  password: String
+  firstName: String
+  lastName: String
+  username: String
+  permission: [FilterFindManyPermissionInput]
+  userRole: EnumUserUserRole
+  emailVerify: Boolean
+  resetTokenValidity: Date
+  resetToken: String
+  dni: String
+  dniType: EnumUserDniType
+  sessions: [FilterFindManySessionInput]
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindManyUserOperatorsInput
+  OR: [FilterFindManyUserInput!]
+  AND: [FilterFindManyUserInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindManyUserOperatorsInput {
+  email: FilterFindManyUserEmailOperatorsInput
+  _id: FilterFindManyUser_idOperatorsInput
+}
+
+input FilterFindManyWallet_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindManyWalletInput {
+  name: String
+  address: String
+  currency: MongoID
+  owner: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindManyWalletOperatorsInput
+  OR: [FilterFindManyWalletInput!]
+  AND: [FilterFindManyWalletInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindManyWalletOperatorsInput {
+  _id: FilterFindManyWallet_idOperatorsInput
+}
+
+input FilterFindOneContract_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindOneContractFeeSettingsBorrowerFeeInput {
+  value: Float
+  type: EnumContractFeeSettingsBorrowerFeeType
+}
+
+#
+input FilterFindOneContractFeeSettingsBorrowerRequestFeeInput {
+  value: Float
+  type: EnumContractFeeSettingsBorrowerRequestFeeType
+}
+
+#
+input FilterFindOneContractFeeSettingsInput {
+  moraFee: FilterFindOneContractFeeSettingsMoraFeeInput
+  lenderFee: FilterFindOneContractFeeSettingsLenderFeeInput
+  borrowerFee: FilterFindOneContractFeeSettingsBorrowerFeeInput
+  borrowerRequestFee: FilterFindOneContractFeeSettingsBorrowerRequestFeeInput
+  _id: MongoID
+}
+
+#
+input FilterFindOneContractFeeSettingsLenderFeeInput {
+  value: Float
+  type: EnumContractFeeSettingsLenderFeeType
+}
+
+#
+input FilterFindOneContractFeeSettingsMoraFeeInput {
+  value: Float
+  type: EnumContractFeeSettingsMoraFeeType
+}
+
+#
+input FilterFindOneContractInput {
+  loanRequest: MongoID
+  loanOffer: MongoID
+  lender: String
+  borrower: String
+  walletTransactionsCurrency: MongoID
+  amountInUSDC: Float
+  amountReceivedInWalletTransactionsCurrency: Float
+  rate: Float
+  status: EnumContractStatus
+  paymentPlan: [FilterFindOnePaymentPlanInput]
+  startDate: Date
+  lenderFeeInUSDC: Float
+  lenderFeeInWalletTransactionsCurrency: Float
+  borrowerFeeInUSDC: Float
+  borrowerFeeInWalletTransactionsCurrency: Float
+  referenceNumber: Float
+  onDefault: Boolean
+  paymentDue: Boolean
+  preCancel: Boolean
+  active: Boolean
+  commerce: String
+  borrowerSelectedWallet: String
+  lenderSelectedWallet: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindOneContractOperatorsInput
+  OR: [FilterFindOneContractInput!]
+  AND: [FilterFindOneContractInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindOneContractOperatorsInput {
+  referenceNumber: FilterFindOneContractReferenceNumberOperatorsInput
+  _id: FilterFindOneContract_idOperatorsInput
+}
+
+input FilterFindOneContractReferenceNumberOperatorsInput {
+  gt: Float
+  gte: Float
+  lt: Float
+  lte: Float
+  ne: Float
+  in: [Float]
+  nin: [Float]
+  exists: Boolean
+}
+
+#
+input FilterFindOneContractSettingsInput {
+  minMonthlyPayments: Float
+  maxMonthlyPayments: Float
+  maxAccumulatedDebtor: Float
+  maxAccumulatedDebtorWithCreditor: Float
+  allowedBlocks: Float
+  amountOfBlocksAllowed: Float
+  templateContent: String
+  _id: MongoID
+}
+
+input FilterFindOneCountry_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindOneCountryInput {
+  name: String
+  code: String
+  flag: String
+  active: Boolean
+  disabled: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindOneCountryOperatorsInput
+  OR: [FilterFindOneCountryInput!]
+  AND: [FilterFindOneCountryInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindOneCountryOperatorsInput {
+  _id: FilterFindOneCountry_idOperatorsInput
+}
+
+input FilterFindOneCreditScore_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindOneCreditScoreInput {
+  user: String
+  values: [FilterFindOneCreditScoreValuesInput]
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindOneCreditScoreOperatorsInput
+  OR: [FilterFindOneCreditScoreInput!]
+  AND: [FilterFindOneCreditScoreInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindOneCreditScoreOperatorsInput {
+  _id: FilterFindOneCreditScore_idOperatorsInput
+}
+
+#
+input FilterFindOneCreditScoreParamsInput {
+  name: String
+  value: Float
+  _id: MongoID
+}
+
+#
+input FilterFindOneCreditScoreRangeInput {
+  color: String
+  initial: Float
+  final: Float
+  _id: MongoID
+}
+
+#
+input FilterFindOneCreditScoreValuesInput {
+  referenceNumber: String
+  value: Float
+  provider: EnumCreditScoreValuesProvider
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+input FilterFindOneCurrency_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindOneCurrencyInput {
+  name: String
+  symbol: String
+  active: Boolean
+  _id: MongoID
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindOneCurrencyOperatorsInput
+  OR: [FilterFindOneCurrencyInput!]
+  AND: [FilterFindOneCurrencyInput!]
+}
+
+input FilterFindOneCurrencyNameOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindOneCurrencyOperatorsInput {
+  name: FilterFindOneCurrencyNameOperatorsInput
+  symbol: FilterFindOneCurrencySymbolOperatorsInput
+  _id: FilterFindOneCurrency_idOperatorsInput
+}
+
+input FilterFindOneCurrencySymbolOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+input FilterFindOneHistory_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindOneHistoryInput {
+  user: MongoID
+  description: String
+  collectionName: EnumHistoryCollectionName
+  document: MongoID
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindOneHistoryOperatorsInput
+  OR: [FilterFindOneHistoryInput!]
+  AND: [FilterFindOneHistoryInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindOneHistoryOperatorsInput {
+  _id: FilterFindOneHistory_idOperatorsInput
+}
+
+input FilterFindOneLoanOffer_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindOneLoanOfferInput {
+  amount: Float
+  installments: Float
+  lender: String
+  lenderInfo: FilterFindOneLoanOfferLenderInfoInput
+  borrower: String
+  status: EnumLoanOfferStatus
+  currency: MongoID
+  expirationDate: Date
+  selectedWallet: String
+  interestRate: Float
+  referenceNumber: Float
+  blockId: String
+  blockedAmountInWalletCurrency: Float
+  lenderFeeInUSDC: Float
+  lenderFeeInWalletCurrency: Float
+  active: Boolean
+  referenceNumberOfLoanRequest: Float
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindOneLoanOfferOperatorsInput
+  OR: [FilterFindOneLoanOfferInput!]
+  AND: [FilterFindOneLoanOfferInput!]
+}
+
+#
+input FilterFindOneLoanOfferLenderInfoInput {
+  name: String
+  lastName: String
+  country: String
+  dni: String
+  email: String
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindOneLoanOfferOperatorsInput {
+  referenceNumber: FilterFindOneLoanOfferReferenceNumberOperatorsInput
+  _id: FilterFindOneLoanOffer_idOperatorsInput
+}
+
+input FilterFindOneLoanOfferReferenceNumberOperatorsInput {
+  gt: Float
+  gte: Float
+  lt: Float
+  lte: Float
+  ne: Float
+  in: [Float]
+  nin: [Float]
+  exists: Boolean
+}
+
+input FilterFindOneLoanRequest_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindOneLoanRequestBorrowerInfoInput {
+  name: String
+  lastName: String
+  country: String
+  dni: String
+  email: String
+}
+
+#
+input FilterFindOneLoanRequestInput {
+  amountInUSDC: Float
+  installments: Float
+  timesClicked: Float
+  selectedWallet: String
+  borrowerInfo: FilterFindOneLoanRequestBorrowerInfoInput
+  borrower: String
+  status: EnumLoanRequestStatus
+  selectedWalletCurrency: MongoID
+  offers: [MongoID]
+  referenceNumber: Float
+  blockId: String
+  country: String
+  creditScore: Float
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindOneLoanRequestOperatorsInput
+  OR: [FilterFindOneLoanRequestInput!]
+  AND: [FilterFindOneLoanRequestInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindOneLoanRequestOperatorsInput {
+  referenceNumber: FilterFindOneLoanRequestReferenceNumberOperatorsInput
+  _id: FilterFindOneLoanRequest_idOperatorsInput
+}
+
+input FilterFindOneLoanRequestReferenceNumberOperatorsInput {
+  gt: Float
+  gte: Float
+  lt: Float
+  lte: Float
+  ne: Float
+  in: [Float]
+  nin: [Float]
+  exists: Boolean
+}
+
+input FilterFindOneNotification_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindOneNotificationInput {
+  collectionName: EnumNotificationCollectionName
+  user: String
+  subject: String
+  message: String
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindOneNotificationOperatorsInput
+  OR: [FilterFindOneNotificationInput!]
+  AND: [FilterFindOneNotificationInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindOneNotificationOperatorsInput {
+  _id: FilterFindOneNotification_idOperatorsInput
+}
+
+#
+input FilterFindOneOfferExpirationInput {
+  rate: Float
+  type: EnumOfferExpirationType
+  _id: MongoID
+}
+
+#
+input FilterFindOnePaymentPlanInput {
+  paymentDate: Date
+  rate: Float
+  fees: Float
+  originalFees: Float
+  amount: Float
+  originalAmount: Float
+  status: EnumPaymentPlanStatus
+  paid: Boolean
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input FilterFindOnePermissionInput {
+  name: String
+  key: String
+  options: [EnumPermissionOptions]
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input FilterFindOneSessionInput {
+  user: MongoID
+  token: String
+  device: String
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+input FilterFindOneSettings_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindOneSettingsInput {
+  offerExpiration: FilterFindOneOfferExpirationInput
+  creditScoreParams: [FilterFindOneCreditScoreParamsInput]
+  creditScoreRange: [FilterFindOneCreditScoreRangeInput]
+  maxInterestRate: Float
+  minInterestRate: Float
+  contract: FilterFindOneContractSettingsInput
+  contractFees: FilterFindOneContractFeeSettingsInput
+  active: Boolean
+  _id: MongoID
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindOneSettingsOperatorsInput
+  OR: [FilterFindOneSettingsInput!]
+  AND: [FilterFindOneSettingsInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindOneSettingsOperatorsInput {
+  _id: FilterFindOneSettings_idOperatorsInput
+}
+
+input FilterFindOneTransaction_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindOneTransactionInput {
+  contract: MongoID
+  from: String
+  to: String
+  amount: Float
+  lenderFee: Float
+  borrowerFee: Float
+  interest: Float
+  type: EnumTransactionType
+  borrowerCreditLimit: Float
+  borrowerDueAmount: Float
+  borrowerNextPayment: FilterFindOnePaymentPlanInput
+  borrowerActiveLoans: Float
+  borrowerAverageRate: Float
+  borrowedByBorrower: Float
+  lenderDueAmount: Float
+  lenderNextPayment: FilterFindOnePaymentPlanInput
+  lenderActiveLoans: Float
+  lenderAverageRate: Float
+  lendedByLender: Float
+  event: EnumTransactionEvent
+  isActive: Boolean
+  commerce: String
+  commerceInterestEarnings: Float
+  commerceIssuedLoans: Float
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindOneTransactionOperatorsInput
+  OR: [FilterFindOneTransactionInput!]
+  AND: [FilterFindOneTransactionInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindOneTransactionOperatorsInput {
+  _id: FilterFindOneTransaction_idOperatorsInput
+}
+
+input FilterFindOneUser_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+input FilterFindOneUserEmailOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+#
+input FilterFindOneUserInput {
+  slug: String
+  email: String
+  password: String
+  firstName: String
+  lastName: String
+  username: String
+  permission: [FilterFindOnePermissionInput]
+  userRole: EnumUserUserRole
+  emailVerify: Boolean
+  resetTokenValidity: Date
+  resetToken: String
+  dni: String
+  dniType: EnumUserDniType
+  sessions: [FilterFindOneSessionInput]
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindOneUserOperatorsInput
+  OR: [FilterFindOneUserInput!]
+  AND: [FilterFindOneUserInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindOneUserOperatorsInput {
+  email: FilterFindOneUserEmailOperatorsInput
+  _id: FilterFindOneUser_idOperatorsInput
+}
+
+input FilterFindOneWallet_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterFindOneWalletInput {
+  name: String
+  address: String
+  currency: MongoID
+  owner: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterFindOneWalletOperatorsInput
+  OR: [FilterFindOneWalletInput!]
+  AND: [FilterFindOneWalletInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterFindOneWalletOperatorsInput {
+  _id: FilterFindOneWallet_idOperatorsInput
+}
+
+input FilterUpdateManyLoanRequest_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterUpdateManyLoanRequestBorrowerInfoInput {
+  name: String
+  lastName: String
+  country: String
+  dni: String
+  email: String
+}
+
+#
+input FilterUpdateManyLoanRequestInput {
+  amountInUSDC: Float
+  installments: Float
+  timesClicked: Float
+  selectedWallet: String
+  borrowerInfo: FilterUpdateManyLoanRequestBorrowerInfoInput
+  borrower: String
+  status: EnumLoanRequestStatus
+  selectedWalletCurrency: MongoID
+  offers: [MongoID]
+  referenceNumber: Float
+  blockId: String
+  country: String
+  creditScore: Float
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterUpdateManyLoanRequestOperatorsInput
+  OR: [FilterUpdateManyLoanRequestInput!]
+  AND: [FilterUpdateManyLoanRequestInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterUpdateManyLoanRequestOperatorsInput {
+  referenceNumber: FilterUpdateManyLoanRequestReferenceNumberOperatorsInput
+  _id: FilterUpdateManyLoanRequest_idOperatorsInput
+}
+
+input FilterUpdateManyLoanRequestReferenceNumberOperatorsInput {
+  gt: Float
+  gte: Float
+  lt: Float
+  lte: Float
+  ne: Float
+  in: [Float]
+  nin: [Float]
+  exists: Boolean
+}
+
+input FilterUpdateOneContract_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterUpdateOneContractFeeSettingsBorrowerFeeInput {
+  value: Float
+  type: EnumContractFeeSettingsBorrowerFeeType
+}
+
+#
+input FilterUpdateOneContractFeeSettingsBorrowerRequestFeeInput {
+  value: Float
+  type: EnumContractFeeSettingsBorrowerRequestFeeType
+}
+
+#
+input FilterUpdateOneContractFeeSettingsInput {
+  moraFee: FilterUpdateOneContractFeeSettingsMoraFeeInput
+  lenderFee: FilterUpdateOneContractFeeSettingsLenderFeeInput
+  borrowerFee: FilterUpdateOneContractFeeSettingsBorrowerFeeInput
+  borrowerRequestFee: FilterUpdateOneContractFeeSettingsBorrowerRequestFeeInput
+  _id: MongoID
+}
+
+#
+input FilterUpdateOneContractFeeSettingsLenderFeeInput {
+  value: Float
+  type: EnumContractFeeSettingsLenderFeeType
+}
+
+#
+input FilterUpdateOneContractFeeSettingsMoraFeeInput {
+  value: Float
+  type: EnumContractFeeSettingsMoraFeeType
+}
+
+#
+input FilterUpdateOneContractInput {
+  loanRequest: MongoID
+  loanOffer: MongoID
+  lender: String
+  borrower: String
+  walletTransactionsCurrency: MongoID
+  amountInUSDC: Float
+  amountReceivedInWalletTransactionsCurrency: Float
+  rate: Float
+  status: EnumContractStatus
+  paymentPlan: [FilterUpdateOnePaymentPlanInput]
+  startDate: Date
+  lenderFeeInUSDC: Float
+  lenderFeeInWalletTransactionsCurrency: Float
+  borrowerFeeInUSDC: Float
+  borrowerFeeInWalletTransactionsCurrency: Float
+  referenceNumber: Float
+  onDefault: Boolean
+  paymentDue: Boolean
+  preCancel: Boolean
+  active: Boolean
+  commerce: String
+  borrowerSelectedWallet: String
+  lenderSelectedWallet: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterUpdateOneContractOperatorsInput
+  OR: [FilterUpdateOneContractInput!]
+  AND: [FilterUpdateOneContractInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterUpdateOneContractOperatorsInput {
+  referenceNumber: FilterUpdateOneContractReferenceNumberOperatorsInput
+  _id: FilterUpdateOneContract_idOperatorsInput
+}
+
+input FilterUpdateOneContractReferenceNumberOperatorsInput {
+  gt: Float
+  gte: Float
+  lt: Float
+  lte: Float
+  ne: Float
+  in: [Float]
+  nin: [Float]
+  exists: Boolean
+}
+
+#
+input FilterUpdateOneContractSettingsInput {
+  minMonthlyPayments: Float
+  maxMonthlyPayments: Float
+  maxAccumulatedDebtor: Float
+  maxAccumulatedDebtorWithCreditor: Float
+  allowedBlocks: Float
+  amountOfBlocksAllowed: Float
+  templateContent: String
+  _id: MongoID
+}
+
+input FilterUpdateOneCountry_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterUpdateOneCountryInput {
+  name: String
+  code: String
+  flag: String
+  active: Boolean
+  disabled: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterUpdateOneCountryOperatorsInput
+  OR: [FilterUpdateOneCountryInput!]
+  AND: [FilterUpdateOneCountryInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterUpdateOneCountryOperatorsInput {
+  _id: FilterUpdateOneCountry_idOperatorsInput
+}
+
+input FilterUpdateOneCreditScore_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterUpdateOneCreditScoreInput {
+  user: String
+  values: [FilterUpdateOneCreditScoreValuesInput]
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterUpdateOneCreditScoreOperatorsInput
+  OR: [FilterUpdateOneCreditScoreInput!]
+  AND: [FilterUpdateOneCreditScoreInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterUpdateOneCreditScoreOperatorsInput {
+  _id: FilterUpdateOneCreditScore_idOperatorsInput
+}
+
+#
+input FilterUpdateOneCreditScoreParamsInput {
+  name: String
+  value: Float
+  _id: MongoID
+}
+
+#
+input FilterUpdateOneCreditScoreRangeInput {
+  color: String
+  initial: Float
+  final: Float
+  _id: MongoID
+}
+
+#
+input FilterUpdateOneCreditScoreValuesInput {
+  referenceNumber: String
+  value: Float
+  provider: EnumCreditScoreValuesProvider
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+input FilterUpdateOneCurrency_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterUpdateOneCurrencyInput {
+  name: String
+  symbol: String
+  active: Boolean
+  _id: MongoID
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterUpdateOneCurrencyOperatorsInput
+  OR: [FilterUpdateOneCurrencyInput!]
+  AND: [FilterUpdateOneCurrencyInput!]
+}
+
+input FilterUpdateOneCurrencyNameOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterUpdateOneCurrencyOperatorsInput {
+  name: FilterUpdateOneCurrencyNameOperatorsInput
+  symbol: FilterUpdateOneCurrencySymbolOperatorsInput
+  _id: FilterUpdateOneCurrency_idOperatorsInput
+}
+
+input FilterUpdateOneCurrencySymbolOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+input FilterUpdateOneHistory_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterUpdateOneHistoryInput {
+  user: MongoID
+  description: String
+  collectionName: EnumHistoryCollectionName
+  document: MongoID
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterUpdateOneHistoryOperatorsInput
+  OR: [FilterUpdateOneHistoryInput!]
+  AND: [FilterUpdateOneHistoryInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterUpdateOneHistoryOperatorsInput {
+  _id: FilterUpdateOneHistory_idOperatorsInput
+}
+
+input FilterUpdateOneLoanOffer_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterUpdateOneLoanOfferInput {
+  amount: Float
+  installments: Float
+  lender: String
+  lenderInfo: FilterUpdateOneLoanOfferLenderInfoInput
+  borrower: String
+  status: EnumLoanOfferStatus
+  currency: MongoID
+  expirationDate: Date
+  selectedWallet: String
+  interestRate: Float
+  referenceNumber: Float
+  blockId: String
+  blockedAmountInWalletCurrency: Float
+  lenderFeeInUSDC: Float
+  lenderFeeInWalletCurrency: Float
+  active: Boolean
+  referenceNumberOfLoanRequest: Float
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterUpdateOneLoanOfferOperatorsInput
+  OR: [FilterUpdateOneLoanOfferInput!]
+  AND: [FilterUpdateOneLoanOfferInput!]
+}
+
+#
+input FilterUpdateOneLoanOfferLenderInfoInput {
+  name: String
+  lastName: String
+  country: String
+  dni: String
+  email: String
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterUpdateOneLoanOfferOperatorsInput {
+  referenceNumber: FilterUpdateOneLoanOfferReferenceNumberOperatorsInput
+  _id: FilterUpdateOneLoanOffer_idOperatorsInput
+}
+
+input FilterUpdateOneLoanOfferReferenceNumberOperatorsInput {
+  gt: Float
+  gte: Float
+  lt: Float
+  lte: Float
+  ne: Float
+  in: [Float]
+  nin: [Float]
+  exists: Boolean
+}
+
+input FilterUpdateOneLoanRequest_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterUpdateOneLoanRequestBorrowerInfoInput {
+  name: String
+  lastName: String
+  country: String
+  dni: String
+  email: String
+}
+
+#
+input FilterUpdateOneLoanRequestInput {
+  amountInUSDC: Float
+  installments: Float
+  timesClicked: Float
+  selectedWallet: String
+  borrowerInfo: FilterUpdateOneLoanRequestBorrowerInfoInput
+  borrower: String
+  status: EnumLoanRequestStatus
+  selectedWalletCurrency: MongoID
+  offers: [MongoID]
+  referenceNumber: Float
+  blockId: String
+  country: String
+  creditScore: Float
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterUpdateOneLoanRequestOperatorsInput
+  OR: [FilterUpdateOneLoanRequestInput!]
+  AND: [FilterUpdateOneLoanRequestInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterUpdateOneLoanRequestOperatorsInput {
+  referenceNumber: FilterUpdateOneLoanRequestReferenceNumberOperatorsInput
+  _id: FilterUpdateOneLoanRequest_idOperatorsInput
+}
+
+input FilterUpdateOneLoanRequestReferenceNumberOperatorsInput {
+  gt: Float
+  gte: Float
+  lt: Float
+  lte: Float
+  ne: Float
+  in: [Float]
+  nin: [Float]
+  exists: Boolean
+}
+
+input FilterUpdateOneNotification_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterUpdateOneNotificationInput {
+  collectionName: EnumNotificationCollectionName
+  user: String
+  subject: String
+  message: String
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterUpdateOneNotificationOperatorsInput
+  OR: [FilterUpdateOneNotificationInput!]
+  AND: [FilterUpdateOneNotificationInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterUpdateOneNotificationOperatorsInput {
+  _id: FilterUpdateOneNotification_idOperatorsInput
+}
+
+#
+input FilterUpdateOneOfferExpirationInput {
+  rate: Float
+  type: EnumOfferExpirationType
+  _id: MongoID
+}
+
+#
+input FilterUpdateOnePaymentPlanInput {
+  paymentDate: Date
+  rate: Float
+  fees: Float
+  originalFees: Float
+  amount: Float
+  originalAmount: Float
+  status: EnumPaymentPlanStatus
+  paid: Boolean
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input FilterUpdateOnePermissionInput {
+  name: String
+  key: String
+  options: [EnumPermissionOptions]
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input FilterUpdateOneSessionInput {
+  user: MongoID
+  token: String
+  device: String
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+input FilterUpdateOneSettings_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterUpdateOneSettingsInput {
+  offerExpiration: FilterUpdateOneOfferExpirationInput
+  creditScoreParams: [FilterUpdateOneCreditScoreParamsInput]
+  creditScoreRange: [FilterUpdateOneCreditScoreRangeInput]
+  maxInterestRate: Float
+  minInterestRate: Float
+  contract: FilterUpdateOneContractSettingsInput
+  contractFees: FilterUpdateOneContractFeeSettingsInput
+  active: Boolean
+  _id: MongoID
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterUpdateOneSettingsOperatorsInput
+  OR: [FilterUpdateOneSettingsInput!]
+  AND: [FilterUpdateOneSettingsInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterUpdateOneSettingsOperatorsInput {
+  _id: FilterUpdateOneSettings_idOperatorsInput
+}
+
+input FilterUpdateOneTransaction_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterUpdateOneTransactionInput {
+  contract: MongoID
+  from: String
+  to: String
+  amount: Float
+  lenderFee: Float
+  borrowerFee: Float
+  interest: Float
+  type: EnumTransactionType
+  borrowerCreditLimit: Float
+  borrowerDueAmount: Float
+  borrowerNextPayment: FilterUpdateOnePaymentPlanInput
+  borrowerActiveLoans: Float
+  borrowerAverageRate: Float
+  borrowedByBorrower: Float
+  lenderDueAmount: Float
+  lenderNextPayment: FilterUpdateOnePaymentPlanInput
+  lenderActiveLoans: Float
+  lenderAverageRate: Float
+  lendedByLender: Float
+  event: EnumTransactionEvent
+  isActive: Boolean
+  commerce: String
+  commerceInterestEarnings: Float
+  commerceIssuedLoans: Float
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterUpdateOneTransactionOperatorsInput
+  OR: [FilterUpdateOneTransactionInput!]
+  AND: [FilterUpdateOneTransactionInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterUpdateOneTransactionOperatorsInput {
+  _id: FilterUpdateOneTransaction_idOperatorsInput
+}
+
+input FilterUpdateOneUser_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+input FilterUpdateOneUserEmailOperatorsInput {
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: RegExpAsString
+  exists: Boolean
+}
+
+#
+input FilterUpdateOneUserInput {
+  slug: String
+  email: String
+  password: String
+  firstName: String
+  lastName: String
+  username: String
+  permission: [FilterUpdateOnePermissionInput]
+  userRole: EnumUserUserRole
+  emailVerify: Boolean
+  resetTokenValidity: Date
+  resetToken: String
+  dni: String
+  dniType: EnumUserDniType
+  sessions: [FilterUpdateOneSessionInput]
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterUpdateOneUserOperatorsInput
+  OR: [FilterUpdateOneUserInput!]
+  AND: [FilterUpdateOneUserInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterUpdateOneUserOperatorsInput {
+  email: FilterUpdateOneUserEmailOperatorsInput
+  _id: FilterUpdateOneUser_idOperatorsInput
+}
+
+input FilterUpdateOneWallet_idOperatorsInput {
+  gt: MongoID
+  gte: MongoID
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  in: [MongoID]
+  nin: [MongoID]
+  exists: Boolean
+}
+
+#
+input FilterUpdateOneWalletInput {
+  name: String
+  address: String
+  currency: MongoID
+  owner: String
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+
+  # List of *indexed* fields that can be filtered via operators.
+  _operators: FilterUpdateOneWalletOperatorsInput
+  OR: [FilterUpdateOneWalletInput!]
+  AND: [FilterUpdateOneWalletInput!]
+}
+
+# For performance reason this type contains only *indexed* fields.
+input FilterUpdateOneWalletOperatorsInput {
+  _id: FilterUpdateOneWallet_idOperatorsInput
+}
+
+input GetClientWithCreditScoreInput {
+  id: String!
+}
+
+input GetContractEarning {
+  amount: Float!
+  interest: Float!
+  months: Int!
+}
+
+input GetContractInfoInput {
+  contractId: MongoID!
+}
+
+input GetContractsByStatusInput {
+  userId: MongoID
+}
+
+input GetContractsFilterByStatus {
+  status: String!
+}
+
+input GetContractsFilterByStatusByClient {
+  _id: MongoID!
+}
+
+input GetContractsFilterByStatusByUser {
+  page: Int!
+  perPage: Int!
+  status: String
+}
+
+input GetCostsOfRequestInput {
+  currency: String
+  amountInUSDC: Float
+}
+
+input GetCreditScore {
+  userId: String
+  startDate: Date
+  endDate: Date
+}
+
+input GetIncomeByDate {
+  startDate: Date!
+}
+
+input getLoanRequest {
+  loanRequest: MongoID!
+}
+
+input GetMarketLoanRequests {
+  page: Int!
+  perPage: Int!
+}
+
+input GetMyContracts {
+  page: Int!
+  perPage: Int!
+  startDate: Date
+  endDate: Date
+  role: String
+  status: String
+}
+
+input GetMyLoanOffers {
+  page: Int!
+  perPage: Int!
+  status: String
+  startDate: Date
+  endDate: Date
+}
+
+input GetMyLoanRequests {
+  page: Int
+  perPage: Int
+  status: String
+  startDate: Date
+  endDate: Date
+}
+
+input GetNotifications {
+  page: Int
+  perPage: Int
+}
+
+input getOneLoanOfferRequest {
+  loanRequest: MongoID!
+  loanOffer: MongoID!
+}
+
+input GetPreCancelInfoInput {
+  contractId: MongoID!
+}
+
+input GetUserRequestAmount {
+  version: Version
+}
+
+input getUserWallet {
+  currency: String
+}
+
+input offerExpiration {
+  rate: Float!
+  type: String!
+}
+
+input PaymentPlanInput {
+  paymentDate: Date
+  rate: Float
+  fees: Float
+  originalFees: Float
+  amount: Float
+  originalAmount: Float
+  status: EnumPaymentPlanStatus
+  paid: Boolean
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+input PermissionAdminInput {
+  name: String
+  key: String
+  options: [String!]
+}
+
+input PermissionInput {
+  name: String
+  key: String
+  options: [EnumPermissionOptions]
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+input PreCancel {
+  amountToPay: Float!
+  contractId: MongoID!
+}
+
+input ResetPasswordInput {
+  email: String!
+}
+
+input SessionInput {
+  user: MongoID
+  token: String
+  device: String
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+input SignInInput {
+  email: String!
+  password: String!
+  deviceToken: String
+}
+
+input SignOutInput {
+  token: String
+}
+
+input SignS3Input {
+  filename: String!
+  filetype: String!
+}
+
+input TransactionsByLenderOrBorrowerInput {
+  user: String
+}
+
+input UpdatecontractFeeSettings {
+  moraFee: Float
+  lenderFee: Float
+  borrowerFee: Float
+  lenderFeePercentage: Float
+  borrowerFeePercentage: Float
+  lenderFeeDiscretionary: Float
+  borrowerFeeDiscretionary: Float
+}
+
+input updateContractSettings {
+  minMonthlyPayments: Float
+  maxMonthlyPayments: Float
+  minLoanAmount: Float
+  maxLoanAmount: Float
+  maxAccumulatedDebtor: Float
+  maxAccumulatedDebtorWithCreditor: Float
+  allowedBlocks: Float
+  amountOfBlocksAllowed: Float
+}
+
+input updateCreditScoreParams {
+  name: String!
+  value: Float!
+}
+
+input updateInternalCreditScoreValue {
+  _id: MongoID!
+  name: String!
+  value: Float!
+}
+
+#
+input UpdateManyLoanRequestBorrowerInfoInput {
+  name: String
+  lastName: String
+  country: String
+  dni: String
+  email: String
+}
+
+#
+input UpdateManyLoanRequestInput {
+  amountInUSDC: Float
+  installments: Float
+  timesClicked: Float
+  selectedWallet: String
+  borrowerInfo: UpdateManyLoanRequestBorrowerInfoInput
+  borrower: String
+  status: EnumLoanRequestStatus
+  selectedWalletCurrency: MongoID
+  offers: [MongoID]
+  referenceNumber: Float
+  blockId: String
+  country: String
+  creditScore: Float
+  active: Boolean
+  createdAt: Date
+  updatedAt: Date
+}
+
+input updateOfferExpiration {
+  rate: Float
+  type: String
+}
+
+#
+input UpdateOneContractFeeSettingsBorrowerFeeInput {
+  value: Float
+  type: EnumContractFeeSettingsBorrowerFeeType
+}
+
+#
+input UpdateOneContractFeeSettingsBorrowerRequestFeeInput {
+  value: Float
+  type: EnumContractFeeSettingsBorrowerRequestFeeType
+}
+
+#
+input UpdateOneContractFeeSettingsInput {
+  moraFee: UpdateOneContractFeeSettingsMoraFeeInput
+  lenderFee: UpdateOneContractFeeSettingsLenderFeeInput
+  borrowerFee: UpdateOneContractFeeSettingsBorrowerFeeInput
+  borrowerRequestFee: UpdateOneContractFeeSettingsBorrowerRequestFeeInput
+  _id: MongoID
+}
+
+#
+input UpdateOneContractFeeSettingsLenderFeeInput {
+  value: Float
+  type: EnumContractFeeSettingsLenderFeeType
+}
+
+#
+input UpdateOneContractFeeSettingsMoraFeeInput {
+  value: Float
+  type: EnumContractFeeSettingsMoraFeeType
+}
+
+#
+input UpdateOneContractInput {
+  loanRequest: MongoID
+  loanOffer: MongoID
+  lender: String
+  borrower: String
+  walletTransactionsCurrency: MongoID
+  amountInUSDC: Float
+  amountReceivedInWalletTransactionsCurrency: Float
+  rate: Float
+  status: EnumContractStatus
+  paymentPlan: [UpdateOnePaymentPlanInput]
+  startDate: Date
+  lenderFeeInUSDC: Float
+  lenderFeeInWalletTransactionsCurrency: Float
+  borrowerFeeInUSDC: Float
+  borrowerFeeInWalletTransactionsCurrency: Float
+  referenceNumber: Float
+  onDefault: Boolean
+  paymentDue: Boolean
+  preCancel: Boolean
+  active: Boolean
+  commerce: String
+  borrowerSelectedWallet: String
+  lenderSelectedWallet: String
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input UpdateOneContractSettingsInput {
+  minMonthlyPayments: Float
+  maxMonthlyPayments: Float
+  maxAccumulatedDebtor: Float
+  maxAccumulatedDebtorWithCreditor: Float
+  allowedBlocks: Float
+  amountOfBlocksAllowed: Float
+  templateContent: String
+  _id: MongoID
+}
+
+#
+input UpdateOneCountryInput {
+  name: String
+  code: String
+  flag: String
+  active: Boolean
+  disabled: Boolean
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input UpdateOneCreditScoreInput {
+  user: String
+  values: [UpdateOneCreditScoreValuesInput]
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input UpdateOneCreditScoreParamsInput {
+  name: String
+  value: Float
+  _id: MongoID
+}
+
+#
+input UpdateOneCreditScoreRangeInput {
+  color: String
+  initial: Float
+  final: Float
+  _id: MongoID
+}
+
+#
+input UpdateOneCreditScoreValuesInput {
+  referenceNumber: String
+  value: Float
+  provider: EnumCreditScoreValuesProvider
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input UpdateOneCurrencyInput {
+  name: String
+  symbol: String
+  active: Boolean
+}
+
+#
+input UpdateOneHistoryInput {
+  user: MongoID
+  description: String
+  collectionName: EnumHistoryCollectionName
+  document: MongoID
+  active: Boolean
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input UpdateOneLoanOfferInput {
+  amount: Float
+  installments: Float
+  lender: String
+  lenderInfo: UpdateOneLoanOfferLenderInfoInput
+  borrower: String
+  status: EnumLoanOfferStatus
+  currency: MongoID
+  expirationDate: Date
+  selectedWallet: String
+  interestRate: Float
+  referenceNumber: Float
+  blockId: String
+  blockedAmountInWalletCurrency: Float
+  lenderFeeInUSDC: Float
+  lenderFeeInWalletCurrency: Float
+  active: Boolean
+  referenceNumberOfLoanRequest: Float
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input UpdateOneLoanOfferLenderInfoInput {
+  name: String
+  lastName: String
+  country: String
+  dni: String
+  email: String
+}
+
+#
+input UpdateOneLoanRequestBorrowerInfoInput {
+  name: String
+  lastName: String
+  country: String
+  dni: String
+  email: String
+}
+
+#
+input UpdateOneLoanRequestInput {
+  amountInUSDC: Float
+  installments: Float
+  timesClicked: Float
+  selectedWallet: String
+  borrowerInfo: UpdateOneLoanRequestBorrowerInfoInput
+  borrower: String
+  status: EnumLoanRequestStatus
+  selectedWalletCurrency: MongoID
+  offers: [MongoID]
+  referenceNumber: Float
+  blockId: String
+  country: String
+  creditScore: Float
+  active: Boolean
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input UpdateOneNotificationInput {
+  collectionName: EnumNotificationCollectionName
+  user: String
+  subject: String
+  message: String
+  active: Boolean
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input UpdateOneOfferExpirationInput {
+  rate: Float
+  type: EnumOfferExpirationType
+  _id: MongoID
+}
+
+#
+input UpdateOnePaymentPlanInput {
+  paymentDate: Date
+  rate: Float
+  fees: Float
+  originalFees: Float
+  amount: Float
+  originalAmount: Float
+  status: EnumPaymentPlanStatus
+  paid: Boolean
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input UpdateOnePermissionInput {
+  name: String
+  key: String
+  options: [EnumPermissionOptions]
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input UpdateOneSessionInput {
+  user: MongoID
+  token: String
+  device: String
+  active: Boolean
+  _id: MongoID
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input UpdateOneSettingsInput {
+  offerExpiration: UpdateOneOfferExpirationInput
+  creditScoreParams: [UpdateOneCreditScoreParamsInput]
+  creditScoreRange: [UpdateOneCreditScoreRangeInput]
+  maxInterestRate: Float
+  minInterestRate: Float
+  contract: UpdateOneContractSettingsInput
+  contractFees: UpdateOneContractFeeSettingsInput
+  active: Boolean
+}
+
+#
+input UpdateOneTransactionInput {
+  contract: MongoID
+  from: String
+  to: String
+  amount: Float
+  lenderFee: Float
+  borrowerFee: Float
+  interest: Float
+  type: EnumTransactionType
+  borrowerCreditLimit: Float
+  borrowerDueAmount: Float
+  borrowerNextPayment: UpdateOnePaymentPlanInput
+  borrowerActiveLoans: Float
+  borrowerAverageRate: Float
+  borrowedByBorrower: Float
+  lenderDueAmount: Float
+  lenderNextPayment: UpdateOnePaymentPlanInput
+  lenderActiveLoans: Float
+  lenderAverageRate: Float
+  lendedByLender: Float
+  event: EnumTransactionEvent
+  isActive: Boolean
+  commerce: String
+  commerceInterestEarnings: Float
+  commerceIssuedLoans: Float
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input UpdateOneUserInput {
+  slug: String
+  email: String
+  password: String
+  firstName: String
+  lastName: String
+  username: String
+  permission: [UpdateOnePermissionInput]
+  userRole: EnumUserUserRole
+  emailVerify: Boolean
+  resetTokenValidity: Date
+  resetToken: String
+  dni: String
+  dniType: EnumUserDniType
+  sessions: [UpdateOneSessionInput]
+  active: Boolean
+  createdAt: Date
+  updatedAt: Date
+}
+
+#
+input UpdateOneWalletInput {
+  name: String
+  address: String
+  currency: MongoID
+  owner: String
+  createdAt: Date
+  updatedAt: Date
+}
+
+input updateSettings {
+  _id: MongoID!
+  interestRate: Float
+  offerExpiration: updateOfferExpiration
+  contract: updateContractSettings
+  contractFees: UpdatecontractFeeSettings
+  maxInterestRate: Float
+}
+
+input updateSettingsCreditScoreParams {
+  _id: MongoID!
+  creditScoreParams: [updateCreditScoreParams!]!
+}
+
+input UserStats {
+  borrower: String
+}
+
+input ValidateForLoanRequestInput {
+  currency: String!
+  amount: Float!
+  selectedWallet: String!
+  installments: Float!
+  version: Version
+}
+
+input valueSettings {
+  type: String
+  value: Float
+}
